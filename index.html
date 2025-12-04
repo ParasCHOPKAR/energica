@@ -261,7 +261,7 @@ html, body {
 }
 
 .hero-content h1 {
-  font-size:58px;
+  font-size:60px;
   font-weight:800;
   background: linear-gradient(45deg, #00eaff, #00bfff, #00ffd0);
   -webkit-background-clip:text;
@@ -269,7 +269,7 @@ html, body {
 }
 
 .hero-content p {
-  font-size:22px;
+  font-size:25px;
   color:#d7f6ff;
   margin-top:18px;
 }
@@ -604,7 +604,7 @@ function toggleMenuUpdated() {
   background: transparent;
   color: #e6f0f8;
   padding: 100px 20px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Outfit', sans-serif;
   overflow: hidden;
 }
 .company-container {
@@ -622,12 +622,12 @@ function toggleMenuUpdated() {
 }
 .section-subtitle {
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 1rem;
   letter-spacing: 1px;
   margin-bottom: 12px;
 }
 .section-title {
-  font-size: 2.5rem;
+  font-size: 2.7rem;
   color: #fff; 
   background: linear-gradient(45deg, #00eaff, #00bfff, #00ffd0);
   -webkit-background-clip:text;
@@ -635,8 +635,8 @@ function toggleMenuUpdated() {
   margin-bottom: 20px;
 }
 .company-text p {
-  font-size: 1.1rem;
-  line-height: 1.7;
+  font-size: 1.5rem;
+  line-height: 1.4;
   color: #b5d2e0;
   margin-bottom: 25px;
 }
@@ -649,7 +649,7 @@ function toggleMenuUpdated() {
   padding: 0;
 }
 .points li {
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin-bottom: 12px;
   display: flex;
   align-items: center;
@@ -809,11 +809,11 @@ document.querySelectorAll(".info-card").forEach(card => {
   }
 
   .expertise-header p {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: #b0bfdc;
     max-width: 700px;
     margin: auto;
-    line-height: 1.7;
+    line-height: 1.5;
   }
 
   .expertise-grid {
@@ -843,7 +843,7 @@ document.querySelectorAll(".info-card").forEach(card => {
   .expertise-icon {
     position: absolute;
     left: 25px;
-    top: 30px;
+    top: 50px;
     width: 40px;
     height: 40px;
     fill: #00bfff;
@@ -851,7 +851,7 @@ document.querySelectorAll(".info-card").forEach(card => {
   }
 
   .expertise-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
     color: #00bfff;
     margin-bottom: 10px;
@@ -859,8 +859,8 @@ document.querySelectorAll(".info-card").forEach(card => {
 
   .expertise-desc {
     color: #cfd8ef;
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 1.4rem;
+    line-height: 1.4;
   }
 
   .cta {
@@ -1041,7 +1041,7 @@ document.querySelectorAll(".info-card").forEach(card => {
 
 .wwd-heading p {
   color: #aaa;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   max-width: 700px;
   margin: 0 auto 40px;
 }
@@ -1075,7 +1075,7 @@ document.querySelectorAll(".info-card").forEach(card => {
 }
 
 .wwd-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: #1ebff4;
   border: 1px solid rgba(255, 255, 255, 0.07);
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.08);
   backdrop-filter: blur(12px);
@@ -1089,7 +1089,7 @@ document.querySelectorAll(".info-card").forEach(card => {
 
 .wwd-card:hover {
   transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 0 40px rgba(0, 255, 255, 0.25);
+  box-shadow: 0 0 40px rgba(0, 68, 255, 0.304);
 }
 
 .wwd-card .icon {
@@ -1104,14 +1104,14 @@ document.querySelectorAll(".info-card").forEach(card => {
 
 .wwd-card h3 {
   color: #fff;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   margin-bottom: 15px;
 }
 
 .wwd-card p {
-  color: #bbb;
-  font-size: 1rem;
-  line-height: 1.6;
+  color: #000000;
+  font-size: 1.2rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
@@ -1240,7 +1240,7 @@ gsap.from(".wwd-card", {
   background: radial-gradient(circle at center, #0a0f24, #000);
   padding: 100px 20px;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Outline', sans-serif;
   color: #fff;
 }
 .evaluate-title {
@@ -1295,6 +1295,272 @@ gsap.from(".wwd-card", {
   }
 }
 </style>
+
+
+
+
+
+
+<!-- videos cards -->
+
+
+
+  <!-- Include this in the <head> -->
+<style>
+  .ongoing-section {
+    background: #000000;
+    padding: 80px 20px;
+    text-align: center;
+  }
+
+  .ongoing-section h2 {
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+    color: #00bfff;
+  }
+
+  .project-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  .project-card {
+    width: 260px;
+    height: 400px;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
+
+  .project-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .project-card:hover video {
+    transform: scale(1.1);
+  }
+
+  .overlay-info {
+    position: absolute;
+    bottom: 0;
+    padding: 24px;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    color: #fff;
+    text-align: left;
+    transition: opacity 0.4s;
+  }
+
+  .project-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .project-location {
+    font-size: 0.95rem;
+    color: #ddd;
+  }
+</style>
+
+<!-- Add this HTML where you want the section -->
+<section class="ongoing-section">
+  <h2>Our Ongoing Projects</h2>
+  <div class="project-cards">
+
+    <div class="project-card">
+      <video muted loop preload="none" poster="img/thumb-windhybrid.jpg">
+        <source src="img/windfps.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay-info">
+        <div class="project-title">100 MW Wind & Solar Hybrid</div>
+        <div class="project-location">Sangli, Maharashtra</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <video muted loop preload="none" poster="img/thumb-solarpv-satara.jpg">
+        <source src="img/sol_30fps.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay-info">
+        <div class="project-title">100 MW Solar PV Project</div>
+        <div class="project-location">Satara, Maharashtra</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <video muted loop preload="none" poster="img/thumb-solarpv-solapur.jpg">
+        <source src="img/wind5fps.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay-info">
+        <div class="project-title">25 MW Cumulative Solar</div>
+        <div class="project-location">Solapur, Maharashtra</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <video muted loop preload="none" poster="img/thumb-solarpv-pune.jpg">
+        <source src="img/so_60fps.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay-info">
+        <div class="project-title">1 MW Solar Project</div>
+        <div class="project-location">Pune, Maharashtra</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Add this JS before /body -->
+<script>
+  document.querySelectorAll(".project-card").forEach(card => {
+    const video = card.querySelector("video");
+
+    card.addEventListener("mouseenter", () => {
+      video.play();
+    });
+
+    card.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
+</script>
+
+
+
+
+<!-- Signature Services -->
+<!-- Include GSAP + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<main id="solarica-stack" style="position:relative; width:100%; overflow-x:hidden; margin:0; font-family:'Outfit',sans-serif; background:#000000;">
+                                           
+  <!-- Smart City Section -->
+  <section class="stack-section" style="position:relative; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; color:#333; background:#b6c0c3; overflow:hidden; box-shadow:0 0 60px rgba(33, 150, 243, 0.3), 0 0 40px rgba(76, 175, 80, 0.3), 0 10px 40px rgba(0,0,0,0.15); border:none;">
+    <div class="stack-content" style="display:flex; align-items:center; justify-content:space-between; gap:60px; width:90%; max-width:1100px; z-index:2; position:relative;">
+      <div class="stack-text" style="flex:1;">
+        <h2 style="font-size:2.2rem; margin-bottom:14px; color:#222;">DISTRESSED ASSETS  <br><span style='color:#ffb84d;'>ENERGY INDIA PVT. LTD</span></h2>
+        <p style="font-size:1.05rem; line-height:1.6; max-width:480px; color:#555;">
+          A feasibility study for reconstructing distressed
+renewable energy assets assesses market conditions,
+technical and financial status, reconstruction costs,
+and revenue projections. It reviews funding options,
+calculates ROI, and identifies risks. The study
+culminates in a strategic plan with recommendations,
+ensuring the financial and technical viability of asset
+revitalization.
+        </p>
+        <a href="#" style="display:inline-block; margin-top:20px; padding:12px 28px; background:#2fbf71; color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:1rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(47, 191, 113, 0.3);" onmouseover="this.style.background='#25a75f'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(47, 191, 113, 0.4)';" onmouseout="this.style.background='#2fbf71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(47, 191, 113, 0.3)';">View More</a>
+      </div>
+      <div class="stack-image" style="flex:1; display:flex; justify-content:center;">
+        <img src="img/thumb-solarpv-solapur.jpg" alt="Smart City" style="width:100%; max-width:420px; height:300px; object-fit:cover; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.25);">
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Street Lighting -->
+  <section class="stack-section" style="position:relative; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; color:#333; background:#b6c0c3; overflow:hidden; box-shadow:0 0 60px rgba(33, 150, 243, 0.3), 0 0 40px rgba(76, 175, 80, 0.3), 0 10px 40px rgba(0,0,0,0.15); border:none;">
+    <div class="stack-content" style="display:flex; flex-direction:row-reverse; align-items:center; justify-content:space-between; gap:60px; width:90%; max-width:1100px; z-index:2; position:relative;">
+      <div class="stack-text" style="flex:1;">
+        <h2 style="font-size:2.2rem; margin-bottom:14px; color:#222;">INFRA DEVELOPMENT <br><span style='color:#ffb84d;'>SYSTEMS PVT LTD</span></h2>
+        <p style="font-size:1.05rem; line-height:1.6; max-width:480px; color:#555;">
+          Infrastructure development for renewable energy projects involves site selection, design, planning, and financing. It includes securing permits, constructing infrastructure, and installing technologies. Post-installation, systems are tested and commissioned. Ongoing maintenance, performance monitoring, community engagement, and environmental management are crucial for project success and sustainability.
+        </p>
+        <a href="#" style="display:inline-block; margin-top:20px; padding:12px 28px; background:#2fbf71; color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:1rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(47, 191, 113, 0.3);" onmouseover="this.style.background='#25a75f'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(47, 191, 113, 0.4)';" onmouseout="this.style.background='#2fbf71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(47, 191, 113, 0.3)';">View More</a>
+      </div>
+      <div class="stack-image" style="flex:1; display:flex; justify-content:center;">
+        <img src="img/photo.png" alt="Street Lighting" style="width:100%; max-width:460px; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.25);">
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Energy Solutions -->
+  <section class="stack-section" style="position:relative; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; color:#333; background:#b6c0c3; overflow:hidden; box-shadow:0 0 60px rgba(33, 150, 243, 0.3), 0 0 40px rgba(76, 175, 80, 0.3), 0 10px 40px rgba(0,0,0,0.15); border:none;">
+    <div class="stack-content" style="display:flex; align-items:center; justify-content:space-between; gap:60px; width:90%; max-width:1100px; z-index:2; position:relative;">
+      <div class="stack-text" style="flex:1;">
+        <h2 style="font-size:2.2rem; margin-bottom:14px; color:#222;">LAND PROCUREMENT <br><span style='color:#ffb84d;'>INDUSTRIES PVT LTD</span></h2>
+        <p style="font-size:1.05rem; line-height:1.6; max-width:480px; color:#555;">
+For KUSUM and private CAPEX open access renewable projects, selecting land near substations reduces transmission costs and simplifies grid integration. Ensure substations can handle extra capacity and comply with regulations. This choice balances land costs with infrastructure savings. Conduct environmental impact assessments and engage stakeholders for approval and support, aligning with project goals.        </p>
+        <a href="#" style="display:inline-block; margin-top:20px; padding:12px 28px; background:#2fbf71; color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:1rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(47, 191, 113, 0.3);" onmouseover="this.style.background='#25a75f'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(47, 191, 113, 0.4)';" onmouseout="this.style.background='#2fbf71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(47, 191, 113, 0.3)';">View More</a>
+      </div>
+      <div class="stack-image" style="flex:1; display:flex; justify-content:center;">
+        <img src="img/thumb-windhybrid.jpg" alt="Energy Solutions" style="width:100%; max-width:460px; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.25);">
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Infrastructure -->
+  <section class="stack-section" style="position:relative; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; color:#333; background:#b6c0c3; overflow:hidden; box-shadow:0 0 60px rgba(33, 150, 243, 0.3), 0 0 40px rgba(76, 175, 80, 0.3), 0 10px 40px rgba(0,0,0,0.15); border:none;">
+    <div class="stack-content" style="display:flex; flex-direction:row-reverse; align-items:center; justify-content:space-between; gap:60px; width:90%; max-width:1100px; z-index:2; position:relative;">
+      <div class="stack-text" style="flex:1;">
+        <h2 style="font-size:2.2rem; margin-bottom:14px; color:#222;">ENERGY CONTRACTS<br><span style='color:#ffb84d;'>Fabtech PVT LTD</span></h2>
+        <p style="font-size:1.05rem; line-height:1.6; max-width:480px; color:#555;">
+          We provide expert drafting and consulting services for CapEx, OpEx, and open access proposals. Our third-party consultation ensures thorough evaluation and strategic guidance, helping clients optimize financial and operational decisions. Our expertise supports effective proposal development and decision-making, aligning with project goals and regulatory requirements.
+        </p>
+        <a href="#" style="display:inline-block; margin-top:20px; padding:12px 28px; background:#2fbf71; color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:1rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(47, 191, 113, 0.3);" onmouseover="this.style.background='#25a75f'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(47, 191, 113, 0.4)';" onmouseout="this.style.background='#2fbf71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(47, 191, 113, 0.3)';">View More</a>
+      </div>
+      <div class="stack-image" style="flex:1; display:flex; justify-content:center;">
+        <img src="img/thumb-solarpv-satara.jpg" alt="Infrastructure" style="width:100%; max-width:460px; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.25);">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  const sections = document.querySelectorAll(".stack-section");
+
+  sections.forEach((section, index) => {
+    const isLastSection = index === sections.length - 1;
+    
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top top",
+      pin: true,
+      pinSpacing: isLastSection ? true : false,
+      scrub: 1,
+      end: isLastSection ? "+=100vh" : "+=100%",
+      anticipatePin: 1,
+      onEnter: () => section.classList.add("active"),
+      onLeaveBack: () => section.classList.remove("active")
+    });
+
+    // Fade + move animation
+    gsap.from(section.querySelector(".stack-content"), {
+      opacity: 0,
+      y: 100,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%",
+        end: "top 30%",
+        scrub: 1
+      }
+    });
+  });
+  
+  // Refresh ScrollTrigger after everything loads
+  window.addEventListener('load', () => {
+    ScrollTrigger.refresh();
+  });
+</script>
+
+
+
+
 
 
 
@@ -1413,6 +1679,7 @@ gsap.from(".wwd-card", {
   <div class="footer-bottom">
     © InfravisoryConsultancy 2025 — All Rights Reserved.
   </div>
+  <div class="footer-bottom">Developed By DW INNOVATION PVT. LTD.</div>
 </footer>
 
 <style>
