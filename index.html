@@ -11,7 +11,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600..900&display=swap" rel="stylesheet">
 
-
+<!-- Google Fonts for side menu -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 
 
 
@@ -27,7 +28,7 @@
 }
 html, body { 
   width: 100%; height: auto;
-  margin: 0; overflow-x: hidden; font-family: Poppins, sans-serif; scroll-behavior: smooth;
+  margin: 0; overflow-x: hidden; font-family: Outfit, sans-serif; scroll-behavior: smooth;
   
  }
 
@@ -150,13 +151,13 @@ html, body {
   position: fixed;
   top: 25px; left: 35px;
   z-index: 30;
-  padding: 6px 12px;
+  padding: 14px 22px;
   border-radius: 14px;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(10px);
   box-shadow: 0 0 6px rgba(0,255,255,0.25);
 }
-.hero-logo-fixed img { width: 140px; }
+.hero-logo-fixed img { width: 110px; }
 
 
 /* ========================================
@@ -165,7 +166,7 @@ html, body {
 .hamburger {
   position: fixed;
   top: 28px; right: 35px;
-  width: 48px; height: 38px;
+  width: 54px; height: 44px;
   cursor: pointer;
   z-index: 99999;
   display: flex;
@@ -218,6 +219,7 @@ html, body {
   top: 0; right: 0;
   width: 380px; height: 100vh;
   background: #02060A;
+  text-transform: uppercase;
   padding: 70px 55px;
   backdrop-filter: blur(18px);
   clip-path: circle(0% at 100% 0);
@@ -230,8 +232,11 @@ html, body {
 .side-menu a {
   display:block;
   margin:22px 0;
-  font-size:38px;
-  font-weight:700;
+  font-family: 'Outfit', sans-serif;
+  font-size:36px;
+  font-style: extra bold;
+  text-align: left;
+  font-weight:800;
   color:#29d9ff;
   text-decoration:none;
 }
@@ -347,7 +352,7 @@ html, body {
 
 <!-- LOADER ELEMENTS -->
 <div class="loader-grain"></div>
-<img src="img/logo.png" class="loader-logo">
+<img src="img/logo2.png" class="loader-logo">
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -558,9 +563,9 @@ function toggleMenuUpdated() {
       <!-- Left: Text Content -->
       <div class="company-text">
         <h4 class="section-subtitle">About Our Company</h4>
-        <h2 class="section-title">Innovative Advisory for Sustainable Growth</h2>
+        <h2 class="section-title"><strong> Infravisory Consultancy Pvt. Limited</strong></h2>
         <p>
-          At <strong>InfravisoryConsultancy Pvt. Limited</strong>, we believe in a <span class="highlight">client-centric approach</span>,
+           we believe in a <span class="highlight">client-centric approach</span>,
           focusing on understanding the unique needs and goals of each project. Our team of <span class="highlight">seasoned experts</span>
           combines industry knowledge with innovative thinking to deliver success.
         </p>
@@ -575,7 +580,7 @@ function toggleMenuUpdated() {
       <!-- Right: Image with Animated Cards -->
       <div class="company-visual">
         <div class="image-container">
-          <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Team at work" class="main-image">
+          <img src="https://images.pexels.com/photos/7693730/pexels-photo-7693730.jpeg" alt="Team at work" class="main-image">
           <div class="info-card card1">📊 Project Risk</div>
           <div class="info-card card2">📈 Feasibility</div>
           <div class="info-card card3">🔍 Investment Fit</div>
@@ -608,14 +613,17 @@ function toggleMenuUpdated() {
   flex: 1 1 500px;
 }
 .section-subtitle {
-  color: #00d4ff;
+  color: #fff;
   font-size: 0.9rem;
   letter-spacing: 1px;
   margin-bottom: 12px;
 }
 .section-title {
   font-size: 2.5rem;
-  color: #fff;
+  color: #fff; 
+  background: linear-gradient(45deg, #00eaff, #00bfff, #00ffd0);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
   margin-bottom: 20px;
 }
 .company-text p {
@@ -625,7 +633,7 @@ function toggleMenuUpdated() {
   margin-bottom: 25px;
 }
 .highlight {
-  color: #00ffc8;
+  color: #00bfff;
   font-weight: 600;
 }
 .points {
@@ -639,8 +647,8 @@ function toggleMenuUpdated() {
   align-items: center;
 }
 .points .icon {
-  background: #00ffc8;
-  color: #0c111f;
+  background: #00bfff;
+  color: #fff;
   font-weight: bold;
   font-size: 0.9rem;
   border-radius: 50%;
@@ -669,26 +677,26 @@ function toggleMenuUpdated() {
 .info-card {
   position: absolute;
   background: #ffffff0f;
-  color: #fff;
+  color: #00bfff;
   backdrop-filter: blur(8px);
   border-radius: 12px;
   padding: 10px 20px;
   font-size: 0.9rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 10px rgba(0,0,0,0.25);
   animation: floatY 4s infinite ease-in-out;
 
 
   /* existing styles... */
   box-shadow:
-    0 0 10px rgba(0, 255, 255, 0.2),
-    0 0 30px rgba(0, 255, 255, 0.15),
-    0 0 60px rgba(0, 255, 255, 0.1);
+    0 0 10px rgba(0, 255, 255, 0),
+    0 0 30px rgba(0, 255, 255, 0.1),
+    0 0 30px rgba(0, 255, 255, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 
 }
-.card1 { top: 10%; left: 5%; animation-delay: 0s; }
-.card2 { top: 50%; left: 75%; animation-delay: 1s; }
-.card3 { bottom: 10%; right: 10%; animation-delay: 2s; }
+.card1 { top: 4%; left: 3%; animation-delay: 0s; }
+.card2 { top: 8%; right: 20%; animation-delay: 1s; }
+.card3 { bottom: 3%; right:6%; animation-delay: 2s; }
 
 @keyframes floatY {
   0%, 100% { transform: translateY(0px); }
@@ -758,151 +766,186 @@ document.querySelectorAll(".info-card").forEach(card => {
       COMPANY information
 ============================= -->
 
+<!-- GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 <style>
+  .expertise-section {
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #0a0b1b, #0e1333);
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+  }
 
-    .expertise-section {
-      padding: 100px 20px;
-      background: linear-gradient(to bottom, #0a0b1b, #111428);
-      position: relative;
-      overflow: hidden;
-    }
+  .expertise-container {
+    max-width: 1200px;
+    margin: auto;
+  }
 
-    .expertise-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+  .expertise-header {
+    text-align: center;
+    margin-bottom: 60px;
+    color: #fff;
+  }
 
-    .expertise-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
+  .expertise-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #00ffe0, #007bff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s infinite alternate;
+  }
 
-    .expertise-header h2 {
-      font-size: 2.8rem;
-      color: #ffffff;
-    }
+  .expertise-header p {
+    font-size: 1.1rem;
+    color: #b0bfdc;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.7;
+  }
 
-    .expertise-header p {
-      font-size: 1.1rem;
-      color: #b0bfdc;
-      max-width: 700px;
-      margin: 20px auto 0;
-    }
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
 
+  .expertise-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(14px);
+    padding: 30px 30px 30px 80px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s ease;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+  }
+
+  .expertise-box:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+  }
+
+  .expertise-icon {
+    position: absolute;
+    left: 25px;
+    top: 30px;
+    width: 40px;
+    height: 40px;
+    fill: #00ffe1;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .expertise-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #00ffe1;
+    margin-bottom: 10px;
+  }
+
+  .expertise-desc {
+    color: #cfd8ef;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .cta {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .cta a {
+    display: inline-block;
+    background: linear-gradient(45deg, #007bff, #00ffe1);
+    color: #fff;
+    padding: 14px 32px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 40px;
+    transition: all 0.3s ease;
+  }
+
+  .cta a:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(45deg, #00bfff, #00e3a4);
+  }
+
+  @keyframes glow {
+    0% { text-shadow: 0 0 8px #00ffe1; }
+    100% { text-shadow: 0 0 20px #00ffe1; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  @media (min-width: 768px) {
     .expertise-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
     }
-
-    .expertise-box {
-      background: #13162d;
-      padding: 30px;
-      border-radius: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .expertise-box::before {
-      content: '';
-      position: absolute;
-      top: -20%;
-      left: -20%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at center, rgba(0, 255, 255, 0.1), transparent);
-      transform: rotate(45deg);
-      animation: rotate 20s linear infinite;
-      z-index: 0;
-    }
-
-    .expertise-content {
-      z-index: 1;
-    }
-
-    .expertise-title {
-      font-size: 1.6rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #00eaff;
-    }
-
-    .expertise-desc {
-      color: #cfd8ef;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .cta {
-      text-align: center;
-      margin-top: 60px;
-    }
-
-    .cta a {
-      display: inline-block;
-      background: #0051ff;
-      color: #fff;
-      padding: 14px 32px;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 40px;
-      transition: all 0.3s ease;
-    }
-
-    .cta a:hover {
-      background: #003dcb;
-      transform: translateY(-3px);
-    }
-
-    @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    @media (min-width: 768px) {
-      .expertise-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-  </style>
+  }
+</style>
 
 <section class="expertise-section">
   <div class="expertise-container">
     <div class="expertise-header">
       <h2>Our Expertise</h2>
-      <p>We assess the technical aspects of projects to ensure they meet investment criteria. We evaluate feasibility, performance risks, and compliance with standards, providing critical insights that help lenders and clients make informed financing decisions and manage risks effectively throughout the project lifecycle.</p>
+      <p>We assess project feasibility, performance risks, and compliance with standards, providing critical insights that help stakeholders make confident, risk-informed decisions.</p>
     </div>
 
     <div class="expertise-grid">
       <div class="expertise-box">
-        <div class="expertise-content">
-          <div class="expertise-title">Customized Strategy Development</div>
-          <div class="expertise-desc">Tailor-made strategies to address your unique business challenges and opportunities, ensuring sustainable growth and competitive advantage.</div>
+        <svg class="expertise-icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-7.5 17.1l1.4-1.4a8 8 0 1111.2 0l1.4 1.4A10 10 0 0012 2z"/></svg>
+        <div>
+          <div class="expertise-title">Customized Strategy</div>
+          <div class="expertise-desc">Tailor-made strategies designed for your unique business and sustainability objectives.</div>
         </div>
       </div>
 
       <div class="expertise-box">
-        <div class="expertise-content">
-          <div class="expertise-title">Operational Efficiency Optimization</div>
-          <div class="expertise-desc">Streamline your processes and improve efficiency with our expert guidance, helping you save time and resources.</div>
+        <svg class="expertise-icon" viewBox="0 0 24 24"><path d="M9 2v2H4v16h16V4h-5V2h7v20H2V2z"/></svg>
+        <div>
+          <div class="expertise-title">Efficiency Optimization</div>
+          <div class="expertise-desc">Streamline operations with expert guidance to reduce costs and improve performance.</div>
         </div>
       </div>
 
       <div class="expertise-box">
-        <div class="expertise-content">
-          <div class="expertise-title">Market Analysis and Insights</div>
-          <div class="expertise-desc">Gain valuable market insights and stay ahead of the competition with our comprehensive analysis and data-driven recommendations.</div>
+        <svg class="expertise-icon" viewBox="0 0 24 24"><path d="M12 8a4 4 0 11.001 8.001A4 4 0 0112 8z"/></svg>
+        <div>
+          <div class="expertise-title">Market Insights</div>
+          <div class="expertise-desc">Stay ahead with deep market intelligence and real-time renewable energy trends.</div>
         </div>
       </div>
 
       <div class="expertise-box">
-        <div class="expertise-content">
-          <div class="expertise-title">Leadership and Team Building</div>
-          <div class="expertise-desc">Enhance your leadership capabilities and foster a high-performing team through our specialized training and development programs.</div>
+        <svg class="expertise-icon" viewBox="0 0 24 24"><path d="M2 12l5 4.5L18 6"/></svg>
+        <div>
+          <div class="expertise-title">Leadership & Team Growth</div>
+          <div class="expertise-desc">Build strong leadership and cohesive teams with our specialized development programs.</div>
+        </div>
+      </div>
+
+      <div class="expertise-box">
+        <svg class="expertise-icon" viewBox="0 0 24 24"><path d="M3 12l2-2 4 4L21 4l2 2-13 13L3 12z"/></svg>
+        <div>
+          <div class="expertise-title">Asset Due Diligence</div>
+          <div class="expertise-desc">Technical, legal and operational audits to assess renewable project investment risk.</div>
+        </div>
+      </div>
+
+      <div class="expertise-box">
+        <svg class="expertise-icon" viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 00-2 2v14h2V5h14V3zM21 7H9a2 2 0 00-2 2v12h14a2 2 0 002-2V9a2 2 0 00-2-2zm0 14H9V9h12v12z"/></svg>
+        <div>
+          <div class="expertise-title">Contract Advisory</div>
+          <div class="expertise-desc">Optimize terms and negotiation strategy in clean energy contracts and procurement.</div>
         </div>
       </div>
     </div>
@@ -915,7 +958,6 @@ document.querySelectorAll(".info-card").forEach(card => {
 
 <script>
   gsap.registerPlugin(ScrollTrigger);
-
   gsap.utils.toArray('.expertise-box').forEach((box, i) => {
     gsap.from(box, {
       scrollTrigger: {
@@ -924,13 +966,14 @@ document.querySelectorAll(".info-card").forEach(card => {
         toggleActions: "play none none none"
       },
       opacity: 0,
-      y: 60,
-      duration: 0.9,
+      y: 50,
+      duration: 0.8,
       delay: i * 0.15,
       ease: "power2.out"
     });
   });
 </script>
+
 
 
 
@@ -985,7 +1028,7 @@ document.querySelectorAll(".info-card").forEach(card => {
 }
 
 .wwd-heading h2 span {
-  color: #00ffe7;
+  color:#00bfff;
 }
 
 .wwd-heading p {
@@ -1331,15 +1374,15 @@ gsap.from(".wwd-card", {
 
     <!-- Addresses -->
     <div class="footer-column">
-      <h4>LDS</h4>
+      <h4>Pune</h4>
       <p>Arena Park,<br>Leeds, LS17 9BF</p>
       <a href="#">📍 MAP ↗</a><br>
       <a href="tel:7770011558">📞 7770011558</a>
     </div>
 
     <div class="footer-column">
-      <h4>LDN</h4>
-      <p>105 Piccadilly,<br>London W1J 7NJ</p>
+      <h4>Pune</h4>
+      <p>105 Piccadilly,<br> W1J 7NJ</p>
       <a href="#">📍 MAP ↗</a><br>
       <a href="tel:7719818283">📞 7719818283</a>
     </div>
