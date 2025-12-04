@@ -233,13 +233,21 @@ html, body {
   display:block;
   margin:22px 0;
   font-family: 'Outfit', sans-serif;
-  font-size:36px;
+  font-size:40px;
   font-style: extra bold;
   text-align: left;
   font-weight:800;
   color:#29d9ff;
   text-decoration:none;
 }
+
+
+.side-menu a:hover {
+  color: #00bfff;
+  transform: translateX(10px);
+}
+
+
 
 /* ========================================
       HERO TEXT
@@ -775,7 +783,7 @@ document.querySelectorAll(".info-card").forEach(card => {
     padding: 100px 20px;
     background: linear-gradient(135deg, #0a0b1b, #0e1333);
     overflow: hidden;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Outfit', sans-serif;
   }
 
   .expertise-container {
@@ -794,10 +802,10 @@ document.querySelectorAll(".info-card").forEach(card => {
     font-weight: 700;
     letter-spacing: 1px;
     margin-bottom: 20px;
-    background: linear-gradient(to right, #00ffe0, #007bff);
+    background: linear-gradient(to right, #00bfff, #00ffc3);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: glow 2s infinite alternate;
+    animation: glow s infinite alternate;
   }
 
   .expertise-header p {
@@ -824,12 +832,12 @@ document.querySelectorAll(".info-card").forEach(card => {
     overflow: hidden;
     transition: 0.4s ease;
     transform-style: preserve-3d;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+    box-shadow: 0 0 20px rgba(0, 102, 255, 0.05);
   }
 
   .expertise-box:hover {
     transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 64, 255, 0.2);
   }
 
   .expertise-icon {
@@ -838,14 +846,14 @@ document.querySelectorAll(".info-card").forEach(card => {
     top: 30px;
     width: 40px;
     height: 40px;
-    fill: #00ffe1;
+    fill: #00bfff;
     animation: float 3s ease-in-out infinite;
   }
 
   .expertise-title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #00ffe1;
+    color: #00bfff;
     margin-bottom: 10px;
   }
 
@@ -1016,7 +1024,7 @@ document.querySelectorAll(".info-card").forEach(card => {
   background: #0f0f1a;
   color: #fff;
   padding: 100px 20px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Outfit', sans-serif;
   text-align: center;
 }
 
@@ -1055,7 +1063,7 @@ document.querySelectorAll(".info-card").forEach(card => {
 }
 
 .wwd-tabs .tab.active {
-  color: #00ffe7;
+  color: #00bfff;
   border-bottom: 3px solid #00ffe7;
 }
 
@@ -1239,7 +1247,7 @@ gsap.from(".wwd-card", {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 60px;
-  background: linear-gradient(to right, #00ffc3, #00cfff);
+  background: linear-gradient(to right, #00bfff, #00ffc3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -1263,7 +1271,7 @@ gsap.from(".wwd-card", {
 .swiper-slide h3 {
   font-size: 1.2rem;
   margin-bottom: 14px;
-  color: #00ffc3;
+  color: #00bfff;
 }
 .swiper-slide p {
   font-size: 0.95rem;
@@ -1275,7 +1283,7 @@ gsap.from(".wwd-card", {
   opacity: 0.5;
 }
 .swiper-pagination-bullet-active {
-  background: #00ffc3;
+  background: #00bfff;
   opacity: 1;
 }
 @media (max-width: 600px) {
@@ -1312,8 +1320,8 @@ gsap.from(".wwd-card", {
   width: 100%;
   overflow: hidden;
   background: #001f2e; /* Dark solid background to avoid blur */
-  border-top: 1px solid #00ffe1;
-  border-bottom: 1px solid #00ffe1;
+  border-top: 1px solid #00bfff;
+  border-bottom: 1px solid #00bfff;
   padding: 20px 0;
   z-index: 5;
 }
@@ -1325,10 +1333,10 @@ gsap.from(".wwd-card", {
   font-size: 1.5rem;
   font-weight: 500;
   gap: 80px;
-  color: #00eaff; /* Logo-like cyan */
-  font-family: 'Orbitron', sans-serif;
+  color: #00bfff; /* Logo-like cyan */
+  font-family: 'Outfit', sans-serif;
   text-transform: uppercase;
-  text-shadow: 0 0 10px #114c51, 0 0 20px #0c4247;
+  text-shadow: 0 0 0px #114c51, 0 0 20px #0c4247;
   will-change: transform;
   letter-spacing: 1.5px;
 }
@@ -1432,7 +1440,7 @@ gsap.from(".wwd-card", {
 }
 
 .footer-column h4 {
-  color: #00ffc8;
+  color: #00bfff;
   font-weight: 600;
   margin-bottom: 12px;
   font-size: 1.2rem;
@@ -1462,7 +1470,7 @@ gsap.from(".wwd-card", {
 }
 
 .footer-column a:hover {
-  color: #00ffc8;
+  color: #00bfff;
   transform: translateX(5px);
 }
 
@@ -1474,16 +1482,16 @@ gsap.from(".wwd-card", {
 
 .social-links a {
   padding: 8px 14px;
-  border: 1px solid #00ffc8;
+  border: 1px solid #00bfff;
   border-radius: 20px;
-  color: #00ffc8;
+  color: #00bfff;
   text-decoration: none;
   font-size: 0.9rem;
   transition: all 0.3s ease;
 }
 
 .social-links a:hover {
-  background: #00ffc8;
+  background: #00bfff;
   color: #000d13;
   transform: scale(1.05);
 }
@@ -1491,7 +1499,7 @@ gsap.from(".wwd-card", {
 .emails a {
   display: block;
   margin: 5px 0;
-  font-weight: 600;
+  font-weight: 400;
   color: #ffffff;
   text-decoration: underline;
 }
