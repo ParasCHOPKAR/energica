@@ -770,6 +770,278 @@ document.querySelectorAll(".info-card").forEach(card => {
 
 
 
+
+<!-- Signature Services -->
+<!-- Include GSAP + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<main id="solarica-stack" style="position:relative; width:100%; overflow-x:hidden; margin:0; font-family:'Outfit',sans-serif; background:#000000;">
+                                           
+  <!-- Smart City Section -->
+  <section class="stack-section" style="position:relative; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; color:#333; background:#ffffff; overflow:hidden; box-shadow:0 0 60px rgba(33, 150, 243, 0.3), 0 0 40px rgba(76, 175, 80, 0.3), 0 10px 40px rgba(0,0,0,0.15); border:none;">
+    <div class="stack-content" style="display:flex; align-items:center; justify-content:space-between; gap:60px; width:90%; max-width:1100px; z-index:2; position:relative;">
+      <div class="stack-text" style="flex:1;">
+        <h2 style="font-size:2.2rem; margin-bottom:14px; color:#222;">PM Surya Ghar Muft Bijli Yojana  <br></h2>
+        <p style="font-size:1.05rem; line-height:1.6; max-width:480px; color:#555;">
+         The "PM-Surya Ghar: Muft Bijli Yojana" (Free Electricity Scheme) is an Indian government initiative launched on February 15, 2024, to provide free electricity to households by installing rooftop solar panels. The scheme aims to help 1 crore households generate their own electricity, with a target of providing up to 300 units of free electricity each month to beneficiaries. It includes installing solar rooftop systems, offering subsidies, and providing low-interest loans to eligible households.  
+        </p>
+        <a href="#" style="display:inline-block; margin-top:20px; padding:12px 28px; background:#2fbf71; color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:1rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(47, 191, 113, 0.3);" onmouseover="this.style.background='#25a75f'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(47, 191, 113, 0.4)';" onmouseout="this.style.background='#2fbf71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(47, 191, 113, 0.3)';">View More</a>
+      </div>
+      <div class="stack-image" style="flex:1; display:flex; justify-content:center;">
+        <img src="img/pmsu.jpg" alt="Smart City" style="width:100%; max-width:420px; height:300px; object-fit:cover; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.25);">
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Street Lighting -->
+  <section class="stack-section" style="position:relative; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; color:#333; background:#ffffff; overflow:hidden; box-shadow:0 0 60px rgba(33, 150, 243, 0.3), 0 0 40px rgba(76, 175, 80, 0.3), 0 10px 40px rgba(0,0,0,0.15); border:none;">
+    <div class="stack-content" style="display:flex; flex-direction:row-reverse; align-items:center; justify-content:space-between; gap:60px; width:90%; max-width:1100px; z-index:2; position:relative;">
+      <div class="stack-text" style="flex:1;">
+        <h2 style="font-size:2.2rem; margin-bottom:14px; color:#222;">KUSUM Scheme<br></h2>
+        <p style="font-size:1.05rem; line-height:1.6; max-width:480px; color:#555;">
+          KUSUM is the Pradhan Mantri Kisan Urja Suraksha evam Utthaan Mahabhiyan, a scheme launched in March 2019 to provide solar irrigation pumps to farmers to reduce their costs and increase income. The scheme aims to de-dieselize the agricultural sector by installing solar pumps, offering subsidies on their purchase and other solar projects on barren land. 
+        </p>
+        <a href="#" style="display:inline-block; margin-top:20px; padding:12px 28px; background:#2fbf71; color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:1rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(47, 191, 113, 0.3);" onmouseover="this.style.background='#25a75f'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(47, 191, 113, 0.4)';" onmouseout="this.style.background='#2fbf71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(47, 191, 113, 0.3)';">View More</a>
+      </div>
+      <div class="stack-image" style="flex:1; display:flex; justify-content:center;">
+        <img src="img/kusum.jpg" alt="Street Lighting" style="width:100%; max-width:460px; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.25);">
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Energy Solutions -->
+  <section class="stack-section" style="position:relative; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; color:#333; background:#ffffff; overflow:hidden; box-shadow:0 0 60px rgba(33, 150, 243, 0.3), 0 0 40px rgba(76, 175, 80, 0.3), 0 10px 40px rgba(0,0,0,0.15); border:none;">
+    <div class="stack-content" style="display:flex; align-items:center; justify-content:space-between; gap:60px; width:90%; max-width:1100px; z-index:2; position:relative;">
+      <div class="stack-text" style="flex:1;">
+        <h2 style="font-size:2.2rem; margin-bottom:14px; color:#222;">SMART Program <br></h2>
+        <p style="font-size:1.05rem; line-height:1.6; max-width:480px; color:#555;">
+The SMART (Swayampurna Maharashtra Residential Rooftop) Solar Scheme's objectives are to empower low-income households (BPL/under 100 units/month) with self-reliant solar power to cut bills, boost state renewable energy capacity, reduce grid load, align with national climate goals (Net Zero 2070), and foster local "Made in India" solar manufacturing, supporting energy equity and sustainability through significant state subsidies. </p>
+        <a href="#" style="display:inline-block; margin-top:20px; padding:12px 28px; background:#2fbf71; color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:1rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(47, 191, 113, 0.3);" onmouseover="this.style.background='#25a75f'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(47, 191, 113, 0.4)';" onmouseout="this.style.background='#2fbf71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(47, 191, 113, 0.3)';">View More</a>
+      </div>
+      <div class="stack-image" style="flex:1; display:flex; justify-content:center;">
+        <img src="img/smar.jpg" alt="Energy Solutions" style="width:100%; max-width:460px; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.25);">
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Infrastructure -->
+  <section class="stack-section" style="position:relative; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; color:#333; background:#ffffff; overflow:hidden; box-shadow:0 0 60px rgba(33, 150, 243, 0.3), 0 0 40px rgba(76, 175, 80, 0.3), 0 10px 40px rgba(0,0,0,0.15); border:none;">
+    <div class="stack-content" style="display:flex; flex-direction:row-reverse; align-items:center; justify-content:space-between; gap:60px; width:90%; max-width:1100px; z-index:2; position:relative;">
+      <div class="stack-text" style="flex:1;">
+        <h2 style="font-size:2.2rem; margin-bottom:14px; color:#222;">Green Open Access<br></h2>
+        <p style="font-size:1.05rem; line-height:1.6; max-width:480px; color:#555;">
+          Maharashtra's Green Energy Open Access (GEOA) Scheme allows consumers (100 kW load or more) to buy renewable power directly from developers, bypassing DISCOMs for cheaper, cleaner energy, governed by MERC rules with simplified processes and metering for HT/LT users, reducing costs and emissions for C&I sectors. Key features include load threshold reduction, special meters (HT/ToD for LT), web portal application via https://greenopenaccess.in/, and exemptions for certain waste/hydrogen projects, aiming to boost solar adoption.
+
+        </p>
+        <a href="#" style="display:inline-block; margin-top:20px; padding:12px 28px; background:#2fbf71; color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:1rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(47, 191, 113, 0.3);" onmouseover="this.style.background='#25a75f'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(47, 191, 113, 0.4)';" onmouseout="this.style.background='#2fbf71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(47, 191, 113, 0.3)';">View More</a>
+      </div>
+      <div class="stack-image" style="flex:1; display:flex; justify-content:center;">
+        <img src="img/green.jpg" alt="Infrastructure" style="width:100%; max-width:460px; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.25);">
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  const sections = document.querySelectorAll(".stack-section");
+
+  sections.forEach((section, index) => {
+    const isLastSection = index === sections.length - 1;
+    
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top top",
+      pin: true,
+      pinSpacing: isLastSection ? true : false,
+      scrub: 1,
+      end: isLastSection ? "+=100vh" : "+=100%",
+      anticipatePin: 1,
+      onEnter: () => section.classList.add("active"),
+      onLeaveBack: () => section.classList.remove("active")
+    });
+
+    // Fade + move animation
+    gsap.from(section.querySelector(".stack-content"), {
+      opacity: 0,
+      y: 100,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%",
+        end: "top 30%",
+        scrub: 1
+      }
+    });
+  });
+  
+  // Refresh ScrollTrigger after everything loads
+  window.addEventListener('load', () => {
+    ScrollTrigger.refresh();
+  });
+</script>
+
+
+
+
+
+
+
+<!-- videos cards -->
+
+
+
+  <!-- Include this in the <head> -->
+<style>
+  .ongoing-section {
+    background: #000000;
+    padding: 80px 20px;
+    text-align: center;
+  }
+
+  .ongoing-section h2 {
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+    color: #00bfff;
+  }
+
+  .project-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  .project-card {
+    width: 260px;
+    height: 400px;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
+
+  .project-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .project-card:hover video {
+    transform: scale(1.1);
+  }
+
+  .overlay-info {
+    position: absolute;
+    bottom: 0;
+    padding: 24px;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    color: #fff;
+    text-align: left;
+    transition: opacity 0.4s;
+  }
+
+  .project-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .project-location {
+    font-size: 0.95rem;
+    color: #ddd;
+  }
+</style>     
+
+<!-- Add this HTML where you want the section -->
+<section class="ongoing-section">
+  <h2>Our Ongoing Projects</h2>
+  <div class="project-cards">
+
+    <div class="project-card">
+      <video muted loop preload="none" poster="img/thumb-windhybrid.jpg">
+        <source src="img/windfps.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay-info">
+        <div class="project-title">100 MW Wind & Solar Hybrid</div>
+        <div class="project-location">Sangli, Maharashtra</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <video muted loop preload="none" poster="img/thumb-solarpv-satara.jpg">
+        <source src="img/sol_30fps.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay-info">
+        <div class="project-title">100 MW Solar PV Project</div>
+        <div class="project-location">Satara, Maharashtra</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <video muted loop preload="none" poster="img/thumb-solarpv-solapur.jpg">
+        <source src="img/wind5fps.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay-info">
+        <div class="project-title">25 MW Cumulative Solar</div>
+        <div class="project-location">Solapur, Maharashtra</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <video muted loop preload="none" poster="img/thumb-solarpv-pune.jpg">
+        <source src="img/so_60fps.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay-info">
+        <div class="project-title">1 MW Solar Project</div>
+        <div class="project-location">Pune, Maharashtra</div>
+      </div>
+    </div>
+
+  </div>
+</section> 
+
+<!-- Add this JS before /body -->
+ <script>
+  document.querySelectorAll(".project-card").forEach(card => {
+    const video = card.querySelector("video");
+
+    card.addEventListener("mouseenter", () => {
+      video.play();
+    });
+
+    card.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- =============================
       COMPANY information
 ============================= -->
@@ -998,7 +1270,7 @@ document.querySelectorAll(".info-card").forEach(card => {
   </div>
 
   <div class="wwd-tabs">
-    <span class="tab active">End-to-End Advisory</span>
+    <span class="tab">End-to-End Advisory</span>
     <span class="tab">Risk Evaluation</span>
     <span class="tab">Compliance & Feasibility</span>
   </div>
@@ -1075,7 +1347,7 @@ document.querySelectorAll(".info-card").forEach(card => {
 }
 
 .wwd-card {
-  background: #1ebff4;
+  background: #7fc2f9;
   border: 1px solid rgba(255, 255, 255, 0.07);
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.08);
   backdrop-filter: blur(12px);
@@ -1172,18 +1444,22 @@ gsap.from(".wwd-card", {
   <div class="swiper cubeSwiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide glass-3d">
+        <img src="img/Solar-panel-fire-damage.webp" alt="Distressed Assets" class="slide-img-3d" />
         <h3>Renewable Distressed Assets</h3>
         <p>Assessment of distressed renewable assets to identify risks, opportunities, and strategies for recovery and optimization.</p>
       </div>
       <div class="swiper-slide glass-3d">
+         <img src="img/small-village.jpg" alt="Infrastructure Development" class="slide-img-3d" />
         <h3>Infrastructure Development Projects</h3>
         <p>Analyzing greenfield infrastructure development projects for viability, uncovering challenges, and ensuring efficient implementation strategies.</p>
       </div>
       <div class="swiper-slide glass-3d">
+        <img src="img/renewable2.webp" alt="Land Procurement" class="slide-img-3d" />
         <h3>Land Procurement</h3>
         <p>Technical analysis of land feasibility to determine suitability for renewable energy project development.</p>
       </div>
       <div class="swiper-slide glass-3d">
+        <img src="img/green2.jpg" alt="Energy Contracts" class="slide-img-3d" />
         <h3>Renewable Energy Contracts</h3>
         <p>Evaluation of proposals and contracts for cost efficiency and strategic decision-making.</p>
       </div>
@@ -1301,262 +1577,10 @@ gsap.from(".wwd-card", {
 
 
 
-<!-- videos cards -->
-
-
-
-  <!-- Include this in the <head> -->
-<style>
-  .ongoing-section {
-    background: #000000;
-    padding: 80px 20px;
-    text-align: center;
-  }
-
-  .ongoing-section h2 {
-    font-size: 2.8rem;
-    margin-bottom: 40px;
-    color: #00bfff;
-  }
-
-  .project-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 50px;
-  }
-
-  .project-card {
-    width: 260px;
-    height: 400px;
-    position: relative;
-    border-radius: 24px;
-    overflow: hidden;
-    background: #000;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    cursor: pointer;
-  }
-
-  .project-card video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  .project-card:hover video {
-    transform: scale(1.1);
-  }
-
-  .overlay-info {
-    position: absolute;
-    bottom: 0;
-    padding: 24px;
-    width: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-    color: #fff;
-    text-align: left;
-    transition: opacity 0.4s;
-  }
-
-  .project-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-
-  .project-location {
-    font-size: 0.95rem;
-    color: #ddd;
-  }
-</style>
-
-<!-- Add this HTML where you want the section -->
-<section class="ongoing-section">
-  <h2>Our Ongoing Projects</h2>
-  <div class="project-cards">
-
-    <div class="project-card">
-      <video muted loop preload="none" poster="img/thumb-windhybrid.jpg">
-        <source src="img/windfps.mp4" type="video/mp4" />
-      </video>
-      <div class="overlay-info">
-        <div class="project-title">100 MW Wind & Solar Hybrid</div>
-        <div class="project-location">Sangli, Maharashtra</div>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <video muted loop preload="none" poster="img/thumb-solarpv-satara.jpg">
-        <source src="img/sol_30fps.mp4" type="video/mp4" />
-      </video>
-      <div class="overlay-info">
-        <div class="project-title">100 MW Solar PV Project</div>
-        <div class="project-location">Satara, Maharashtra</div>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <video muted loop preload="none" poster="img/thumb-solarpv-solapur.jpg">
-        <source src="img/wind5fps.mp4" type="video/mp4" />
-      </video>
-      <div class="overlay-info">
-        <div class="project-title">25 MW Cumulative Solar</div>
-        <div class="project-location">Solapur, Maharashtra</div>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <video muted loop preload="none" poster="img/thumb-solarpv-pune.jpg">
-        <source src="img/so_60fps.mp4" type="video/mp4" />
-      </video>
-      <div class="overlay-info">
-        <div class="project-title">1 MW Solar Project</div>
-        <div class="project-location">Pune, Maharashtra</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Add this JS before /body -->
-<script>
-  document.querySelectorAll(".project-card").forEach(card => {
-    const video = card.querySelector("video");
-
-    card.addEventListener("mouseenter", () => {
-      video.play();
-    });
-
-    card.addEventListener("mouseleave", () => {
-      video.pause();
-      video.currentTime = 0;
-    });
-  });
-</script>
 
 
 
 
-<!-- Signature Services -->
-<!-- Include GSAP + ScrollTrigger -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-<main id="solarica-stack" style="position:relative; width:100%; overflow-x:hidden; margin:0; font-family:'Outfit',sans-serif; background:#000000;">
-                                           
-  <!-- Smart City Section -->
-  <section class="stack-section" style="position:relative; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; color:#333; background:#b6c0c3; overflow:hidden; box-shadow:0 0 60px rgba(33, 150, 243, 0.3), 0 0 40px rgba(76, 175, 80, 0.3), 0 10px 40px rgba(0,0,0,0.15); border:none;">
-    <div class="stack-content" style="display:flex; align-items:center; justify-content:space-between; gap:60px; width:90%; max-width:1100px; z-index:2; position:relative;">
-      <div class="stack-text" style="flex:1;">
-        <h2 style="font-size:2.2rem; margin-bottom:14px; color:#222;">DISTRESSED ASSETS  <br><span style='color:#ffb84d;'>ENERGY INDIA PVT. LTD</span></h2>
-        <p style="font-size:1.05rem; line-height:1.6; max-width:480px; color:#555;">
-          A feasibility study for reconstructing distressed
-renewable energy assets assesses market conditions,
-technical and financial status, reconstruction costs,
-and revenue projections. It reviews funding options,
-calculates ROI, and identifies risks. The study
-culminates in a strategic plan with recommendations,
-ensuring the financial and technical viability of asset
-revitalization.
-        </p>
-        <a href="#" style="display:inline-block; margin-top:20px; padding:12px 28px; background:#2fbf71; color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:1rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(47, 191, 113, 0.3);" onmouseover="this.style.background='#25a75f'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(47, 191, 113, 0.4)';" onmouseout="this.style.background='#2fbf71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(47, 191, 113, 0.3)';">View More</a>
-      </div>
-      <div class="stack-image" style="flex:1; display:flex; justify-content:center;">
-        <img src="img/thumb-solarpv-solapur.jpg" alt="Smart City" style="width:100%; max-width:420px; height:300px; object-fit:cover; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.25);">
-      </div>
-    </div>
-  </section>
-
-  <!-- Smart Street Lighting -->
-  <section class="stack-section" style="position:relative; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; color:#333; background:#b6c0c3; overflow:hidden; box-shadow:0 0 60px rgba(33, 150, 243, 0.3), 0 0 40px rgba(76, 175, 80, 0.3), 0 10px 40px rgba(0,0,0,0.15); border:none;">
-    <div class="stack-content" style="display:flex; flex-direction:row-reverse; align-items:center; justify-content:space-between; gap:60px; width:90%; max-width:1100px; z-index:2; position:relative;">
-      <div class="stack-text" style="flex:1;">
-        <h2 style="font-size:2.2rem; margin-bottom:14px; color:#222;">INFRA DEVELOPMENT <br><span style='color:#ffb84d;'>SYSTEMS PVT LTD</span></h2>
-        <p style="font-size:1.05rem; line-height:1.6; max-width:480px; color:#555;">
-          Infrastructure development for renewable energy projects involves site selection, design, planning, and financing. It includes securing permits, constructing infrastructure, and installing technologies. Post-installation, systems are tested and commissioned. Ongoing maintenance, performance monitoring, community engagement, and environmental management are crucial for project success and sustainability.
-        </p>
-        <a href="#" style="display:inline-block; margin-top:20px; padding:12px 28px; background:#2fbf71; color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:1rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(47, 191, 113, 0.3);" onmouseover="this.style.background='#25a75f'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(47, 191, 113, 0.4)';" onmouseout="this.style.background='#2fbf71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(47, 191, 113, 0.3)';">View More</a>
-      </div>
-      <div class="stack-image" style="flex:1; display:flex; justify-content:center;">
-        <img src="img/photo.png" alt="Street Lighting" style="width:100%; max-width:460px; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.25);">
-      </div>
-    </div>
-  </section>
-
-  <!-- Smart Energy Solutions -->
-  <section class="stack-section" style="position:relative; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; color:#333; background:#b6c0c3; overflow:hidden; box-shadow:0 0 60px rgba(33, 150, 243, 0.3), 0 0 40px rgba(76, 175, 80, 0.3), 0 10px 40px rgba(0,0,0,0.15); border:none;">
-    <div class="stack-content" style="display:flex; align-items:center; justify-content:space-between; gap:60px; width:90%; max-width:1100px; z-index:2; position:relative;">
-      <div class="stack-text" style="flex:1;">
-        <h2 style="font-size:2.2rem; margin-bottom:14px; color:#222;">LAND PROCUREMENT <br><span style='color:#ffb84d;'>INDUSTRIES PVT LTD</span></h2>
-        <p style="font-size:1.05rem; line-height:1.6; max-width:480px; color:#555;">
-For KUSUM and private CAPEX open access renewable projects, selecting land near substations reduces transmission costs and simplifies grid integration. Ensure substations can handle extra capacity and comply with regulations. This choice balances land costs with infrastructure savings. Conduct environmental impact assessments and engage stakeholders for approval and support, aligning with project goals.        </p>
-        <a href="#" style="display:inline-block; margin-top:20px; padding:12px 28px; background:#2fbf71; color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:1rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(47, 191, 113, 0.3);" onmouseover="this.style.background='#25a75f'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(47, 191, 113, 0.4)';" onmouseout="this.style.background='#2fbf71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(47, 191, 113, 0.3)';">View More</a>
-      </div>
-      <div class="stack-image" style="flex:1; display:flex; justify-content:center;">
-        <img src="img/thumb-windhybrid.jpg" alt="Energy Solutions" style="width:100%; max-width:460px; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.25);">
-      </div>
-    </div>
-  </section>
-
-  <!-- Smart Infrastructure -->
-  <section class="stack-section" style="position:relative; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; color:#333; background:#b6c0c3; overflow:hidden; box-shadow:0 0 60px rgba(33, 150, 243, 0.3), 0 0 40px rgba(76, 175, 80, 0.3), 0 10px 40px rgba(0,0,0,0.15); border:none;">
-    <div class="stack-content" style="display:flex; flex-direction:row-reverse; align-items:center; justify-content:space-between; gap:60px; width:90%; max-width:1100px; z-index:2; position:relative;">
-      <div class="stack-text" style="flex:1;">
-        <h2 style="font-size:2.2rem; margin-bottom:14px; color:#222;">ENERGY CONTRACTS<br><span style='color:#ffb84d;'>Fabtech PVT LTD</span></h2>
-        <p style="font-size:1.05rem; line-height:1.6; max-width:480px; color:#555;">
-          We provide expert drafting and consulting services for CapEx, OpEx, and open access proposals. Our third-party consultation ensures thorough evaluation and strategic guidance, helping clients optimize financial and operational decisions. Our expertise supports effective proposal development and decision-making, aligning with project goals and regulatory requirements.
-        </p>
-        <a href="#" style="display:inline-block; margin-top:20px; padding:12px 28px; background:#2fbf71; color:white; text-decoration:none; border-radius:8px; font-weight:600; font-size:1rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(47, 191, 113, 0.3);" onmouseover="this.style.background='#25a75f'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(47, 191, 113, 0.4)';" onmouseout="this.style.background='#2fbf71'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(47, 191, 113, 0.3)';">View More</a>
-      </div>
-      <div class="stack-image" style="flex:1; display:flex; justify-content:center;">
-        <img src="img/thumb-solarpv-satara.jpg" alt="Infrastructure" style="width:100%; max-width:460px; border-radius:16px; box-shadow:0 8px 28px rgba(0,0,0,0.25);">
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<script>
-  gsap.registerPlugin(ScrollTrigger);
-
-  const sections = document.querySelectorAll(".stack-section");
-
-  sections.forEach((section, index) => {
-    const isLastSection = index === sections.length - 1;
-    
-    ScrollTrigger.create({
-      trigger: section,
-      start: "top top",
-      pin: true,
-      pinSpacing: isLastSection ? true : false,
-      scrub: 1,
-      end: isLastSection ? "+=100vh" : "+=100%",
-      anticipatePin: 1,
-      onEnter: () => section.classList.add("active"),
-      onLeaveBack: () => section.classList.remove("active")
-    });
-
-    // Fade + move animation
-    gsap.from(section.querySelector(".stack-content"), {
-      opacity: 0,
-      y: 100,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%",
-        end: "top 30%",
-        scrub: 1
-      }
-    });
-  });
-  
-  // Refresh ScrollTrigger after everything loads
-  window.addEventListener('load', () => {
-    ScrollTrigger.refresh();
-  });
-</script>
 
 
 
@@ -1620,10 +1644,6 @@ For KUSUM and private CAPEX open access renewable projects, selecting land near 
 .marquee-content span {
   animation: pulseGlow 2.5s ease-in-out infinite;
 }
-
-
-
-
 </style>
 
 
@@ -1632,152 +1652,183 @@ For KUSUM and private CAPEX open access renewable projects, selecting land near 
 
 
 
-<footer class="custom-footer" data-aos="fade-up">
-  <div class="footer-container">
-    <!-- Navigation -->
-    <div class="footer-column">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="awareness.html">Awareness Campaigns</a></li>
-        <li><a href="training.html">Training Campaigns</a></li>
-        <li><a href="consultation.html">Consultation</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-      </ul>
-    </div>
+<!-- ✅ FOOTER SECTION WITH VIDEO BACKGROUND -->
+<div class="footer-video-wrapper">
+  <video autoplay muted loop playsinline class="footer-video" id="bgVideo">
+    <source src="img/solar-windfps.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
 
-    <!-- Addresses -->
-    <div class="footer-column">
-      <h4>Pune</h4>
-      <p>Arena Park,<br>Leeds, LS17 9BF</p>
-      <a href="#">📍 MAP ↗</a><br>
-      <a href="tel:7770011558">📞 7770011558</a>
-    </div>
-
-    <div class="footer-column">
-      <h4>Pune</h4>
-      <p>105 Piccadilly,<br> W1J 7NJ</p>
-      <a href="#">📍 MAP ↗</a><br>
-      <a href="tel:7719818283">📞 7719818283</a>
-    </div>
-
-    <!-- Contact + Social -->
-    <div class="footer-column">
-      <h4>Social</h4>
-      <div class="social-links">
-        <a href="#">IG</a>
-        <a href="#">LI</a>
-        <a href="#">YT</a>
+  <div class="footer-overlay">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="#">Contact us</a></li>
+          <li><a href="#">Support Forum</a></li>
+          <li><a href="#">Free Trial</a></li>
+        </ul>
       </div>
-      <div class="emails">
-        <a href="mailto:connect@solarbni.com">✉️ connect@solarbni.com</a><br>
-        <a href="mailto:infosolarbni@gmail.com">📨 infosolarbni@gmail.com</a>
+
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Our Blog</a></li>
+          <li><a href="#">Affiliates</a></li>
+        </ul>
       </div>
+
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">EULA</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📍 6A Hampstead High Street, London</p>
+        <p>📞 +44 7858 10 20 81</p>
+        <p>✉️ support@trafficbot.uk</p>
+        <div class="social-icons">
+          <a href="#"><img src="linkedin-icon.png" alt="LinkedIn" /></a>
+          <a href="#"><img src="twitter-icon.png" alt="Twitter" /></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© InfravisoryConsultancy 2025 — All Rights Reserved.</p>
+      <p>Developed by DW INNOVATION PVT. LTD.</p>
     </div>
   </div>
-
-  <div class="footer-bottom">
-    © InfravisoryConsultancy 2025 — All Rights Reserved.
-  </div>
-  <div class="footer-bottom">Developed By DW INNOVATION PVT. LTD.</div>
-</footer>
+</div>
 
 <style>
-.custom-footer {
-  background: linear-gradient(180deg, #050d17 0%, #000d13 100%);
-  color: #cfeeff;
-  padding: 60px 30px 40px;
-  font-family: 'Poppins', sans-serif;
+.footer-video-wrapper {
   position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
+  font-family: "Outfit", sans-serif;
 }
 
-.footer-container {
+.footer-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.footer-overlay {
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 60px 30px 30px;
+  color: #fff;
+}
+
+.footer-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   gap: 30px;
 }
 
-.footer-column {
+.footer-col {
   flex: 1 1 220px;
   min-width: 200px;
 }
 
-.footer-column h4 {
-  color: #00bfff;
-  font-weight: 600;
-  margin-bottom: 12px;
+.footer-col h4 {
+  color: #00eaff;
   font-size: 1.2rem;
+  margin-bottom: 14px;
 }
 
-.footer-column p {
-  margin: 6px 0;
-  font-size: 0.95rem;
-}
-
-.footer-column ul {
+.footer-col ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.footer-column ul li {
+.footer-col ul li {
   margin-bottom: 10px;
 }
 
-.footer-column a {
+.footer-col a {
   color: #cfeeff;
   text-decoration: none;
   font-size: 0.95rem;
-  display: inline-block;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.footer-column a:hover {
-  color: #00bfff;
-  transform: translateX(5px);
-}
-
-.social-links {
-  display: flex;
-  gap: 10px;
-  margin: 12px 0;
-}
-
-.social-links a {
-  padding: 8px 14px;
-  border: 1px solid #00bfff;
-  border-radius: 20px;
-  color: #00bfff;
-  text-decoration: none;
-  font-size: 0.9rem;
   transition: all 0.3s ease;
 }
 
-.social-links a:hover {
-  background: #00bfff;
-  color: #000d13;
-  transform: scale(1.05);
+.footer-col a:hover {
+  color: #00eaff;
+  transform: translateX(4px);
 }
 
-.emails a {
-  display: block;
+.footer-col p {
+  font-size: 0.95rem;
   margin: 5px 0;
-  font-weight: 400;
-  color: #ffffff;
-  text-decoration: underline;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-icons img {
+  width: 26px;
+  height: 26px;
+  filter: invert(1);
+  transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.1);
 }
 
 .footer-bottom {
   text-align: center;
   margin-top: 40px;
-  font-size: 13px;
-  color: #6c8fa4;
+  font-size: 0.85rem;
+  color: #b9e1f4;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 </style>
+
+
+
+<script>
+window.addEventListener("scroll", function () {
+  const video = document.querySelector(".footer-video");
+  const footer = document.querySelector(".video-footer");
+  const top = footer.getBoundingClientRect().top;
+  video.style.transform = `translateY(${Math.min(top * 0.15, 60)}px)`;
+});
+</script>
+
+
+
+
 
 
 
