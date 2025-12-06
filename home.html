@@ -35,120 +35,6 @@ html, body {
 
   
 
-
-/* ========================================
-          HERO BASE
-======================================== */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Video */
-.hero-video {
-  position: fixed;
-  top: 0%;
-  left: 0%;
-  min-width: 100vw;
-  min-height: 100vh;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  transform: none;
-  filter: brightness(0.95) contrast(1.05) saturate(1.1);
-  z-index: 1;
-}
-
-/* Overlay */
-.hero-overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background:white ;
-  z-index: 2;
-}
-
-/* Energy Wave */
-.energy-wave {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 900px; height: 900px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(rgba(1, 91, 143, 0.25), transparent 70%);
-  border-radius: 50%;
-  filter: blur(60px);
-  animation: wavePulse 5s infinite ease-in-out;
-  z-index: 1;
-}
-
-@keyframes wavePulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.55; }
-  50% { transform: translate(-50%, -50%) scale(1.25); opacity: 0.75; }
-}
-
-/* Logo */
-.hero-logo-fixed {
-  position: fixed;
-  top: 25px;
-  left: 35px;
-  z-index: 30;
-
-  padding: 14px 22px;
-  border-radius: 14px;
-
-  /* White Glass Effect */
-  background: #ffffff;
-
-  backdrop-filter: blur(14px) saturate(180%);
-  -webkit-backdrop-filter: blur(14px) saturate(180%);
-
-  /* Soft outline for visibility */
-  border: 1px solid rgba(255, 255, 255, 0.55);
-
-  /* Premium subtle glow */
-  box-shadow:
-    0 0 10px rgba(0, 150, 255, 0.15),
-    0 4px 14px rgba(0, 0, 0, 0.08);
-}
-
-.hero-logo-fixed img { width: 110px; }
-
-
-/* ========================================
-      HERO TEXT
-======================================== */
-.hero-content {
-  position:relative;
-  z-index:20;
-  text-align:center;
-  opacity:0;
-  animation: fadeUp 1.3s forwards .4s;
-}
-
-.hero-content h1 {
-  font-size:60px;
-  font-weight:800;
-  background: linear-gradient(45deg, #00eaff, #00bfff, #00ffd0);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.hero-content p {
-  font-size:25px;
-  color:#d7f6ff;
-  margin-top:18px;
-}
-
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(40px); }
-  to   { opacity:1; transform:translateY(0); }
-}
 </style>
 </head>
 
@@ -430,7 +316,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-
 <section id="sidebarSection">
 
 <style>
@@ -625,6 +510,8 @@ function toggleMenuUpdated() {
 </script>
 
 </section>
+
+
 <!-- ==========================================
         FOLLOW CURSOR SECTION (FULL BLOCK)
 ========================================== -->
@@ -800,27 +687,147 @@ hoverTargets.forEach(el => {
 
 </section>
 
+<section id="heroSection">
+
 <!-- ===========================
-            HERO
+        HERO SECTION — STYLE
 =========================== -->
-<div class="hero-fixed-video">
-  <video autoplay muted loop playsinline>
-    <source src="img/home_hero.mp4" type="video/mp4">
-  </video>
-  <div class="hero-overlay"></div>
-</div>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
 
-<section class="hero-content-section">
-  <div class="energy-wave"></div>
+#heroSection {
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 6% 120px;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  font-family: "Outfit", sans-serif;
+}
 
-  <div class="hero-logo-fixed">
-    <img src="img/logo2.png">
+/* LOGO TOP-LEFT */
+.hero-logo {
+  position: absolute;
+  top: 25px;
+  left: 30px;
+  width: 130px;
+  animation: floatLogo 4s ease-in-out infinite;
+  z-index: 10;
+}
+
+@keyframes floatLogo {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* VIDEO ROW */
+.hero-videos {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 120px;
+}
+
+/* Individual video box */
+.hero-video-box {
+  width: 30%;
+  border-radius: 22px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(-180px) scale(0.9);
+  box-shadow: 0px 18px 35px rgba(0,0,0,0.12);
+  transition: filter 0.4s ease;
+}
+
+.hero-video-box video {
+  width: 100%;
+  display: block;
+  border-radius: 22px;
+  filter: brightness(90%);
+}
+
+.hero-video-box:hover video {
+  filter: brightness(102%);
+}
+
+/* Responsive */
+@media(max-width: 900px) {
+  .hero-videos {
+    flex-direction: column;
+    gap: 25px;
+  }
+  .hero-video-box {
+    width: 95%;
+    margin: auto;
+  }
+}
+</style>
+
+<!-- ===========================
+        HERO SECTION — HTML
+=========================== -->
+
+<img src="img/logo1.png" class="hero-logo" alt="Logo">
+
+<div class="hero-videos">
+
+  <div class="hero-video-box video1">
+    <video autoplay muted loop>
+      <source src="img/solar-windfps.mp4" type="video/mp4" />
+    </video>
   </div>
 
+  <div class="hero-video-box video2">
+    <video autoplay muted loop>
+      <source src="img/so_60fps.mp4" type="video/mp4" />
+    </video>
+  </div>
 
+  <div class="hero-video-box video3">
+    <video autoplay muted loop>
+      <source src="img/wi_60fps.mp4" type="video/mp4" />
+    </video>
+  </div>
 
+</div>
 
+<!-- ===========================
+     GSAP + SCROLLTRIGGER ANIMATION
+=========================== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// VIDEO LEFT SLIDE-IN ANIMATION
+gsap.to(".hero-video-box", {
+  scrollTrigger: {
+    trigger: "#heroSection",
+    start: "top 70%",   // begin animation on scroll
+  },
+  opacity: 1,
+  x: 0,
+  scale: 1,
+  duration: 1.4,
+  ease: "power3.out",
+  stagger: 0.25        // each video comes one after another
+});
+
+// LOGO FADE-IN
+gsap.from(".hero-logo", {
+  scrollTrigger: {
+    trigger: "#heroSection",
+    start: "top 85%",
+  },
+  opacity: 0,
+  y: -30,
+  duration: 1.2,
+  ease: "power2.out"
+});
+</script>
 
 </section>
 
@@ -894,9 +901,6 @@ function toggleMenuUpdated() {
 
 
 
-
-
-
 <!-- =============================
       COMPANY OVERVIEW SECTION
 ============================= -->
@@ -907,14 +911,14 @@ function toggleMenuUpdated() {
 <section class="company-section" id="company">
   <div class="company-container">
     <div class="company-row">
-
       <!-- Left: Text Content -->
       <div class="company-text">
         <h4 class="section-subtitle">About Our Company</h4>
-        <h2 class="section-title"><strong>Infravisory Consultancy Pvt. Limited</strong></h2>
+        <h2 class="section-title"><strong> Infravisory Consultancy Pvt. Limited</strong></h2>
         <p>
-          We believe in a <span class="highlight">client-centric approach</span>, focusing on understanding the unique needs and goals of each project. 
-          Our team of <span class="highlight">seasoned experts</span> combines industry knowledge with innovative thinking to deliver success.
+           we believe in a <span class="highlight">client-centric approach</span>,
+          focusing on understanding the unique needs and goals of each project. Our team of <span class="highlight">seasoned experts</span>
+          combines industry knowledge with innovative thinking to deliver success.
         </p>
         <ul class="points">
           <li><i class="icon">✔</i> Commitment to Professionalism & Integrity</li>
@@ -924,99 +928,80 @@ function toggleMenuUpdated() {
         </ul>
       </div>
 
-      <!-- Right: Image + Floating Cards -->
+      <!-- Right: Image with Animated Cards -->
       <div class="company-visual">
         <div class="image-container">
-          <img src="https://images.pexels.com/photos/7693730/pexels-photo-7693730.jpeg" 
-               alt="Team at work" class="main-image">
-
+          <img src="https://images.pexels.com/photos/7693730/pexels-photo-7693730.jpeg" alt="Team at work" class="main-image">
           <div class="info-card card1">📊 Project Risk</div>
           <div class="info-card card2">📈 Feasibility</div>
           <div class="info-card card3">🔍 Investment Fit</div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
+
 <style>
-/* =============================
-      CLEAN WHITE BACKGROUND
-============================= */
 .company-section {
-  background: #ffffff;
-  color: #1a1a1a;
+  background: transparent;
+  color: #e6f0f8;
   padding: 100px 20px;
   font-family: 'Outfit', sans-serif;
   overflow: hidden;
 }
-
 .company-container {
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .company-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 60px;
 }
-
-/* =============================
-      LEFT TEXT SECTION
-============================= */
 .company-text {
   flex: 1 1 500px;
 }
-
 .section-subtitle {
-  color: #0077b6;
+  color: #fff;
   font-size: 1rem;
   letter-spacing: 1px;
   margin-bottom: 12px;
 }
-
 .section-title {
-  font-size: 2.8rem;
-  background: linear-gradient(45deg, #0077b6, #0096c7, #00b4d8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 18px;
-  font-weight: 800;
+  font-size: 2.7rem;
+  color: #fff; 
+  background: linear-gradient(45deg, #00eaff, #00bfff, #00ffd0);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom: 20px;
 }
-
 .company-text p {
-  font-size: 1.3rem;
-  line-height: 1.6;
-  color: #333;
-  margin-bottom: 22px;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: #b5d2e0;
+  margin-bottom: 25px;
 }
-
 .highlight {
-  color: #0096c7;
+  color: #00bfff;
   font-weight: 600;
 }
-
 .points {
   list-style: none;
   padding: 0;
 }
-
 .points li {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   margin-bottom: 12px;
   display: flex;
   align-items: center;
-  color: #333;
 }
-
 .points .icon {
-  background: #00b4d8;
+  background: #00bfff;
   color: #fff;
   font-weight: bold;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   border-radius: 50%;
   width: 22px;
   height: 22px;
@@ -1026,61 +1011,53 @@ function toggleMenuUpdated() {
   margin-right: 10px;
 }
 
-/* =============================
-      RIGHT SIDE – IMAGE 
-============================= */
 .company-visual {
   flex: 1 1 500px;
   position: relative;
 }
-
 .image-container {
   position: relative;
 }
-
 .main-image {
   width: 100%;
   border-radius: 16px;
-  box-shadow: 0px 18px 40px rgba(0, 0, 0, 0.18);
-  transition: transform 0.4s ease;
+  box-shadow: 0 8px 40px rgba(0, 255, 255, 0.2);
 }
 
-.main-image:hover {
-  transform: scale(1.02);
-}
-
-/* =============================
-      FLOATING INFO CARDS
-============================= */
+/* Floating cards */
 .info-card {
   position: absolute;
-  background: rgba(255, 255, 255, 0.75);
+  background: #ffffff0f;
+  color: #00bfff;
   backdrop-filter: blur(8px);
-  color: #0077b6;
   border-radius: 12px;
-  padding: 10px 22px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  box-shadow: 0px 8px 20px rgba(0,0,0,0.12);
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  box-shadow: 0 8px 10px rgba(0,0,0,0.25);
   animation: floatY 4s infinite ease-in-out;
-  border: 1px solid rgba(0,0,0,0.08);
-}
 
+
+  /* existing styles... */
+  box-shadow:
+    0 0 10px rgba(0, 255, 255, 0),
+    0 0 30px rgba(0, 255, 255, 0.1),
+    0 0 30px rgba(0, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
 .card1 { top: 4%; left: 3%; animation-delay: 0s; }
-.card2 { top: 8%; right: 18%; animation-delay: 1s; }
-.card3 { bottom: 4%; right: 10%; animation-delay: 2s; }
+.card2 { top: 8%; right: 20%; animation-delay: 1s; }
+.card3 { bottom: 3%; right:6%; animation-delay: 2s; }
 
 @keyframes floatY {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-12px); }
 }
 
-/* =============================
-      RESPONSIVE DESIGN
-============================= */
+/* Responsive */
 @media (max-width: 768px) {
   .company-row { flex-direction: column; }
-  .section-title { font-size: 2.2rem; }
+  .section-title { font-size: 2rem; }
   .main-image { width: 100%; }
 }
 </style>
@@ -1133,183 +1110,6 @@ document.querySelectorAll(".info-card").forEach(card => {
   });
 });
 </script>
-
-
-
-
-<section id="threeDRotatorSection">
-
-<style>
-
-/* SECTION BACKGROUND — RESPONSIVE */
-#threeDRotatorSection {
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-
-    background: 
-        url('images/back.png') no-repeat center top / cover;
-}
-
-/* Mobile background fix */
-@media(max-width: 768px) {
-    #threeDRotatorSection {
-        background-position: center;
-        background-size: cover;
-    }
-}
-
-/* FONT IMPORTS */
-@import url('https://fonts.cdnfonts.com/css/ica-rubrik-black');
-@import url('https://fonts.cdnfonts.com/css/poppins');
-
-/* MAIN BANNER */
-.banner{
-    width: 100%;
-    height: 100vh;
-    text-align: center;
-    overflow: hidden;
-    position: relative;
-}
-
-/* ROTATOR (3D IMAGE WHEEL) */
-.banner .slider{
-    position: absolute;
-    width: 200px;
-    height: 240px;
-    top: 10%;
-    left: calc(50% - 100px);
-    transform-style: preserve-3d;
-    transform: perspective(1000px);
-    animation: autoRun 20s linear infinite;
-    z-index: 2;
-}
-
-@keyframes autoRun{
-    from { transform: perspective(1000px) rotateX(-16deg) rotateY(0deg); }
-    to   { transform: perspective(1000px) rotateX(-16deg) rotateY(360deg); }
-}
-
-.banner .slider .item{
-    position: absolute;
-    inset: 0;
-    transform:
-        rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-        translateZ(550px);
-}
-
-.banner .slider .item img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* CONTENT (MODEL IMAGE) */
-.banner .content{
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(1400px, 100vw);
-    height: max-content;
-    padding-bottom: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-}
-
-/* MODEL IMAGE WITH SMOOTH ANIMATION */
-.banner .content .model{
-    background-image: url(images/pm-removebg-preview.png);
-    width: 100%;
-    height: 79vh;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-size: auto 130%;
-    background-repeat: no-repeat;
-    background-position: top center;
-    z-index: 1;
-
-    /* ✨ Animation added */
-    opacity: 0;
-    animation: modelFadeIn 1.6s ease-out forwards,
-               modelFloat 6s ease-in-out infinite;
-}
-
-/* Fade-in animation */
-@keyframes modelFadeIn {
-    0% { opacity: 0; transform: translateY(40px) scale(0.95); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* Floating animation */
-@keyframes modelFloat {
-    0%, 100% { transform: translateY(0); }
-    50%      { transform: translateY(-18px); }
-}
-
-/* RESPONSIVE BEHAVIOR */
-@media screen and (max-width: 1023px) {
-    .banner .slider{
-        width: 160px;
-        height: 200px;
-        left: calc(50% - 80px);
-    }
-    .banner .slider .item{
-        transform:
-            rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-            translateZ(300px);
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .banner .slider{
-        width: 100px;
-        height: 150px;
-        left: calc(50% - 50px);
-    }
-    .banner .slider .item{
-        transform:
-            rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg))
-            translateZ(180px);
-    }
-
-    /* Model image mobile scaling */
-    .banner .content .model {
-        height: 60vh;
-        background-size: auto 110%;
-    }
-}
-
-</style>
-
-
-<!-- HTML START -->
-<div class="banner">
-
-    <div class="slider" style="--quantity: 10">
-        <div class="item" style="--position: 1"><img src="images/fa.png"></div>
-        <div class="item" style="--position: 2"><img src="images/farm.png"></div>
-        <div class="item" style="--position: 3"><img src="images/fami.png"></div>
-        <div class="item" style="--position: 4"><img src="images/6.png"></div>
-        <div class="item" style="--position: 5"><img src="images/fam2.png"></div>
-        <div class="item" style="--position: 6"><img src="images/happy farm.png"></div>
-        <div class="item" style="--position: 7"><img src="images/3.png"></div>
-        <div class="item" style="--position: 8"><img src="images/farm3.png"></div>
-        <div class="item" style="--position: 9"><img src="images/cau.png"></div>
-        <div class="item" style="--position: 10"><img src="images/5.png"></div>
-    </div>
-
-    <div class="content">
-        <div class="model"></div>
-    </div>
-
-</div>
-
-</section>
 
 
 
@@ -1441,7 +1241,7 @@ The SMART (Swayampurna Maharashtra Residential Rooftop) Solar Scheme's objective
   <!-- Include this in the <head> -->
 <style>
   .ongoing-section {
-    background: #ffff;
+    background: #000000;
     padding: 80px 20px;
     text-align: center;
   }
@@ -1716,6 +1516,86 @@ The SMART (Swayampurna Maharashtra Residential Rooftop) Solar Scheme's objective
   }
 </style>
 
+<section class="expertise-section">
+  <div class="expertise-container">
+    <div class="expertise-header">
+      <h2>Our Expertise</h2>
+      <p>We assess project feasibility, performance risks, and compliance with standards, providing critical insights that help stakeholders make confident, risk-informed decisions.</p>
+    </div>
+
+    <div class="expertise-grid">
+      <div class="expertise-box">
+        <svg class="expertise-icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-7.5 17.1l1.4-1.4a8 8 0 1111.2 0l1.4 1.4A10 10 0 0012 2z"/></svg>
+        <div>
+          <div class="expertise-title">Customized Strategy</div>
+          <div class="expertise-desc">Tailor-made strategies designed for your unique business and sustainability objectives.</div>
+        </div>
+      </div>
+
+      <div class="expertise-box">
+        <svg class="expertise-icon" viewBox="0 0 24 24"><path d="M9 2v2H4v16h16V4h-5V2h7v20H2V2z"/></svg>
+        <div>
+          <div class="expertise-title">Efficiency Optimization</div>
+          <div class="expertise-desc">Streamline operations with expert guidance to reduce costs and improve performance.</div>
+        </div>
+      </div>
+
+      <div class="expertise-box">
+        <svg class="expertise-icon" viewBox="0 0 24 24"><path d="M12 8a4 4 0 11.001 8.001A4 4 0 0112 8z"/></svg>
+        <div>
+          <div class="expertise-title">Market Insights</div>
+          <div class="expertise-desc">Stay ahead with deep market intelligence and real-time renewable energy trends.</div>
+        </div>
+      </div>
+
+      <div class="expertise-box">
+        <svg class="expertise-icon" viewBox="0 0 24 24"><path d="M2 12l5 4.5L18 6"/></svg>
+        <div>
+          <div class="expertise-title">Leadership & Team Growth</div>
+          <div class="expertise-desc">Build strong leadership and cohesive teams with our specialized development programs.</div>
+        </div>
+      </div>
+
+      <div class="expertise-box">
+        <svg class="expertise-icon" viewBox="0 0 24 24"><path d="M3 12l2-2 4 4L21 4l2 2-13 13L3 12z"/></svg>
+        <div>
+          <div class="expertise-title">Asset Due Diligence</div>
+          <div class="expertise-desc">Technical, legal and operational audits to assess renewable project investment risk.</div>
+        </div>
+      </div>
+
+      <div class="expertise-box">
+        <svg class="expertise-icon" viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 00-2 2v14h2V5h14V3zM21 7H9a2 2 0 00-2 2v12h14a2 2 0 002-2V9a2 2 0 00-2-2zm0 14H9V9h12v12z"/></svg>
+        <div>
+          <div class="expertise-title">Contract Advisory</div>
+          <div class="expertise-desc">Optimize terms and negotiation strategy in clean energy contracts and procurement.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta">
+      <a href="#contact">Schedule a Free Call</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray('.expertise-box').forEach((box, i) => {
+    gsap.from(box, {
+      scrollTrigger: {
+        trigger: box,
+        start: "top 85%",
+        toggleActions: "play none none none"
+      },
+      opacity: 0,
+      y: 50,
+      duration: 0.8,
+      delay: i * 0.15,
+      ease: "power2.out"
+    });
+  });
+</script>
 
 
 
@@ -1929,6 +1809,7 @@ document.querySelectorAll(".axiom-faq-item").forEach(item => {
 <!-- ===================== -->
 <!--  AXIOM 4-CORNER CARDS  -->
 <!-- ===================== -->
+
 <section class="axiom-feature-section">
   <div class="axiom-feature-container">
 
@@ -1946,10 +1827,9 @@ document.querySelectorAll(".axiom-faq-item").forEach(item => {
           <img src="img/thumb-windhybrid.jpg" />
         </div>
 
-        <div class="axiom-card-title">OUR EXPERTISE</div>
+        <div class="axiom-card-title">CUSTOMIZED STRATEGY</div>
         <div class="axiom-card-desc">
-          We assess project feasibility, performance risks, and compliance with standards,
-          providing critical insights to help stakeholders make confident, risk-informed decisions.
+          Tailor-made strategies designed for your unique business and sustainability objectives.
         </div>
       </div>
     </div>
@@ -1968,9 +1848,9 @@ document.querySelectorAll(".axiom-faq-item").forEach(item => {
           <img src="img/thumb-solarpv-solapur.jpg" />
         </div>
 
-        <div class="axiom-card-title">LEADERSHIP & TEAM GROWTH</div>
+        <div class="axiom-card-title">EFFICIENCY OPTIMIZATION</div>
         <div class="axiom-card-desc">
-          Build strong leadership and cohesive teams with our specialized renewable-energy development programs.
+          Streamline operations, reduce costs, and improve renewable asset performance.
         </div>
       </div>
     </div>
@@ -1989,9 +1869,9 @@ document.querySelectorAll(".axiom-faq-item").forEach(item => {
           <img src="img/thumb-solarpv-pune.jpg" />
         </div>
 
-        <div class="axiom-card-title">ASSET DUE DILIGENCE</div>
+        <div class="axiom-card-title">MARKET INSIGHTS</div>
         <div class="axiom-card-desc">
-          Technical, legal, and operational audits to evaluate renewable project investment risks and ensure informed decisions.
+          Stay ahead with deep market intelligence and real-time renewable energy trends.
         </div>
       </div>
     </div>
@@ -1999,20 +1879,15 @@ document.querySelectorAll(".axiom-faq-item").forEach(item => {
   </div>
 </section>
 
-
 <!-- =============== -->
 <!--      STYLE      -->
 <!-- =============== -->
 
 <style>
-body { 
-  background:#ffffff;   /* SOLID WHITE BACKGROUND */
-  font-family:'Outfit', sans-serif; 
-}
+body { background:#1d2214; font-family:'Outfit', sans-serif; }
 
 .axiom-feature-section {
   padding: 120px 0;
-  background:#ffffff;   /* SECTION BACKGROUND ALSO SOLID WHITE */
 }
 
 .axiom-feature-container {
@@ -2192,6 +2067,168 @@ document.querySelectorAll(".axiom-card").forEach(card => {
 
 
 
+<section class="what-we-do-modern">
+  <div class="wwd-heading">
+    <h2>Why We're the Right Choice<br><span>for Your Energy Projects</span></h2>
+    <p>We combine deep technical expertise with a strategic lens, helping our clients make smarter, more sustainable investments.</p>
+  </div>
+
+  <div class="wwd-tabs">
+    <span class="tab">End-to-End Advisory</span>
+    <span class="tab">Risk Evaluation</span>
+    <span class="tab">Compliance & Feasibility</span>
+  </div>
+
+  <div class="wwd-grid">
+    <div class="wwd-card" id="card1">
+      <div class="icon"><img src="https://cdn-icons-png.flaticon.com/512/126/126472.png" alt="target" /></div>
+      <h3>Your Success is Our Mission</h3>
+      <p>We offer tailored support and technical evaluation throughout every phase, ensuring investment viability and performance efficiency.</p>
+    </div>
+
+    <div class="wwd-card" id="card2">
+      <div class="icon"><img src="https://cdn-icons-png.flaticon.com/512/1312/1312430.png" alt="light bulb" /></div>
+      <h3>From Vision to Reality</h3>
+      <p>We turn your ideas into actionable plans with insights that align with both technical standards and lender expectations.</p>
+    </div>
+  </div>
+</section>
+
+
+<style>
+.what-we-do-modern {
+  background: #0f0f1a;
+  color: #fff;
+  padding: 100px 20px;
+  font-family: 'Outfit', sans-serif;
+  text-align: center;
+}
+
+.wwd-heading h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.wwd-heading h2 span {
+  color:#00bfff;
+}
+
+.wwd-heading p {
+  color: #aaa;
+  font-size: 1.4rem;
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+.wwd-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.wwd-tabs .tab {
+  padding: 10px 20px;
+  border-bottom: 3px solid transparent;
+  color: #ccc;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wwd-tabs .tab.active {
+  color: #00bfff;
+  border-bottom: 3px solid #00ffe7;
+}
+
+.wwd-grid {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.wwd-card {
+  background: #7fc2f9;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  padding: 40px 30px;
+  width: 300px;
+  border-radius: 20px;
+  text-align: left;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+
+.wwd-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 0 40px rgba(0, 68, 255, 0.304);
+}
+
+.wwd-card .icon {
+  width: 50px;
+  margin-bottom: 20px;
+}
+
+.wwd-card .icon img {
+  width: 100%;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.4));
+}
+
+.wwd-card h3 {
+  color: #fff;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.wwd-card p {
+  color: #000000;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .wwd-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
+
+
+<!-- GSAP and ScrollTrigger for scroll animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+
+
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.from(".wwd-heading h2", {
+  scrollTrigger: ".wwd-heading h2",
+  opacity: 0,
+  y: -50,
+  duration: 1
+});
+gsap.from(".wwd-heading p", {
+  scrollTrigger: ".wwd-heading p",
+  opacity: 0,
+  y: 20,
+  delay: 0.2,
+  duration: 1
+});
+gsap.from(".wwd-card", {
+  scrollTrigger: ".wwd-grid",
+  opacity: 0,
+  y: 30,
+  duration: 1,
+  stagger: 0.3
+});
+</script>
 
 
 
@@ -2280,7 +2317,7 @@ document.querySelectorAll(".axiom-card").forEach(card => {
 <!-- Styling -->
 <style>
 .evaluate-3d-section {
-  background: white;
+  background: radial-gradient(circle at center, #0a0f24, #000);
   padding: 100px 20px;
   text-align: center;
   font-family: 'Outline', sans-serif;
@@ -2306,27 +2343,10 @@ document.querySelectorAll(".axiom-card").forEach(card => {
   justify-content: center;
   padding: 25px;
   border-radius: 16px;
-
-  /* MAIN CARD BACKGROUND */
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(14px);
-
-  /* BORDER SHADOW (NEW) */
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow:
-      0 0 15px rgba(0, 0, 0, 0.12),      /* soft outer glow */
-      0 6px 25px rgba(0, 0, 0, 0.15),    /* strong bottom shadow */
-      inset 0 0 12px rgba(0, 150, 255, 0.05); /* subtle inner blue tint */
-
-  transition: all 0.35s ease;
-}
-
-/* HOVER EFFECT – More 3D */
-.swiper-slide:hover {
-  transform: translateY(-6px);
-  box-shadow:
-      0 10px 35px rgba(0, 0, 0, 0.18),
-      inset 0 0 16px rgba(0, 150, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 35px rgba(0, 255, 255, 0.08);
 }
 .swiper-slide h3 {
   font-size: 1.2rem;
@@ -2335,7 +2355,7 @@ document.querySelectorAll(".axiom-card").forEach(card => {
 }
 .swiper-slide p {
   font-size: 0.95rem;
-  color: #444;
+  color: #e0e0e0;
   line-height: 1.6;
 }
 .swiper-pagination-bullet {
@@ -2435,16 +2455,16 @@ document.querySelectorAll(".axiom-card").forEach(card => {
 
 
 
-<!-- ✅ FOOTER WITH MODERN GLASS DESIGN -->
+
+<!-- ✅ FOOTER SECTION WITH VIDEO BACKGROUND -->
 <div class="footer-video-wrapper">
-  <video autoplay muted loop playsinline class="footer-video">
+  <video autoplay muted loop playsinline class="footer-video" id="bgVideo">
     <source src="img/solar-windfps.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
   </video>
 
   <div class="footer-overlay">
     <div class="footer-content">
-
-      <!-- COL 1 -->
       <div class="footer-col">
         <h4>Links</h4>
         <ul>
@@ -2454,7 +2474,6 @@ document.querySelectorAll(".axiom-card").forEach(card => {
         </ul>
       </div>
 
-      <!-- COL 2 -->
       <div class="footer-col">
         <h4>More</h4>
         <ul>
@@ -2464,38 +2483,42 @@ document.querySelectorAll(".axiom-card").forEach(card => {
         </ul>
       </div>
 
-      <!-- COL 3 -->
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📍 Pune</p>
+        <p>📞 7719818283</p>
+        <p>✉️ connect@solarbni.com</p>
+        </ul>
+      </div>
+
       <div class="footer-col">
         <h4>Contact</h4>
         <p>📍 Pune</p>
         <p>📞 7770011558</p>
         <p>✉️ infosolarbni@gmail.com</p>
-
         <div class="social-icons">
-          <a href="#"><img src="img/linkedin.png" /></a>
-          <a href="#"><img src="img/twitter.png" /></a>
+          <a href="#"><img src="img/linkedin.png" alt="LinkedIn" /></a>
+          <a href="#"><img src="img/twitter.png" alt="Twitter" /></a>
         </div>
       </div>
-
     </div>
 
     <div class="footer-bottom">
-      <p>© Infravisory Consultancy 2025 — All Rights Reserved.</p>
+      <p>© InfravisoryConsultancy 2025 — All Rights Reserved.</p>
       <p>Developed by DW INNOVATION PVT. LTD.</p>
     </div>
   </div>
 </div>
 
 <style>
-/* Outer wrapper */
 .footer-video-wrapper {
   position: relative;
   width: 100%;
+  height: 100%;
   overflow: hidden;
   font-family: "Outfit", sans-serif;
 }
 
-/* Background video */
 .footer-video {
   position: absolute;
   top: 0;
@@ -2505,132 +2528,96 @@ document.querySelectorAll(".axiom-card").forEach(card => {
   width: 100%;
   object-fit: cover;
   z-index: 0;
-  filter: brightness(55%);
 }
 
-/* Frosted Glass Overlay */
-/* Frosted Glass Overlay (Less Blur) */
 .footer-overlay {
   position: relative;
-  z-index: 3;
-  padding: 80px 30px 40px;
-
-  /* Reduced blur + more white to increase clarity */
-  background: rgba(255, 255, 255, 0.002);
-  backdrop-filter: blur(1px);      /* reduced from 14px */
-  -webkit-backdrop-filter: blur(6px);
-
-  border-top: 1px solid rgba(255, 255, 255, 1.9);
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 60px 30px 30px;
+  color: #fff;
 }
 
-
-/* Layout */
 .footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   max-width: 1300px;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 40px;
+  gap: 30px;
 }
 
-/* Column */
 .footer-col {
-  flex: 1 1 250px;
-  min-width: 220px;
+  flex: 1 1 220px;
+  min-width: 200px;
 }
 
-/* Gradient Titles */
 .footer-col h4 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  background: linear-gradient(45deg, #00bfff, #00edff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 18px;
-  letter-spacing: 1px;
+  color: #00eaff;
+  font-size: 1.2rem;
+  margin-bottom: 14px;
 }
 
-/* Links */
 .footer-col ul {
+  list-style: none;
   padding: 0;
   margin: 0;
-  list-style: none;
 }
 
 .footer-col ul li {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .footer-col a {
-  font-size: 1rem;
-  color: #e9e9e9;
+  color: #cfeeff;
   text-decoration: none;
-  position: relative;
-  transition: 0.3s ease;
-}
-
-/* Hover underline animation */
-.footer-col a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  height: 2px;
-  width: 0%;
-  background: #00eaff;
-  transition: 0.3s ease;
-}
-
-.footer-col a:hover::after {
-  width: 100%;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
 }
 
 .footer-col a:hover {
   color: #00eaff;
+  transform: translateX(4px);
 }
 
-/* Contact text */
 .footer-col p {
-  color: #e9e9e9;
-  font-size: 1rem;
-  margin: 6px 0;
+  font-size: 0.95rem;
+  margin: 5px 0;
 }
 
-/* Social Icons */
 .social-icons {
   display: flex;
-  gap: 12px;
-  margin-top: 12px;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .social-icons img {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   filter: invert(1);
-  transition: 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .social-icons img:hover {
-  transform: scale(1.15) rotate(4deg);
+  transform: scale(1.1);
 }
 
-/* Footer bottom */
 .footer-bottom {
   text-align: center;
-  margin-top: 50px;
-  color: #ffffff;
-  font-size: 0.9rem;
-  opacity: 0.9;
+  margin-top: 40px;
+  font-size: 0.85rem;
+  color: #b9e1f4;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .footer-content {
     flex-direction: column;
+    align-items: flex-start;
   }
 }
 </style>
+
 
 
 <script>

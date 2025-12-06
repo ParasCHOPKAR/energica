@@ -1,0 +1,203 @@
+<section id="sidebarSection">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
+
+/* ========================================
+      HAMBURGER BUTTON
+======================================== */
+.hamburger {
+  position: fixed;
+  top: 28px;
+  right: 35px;
+  width: 58px;
+  height: 46px;
+  cursor: pointer;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 0;
+  transition: 0.3s ease;
+}
+
+.hamburger:hover {
+  transform: scale(1.08) rotate(1deg);
+}
+
+.hamburger span {
+  height: 6px;
+  width: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #00eaff, #00ffc8, #009dff, #00eaff);
+  background-size: 300% 300%;
+  animation: gradientMove 3s infinite linear;
+  box-shadow: 0 0 10px cyan, 0 0 25px rgba(0,200,255,0.8);
+  transition: 0.35s ease;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.hamburger.active span:nth-child(1) { transform: translateY(14px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-20px); }
+.hamburger.active span:nth-child(3) { transform: translateY(-14px) rotate(-45deg); }
+
+.hamburger .ripple {
+  position: absolute;
+  top:50%; left:50%;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(0,255,255,0.75);
+  opacity: 0;
+  pointer-events:none;
+}
+
+/* ========================================
+      SIDEBAR (NOW WHITE BACKGROUND)
+======================================== */
+.side-menu {
+  position: fixed;
+  top: 0; right: 0;
+  width: 380px;
+  height: 100vh;
+  padding: 80px 55px;
+
+  /* WHITE BACKGROUND ADDED */
+  background: #ffffff;
+  backdrop-filter: blur(18px) saturate(160%);
+
+  border-left: 2px solid rgba(0,0,0,0.08);
+
+  clip-path: circle(0% at 100% 0);
+  transition: clip-path 0.85s cubic-bezier(.5,.01,.1,1), opacity 0.5s ease;
+  opacity: 0;
+  z-index: 9999;
+}
+
+/* White background glow */
+.side-menu::before {
+  content: "";
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 260px; height: 260px;
+
+  background: radial-gradient(circle, rgba(0,160,255,0.35), transparent 70%);
+  filter: blur(40px);
+  opacity: 0;
+  transition: 0.6s ease;
+}
+
+.side-menu.active { 
+  clip-path: circle(180% at 100% 0); 
+  opacity: 1; 
+}
+
+.side-menu.active::before { opacity: 1; }
+
+/* ========================================
+      SIDEBAR LINKS — 540° ROTATION
+======================================== */
+.side-menu a {
+  display: block;
+  margin: 22px 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 46px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+
+  color: #1a1a1a; /* Dark text for white background */
+
+  text-decoration: none;
+  opacity: 0;
+  transform: translateX(25px) rotateY(0deg);
+
+  transition:
+      transform 0.7s cubic-bezier(.4,.2,.2,1),
+      color 0.35s ease,
+      text-shadow 0.35s ease;
+
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  perspective: 900px;
+  position: relative;
+}
+
+/* 540° Spin on Hover */
+.side-menu a:hover {
+  transform:
+    translateX(10px)
+    rotateY(540deg)
+    scale(1.07);
+
+  color: #00b7ff;
+  text-shadow:
+    0 0 14px rgba(0,180,255,0.6),
+    0 0 28px rgba(0,180,255,0.4);
+}
+
+/* Underline */
+.side-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -6px;
+
+  width: 0%;
+  height: 3px;
+
+  background: linear-gradient(90deg, #00eaff, #00ffc8);
+  border-radius: 12px;
+  transition: width 0.35s ease;
+}
+
+.side-menu a:hover::after {
+  width: 100%;
+}
+
+/* STAGGERED TEXT ENTRY */
+.side-menu.active a:nth-child(1){ opacity:1; transform:translateX(0); transition-delay:.15s; }
+.side-menu.active a:nth-child(2){ opacity:1; transform:translateX(0); transition-delay:.25s; }
+.side-menu.active a:nth-child(3){ opacity:1; transform:translateX(0); transition-delay:.35s; }
+.side-menu.active a:nth-child(4){ opacity:1; transform:translateX(0); transition-delay:.45s; }
+.side-menu.active a:nth-child(5){ opacity:1; transform:translateX(0); transition-delay:.55s; }
+.side-menu.active a:nth-child(6){ opacity:1; transform:translateX(0); transition-delay:.65s; }
+
+</style>
+
+<!-- BUTTON -->
+<div id="hamburgerBtn" class="hamburger" onclick="toggleMenuUpdated()">
+  <span></span><span></span><span></span>
+  <div class="ripple"></div>
+</div>
+
+<!-- MENU -->
+<div id="sideMenu" class="side-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="awareness.html">Awareness Campaigns</a>
+  <a href="training.html">Training Campaigns</a>
+  <a href="consultation.html">Consultation</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<script>
+function toggleMenuUpdated() {
+  const burger = document.getElementById("hamburgerBtn");
+  const menu = document.getElementById("sideMenu");
+  const ripple = burger.querySelector(".ripple");
+
+  burger.classList.toggle("active");
+  menu.classList.toggle("active");
+
+  gsap.fromTo(
+    ripple,
+    { scale:0, opacity:0.9 },
+    { scale:22, opacity:0, duration:0.55, ease:"power2.out" }
+  );
+}
+</script>
+
+</section>
