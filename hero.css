@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="hero.css">
+</head>
+<body>
+    
+
+    <div class="parallax-container">
+        <img src="images/nmo.jpg" class="sky">
+        <img src="images/nmo.jpg" class="birds">
+        <img src="images/nmo.jpg" class="river">
+        <img src="images/6.png" class="land">
+        <h1>Parallax</h1>
+        <!-- <img src="images/bg.png" class="rocks"> -->
+    </div>
+
+    <section class="section">
+        <h2>Parallax Sroll Effect</h2>
+      
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis unde quae expedita saepe repellendus voluptate sint ipsa recusandae facere enim, placeat odit voluptatum? Velit dolores numquam voluptatum officiis, laborum autem totam! Aut nihil, totam atque fugiat hic eum doloribus commodi aperiam alias facilis amet. Ullam architecto eius odio cum labore maiores beatae itaque expedita enim cupiditate exercitationem optio, temporibus aperiam vitae magni dolores ut delectus, illo tempora eaque nihil iusto! Consequatur corrupti iure ad consequuntur in! Id, nobis animi sapiente cum velit error adipisci architecto nemo quidem! Ipsam, expedita consectetur cum deserunt dicta voluptatem temporibus quas eius facilis, totam unde?</p>
+v
+    </section>
+
+    <script src="hero.js"></script>
+</body>
+</html>

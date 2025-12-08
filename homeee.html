@@ -1,0 +1,2826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hero Section</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600..900&display=swap" rel="stylesheet">
+
+<!-- Google Fonts for side menu -->
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+
+
+
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<style>
+/* RESET */
+* { margin: 0; padding: 0; box-sizing: border-box; 
+  
+}
+html, body { 
+  width: 100%; height: auto;
+  margin: 0; overflow-x: hidden; font-family: Outfit, sans-serif; scroll-behavior: smooth;
+  
+ }
+
+
+  
+
+
+/* ========================================
+          HERO BASE
+======================================== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Video */
+.hero-video {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  transform: none;
+  filter: brightness(0.95) contrast(1.05) saturate(1.1);
+  z-index: 1;
+}
+
+/* Overlay */
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background:white ;
+  z-index: 2;
+}
+
+/* Energy Wave */
+.energy-wave {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 900px; height: 900px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(rgba(1, 91, 143, 0.25), transparent 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: wavePulse 5s infinite ease-in-out;
+  z-index: 1;
+}
+
+@keyframes wavePulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.55; }
+  50% { transform: translate(-50%, -50%) scale(1.25); opacity: 0.75; }
+}
+
+/* Logo */
+.hero-logo-fixed {
+  position: fixed;
+  top: 25px;
+  left: 35px;
+  z-index: 30;
+
+  padding: 14px 22px;
+  border-radius: 14px;
+
+  /* White Glass Effect */
+  background: #ffffff;
+
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+
+  /* Soft outline for visibility */
+  border: 1px solid rgba(255, 255, 255, 0.55);
+
+  /* Premium subtle glow */
+  box-shadow:
+    0 0 10px rgba(0, 150, 255, 0.15),
+    0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.hero-logo-fixed img { width: 110px; }
+
+
+/* ========================================
+      HERO TEXT
+======================================== */
+.hero-content {
+  position:relative;
+  z-index:20;
+  text-align:center;
+  opacity:0;
+  animation: fadeUp 1.3s forwards .4s;
+}
+
+.hero-content h1 {
+  font-size:60px;
+  font-weight:800;
+  background: linear-gradient(45deg, #00eaff, #00bfff, #00ffd0);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero-content p {
+  font-size:25px;
+  color:#d7f6ff;
+  margin-top:18px;
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(40px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===========================================
+      MINIMAL CIRCLE-REVEAL BRAND LOADER
+=========================================== -->
+<!-- ============================================================
+       LUXURY CIRCLE-REVEAL LOADER (CENTER LOGO → CIRCLE EXPANDS)
+=============================================================== -->
+<!-- ============================================================
+      CIRCLE → PAGE REVEAL LOADER (FINAL VERSION)
+=============================================================== -->
+<section id="brandLoader">
+
+<style>
+/* ----------------------------------------
+    BASE LOADER SCREEN
+----------------------------------------- */
+#brandLoader {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  overflow: hidden;
+  z-index: 999999999;
+  clip-path: circle(150vmax at 50% 50%);
+}
+
+/* ----------------------------------------
+    TRUE BACKGROUND VIDEO
+----------------------------------------- */
+#brandLoader .loader-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;              /* Behind grain + glow + logo */
+  opacity: 0;
+  animation: videoFade 1.5s ease forwards 0.3s;
+}
+
+@keyframes videoFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ----------------------------------------
+    GRAIN LAYER (IMAGE OR VIDEO)
+----------------------------------------- */
+/* If you want grain as IMAGE */
+.loader-grain {
+  position: absolute;
+  inset: 0;
+  background: url("img/home_hero.mp4");
+  opacity: .15;
+  mix-blend-mode: soft-light;
+  z-index: -1; /* above video, below glow/logo */
+  animation: grainMove 5s linear infinite;
+}
+
+@keyframes grainMove {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(-20px, -30px) scale(1.2); }
+}
+
+/* ----------------------------------------
+    Soft vignette overlay
+----------------------------------------- */
+#brandLoader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.15) 100%);
+  opacity: 0;
+  animation: vignetteFade 1.2s ease forwards 0.2s;
+  z-index: 2;
+}
+
+@keyframes vignetteFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ----------------------------------------
+    Circle reveal
+----------------------------------------- */
+@keyframes circleExpand {
+  0%   { clip-path: circle(150vmax at 50% 50%); }
+  100% { clip-path: circle(0% at 50% 50%); }
+}
+
+/* ----------------------------------------
+    Glow behind logo
+----------------------------------------- */
+.loader-glow {
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,140,219,0.22), transparent 70%);
+  filter: blur(40px);
+  animation: glowFloat 4s ease-in-out infinite alternate;
+  opacity: 0;
+  animation-delay: .3s;
+  z-index: 3;
+}
+
+@keyframes glowFloat {
+  0% { transform: translateY(0) scale(1); opacity: .45; }
+  100% { transform: translateY(-20px) scale(1.15); opacity: .9; }
+}
+
+/* ----------------------------------------
+    Logo animation
+----------------------------------------- */
+.loader-logo {
+  width: 260px;
+  opacity: 0;
+  z-index: 4;
+  animation:
+    logoStart 1.8s cubic-bezier(.25,1,.5,1) forwards .4s,
+    logoPulse 3s ease-in-out infinite 2.2s;
+}
+
+@keyframes logoStart {
+  0% { opacity: 0; transform: translateY(40px) scale(.85); filter: blur(6px); }
+  50% { opacity: 1; transform: translateY(-5px) scale(1.05); filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes logoPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+/* ----------------------------------------
+    Underline
+----------------------------------------- */
+.loader-underline {
+  width: 0;
+  height: 3px;
+  background: #008CDB;
+  border-radius: 20px;
+  animation: underlineGrow 1.2s ease forwards 1.2s;
+  z-index: 4;
+}
+
+@keyframes underlineGrow {
+  from { width: 0; opacity: 0; }
+  to   { width: 180px; opacity: 1; }
+}
+
+/* ----------------------------------------
+    Text & dots
+----------------------------------------- */
+.loader-text {
+  font-family: "Inter", sans-serif;
+  font-size: 18px;
+  letter-spacing: 3px;
+  color: #eee;
+  opacity: 0;
+  animation: fadeInText 1.4s ease forwards 1.5s;
+  z-index: 4;
+}
+
+@keyframes fadeInText {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.loader-dots {
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  animation: fadeInText 1.4s ease forwards 1.7s;
+  z-index: 4;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #008CDB;
+  border-radius: 50%;
+  animation: bounceDot .6s infinite alternate;
+}
+
+@keyframes bounceDot {
+  from { transform: translateY(0); opacity: .4; }
+  to   { transform: translateY(-8px); opacity: 1; }
+}
+
+.dot:nth-child(2) { animation-delay: .2s; }
+.dot:nth-child(3) { animation-delay: .4s; }
+
+/* ----------------------------------------
+    Fade out
+----------------------------------------- */
+@keyframes loaderFadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; visibility: hidden; }
+}
+
+#brandLoader.fadeOut {
+  animation: loaderFadeOut .9s ease forwards;
+}
+</style>
+
+<!-- TRUE VIDEO BACKGROUND -->
+<video class="loader-video" autoplay muted loop playsinline>
+  <source src="img/wi_60fps.mp4" type="video/mp4">
+</video>
+
+<!-- LOADER ELEMENTS -->
+<div class="loader-glow"></div>
+<div class="loader-grain"></div>
+
+<img src="img/logo2.png" class="loader-logo">
+
+<div class="loader-underline"></div>
+<div class="loader-text">Loading</div>
+
+<div class="loader-dots">
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const loader = document.getElementById("brandLoader");
+
+  // Reveal stage
+  setTimeout(() => {
+    loader.style.animation = "circleExpand 1.4s cubic-bezier(.23,1,.32,1) forwards";
+  }, 1800);
+
+  // Fade-out
+  setTimeout(() => {
+    loader.classList.add("fadeOut");
+  }, 3200);
+
+});
+</script>
+
+</section>
+
+
+
+
+
+<section id="sidebarSection">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
+
+/* ========================================
+      HAMBURGER BUTTON
+======================================== */
+.hamburger {
+  position: fixed;
+  top: 28px;
+  right: 35px;
+  width: 58px;
+  height: 46px;
+  cursor: pointer;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 0;
+  transition: 0.3s ease;
+}
+
+.hamburger:hover {
+  transform: scale(1.08) rotate(1deg);
+}
+
+.hamburger span {
+  height: 6px;
+  width: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #00eaff, #00ffc8, #009dff, #00eaff);
+  background-size: 300% 300%;
+  animation: gradientMove 3s infinite linear;
+
+  /* Reduced glow */
+  box-shadow: 0 0 4px cyan, 0 0 10px rgba(0,200,255,0.5);
+
+  transition: 0.35s ease;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.hamburger.active span:nth-child(1) { transform: translateY(14px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-20px); }
+.hamburger.active span:nth-child(3) { transform: translateY(-14px) rotate(-45deg); }
+
+.hamburger .ripple {
+  position: absolute;
+  top:50%; left:50%;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+
+  /* softer ripple */
+  background: rgba(0,255,255,0.45);
+  opacity: 0;
+
+  pointer-events:none;
+}
+
+/* ========================================
+      SIDEBAR (CLEAN WHITE)
+======================================== */
+.side-menu {
+  position: fixed;
+  top: 0; right: 0;
+  width: 380px;
+  height: 100vh;
+  padding: 80px 55px;
+  background: #ffffff;
+  backdrop-filter: blur(12px) saturate(160%);
+
+  border-left: 2px solid rgba(0,0,0,0.08);
+
+  clip-path: circle(0% at 100% 0);
+  transition: clip-path 0.85s cubic-bezier(.5,.01,.1,1), opacity 0.5s ease;
+  opacity: 0;
+  z-index: 9999;
+}
+
+/* Remove previous glow fully */
+.side-menu::before { display: none; }
+
+.side-menu.active { 
+  clip-path: circle(180% at 100% 0); 
+  opacity: 1; 
+}
+
+/* ========================================
+      SIDEBAR LINKS — 540° Rotation + Reduced Glow
+======================================== */
+.side-menu a {
+  display: block;
+  margin: 22px 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: 44px;
+  font-weight: 700;
+
+  color: #1a1a1a;
+  text-decoration: none;
+
+  opacity: 0;
+  transform: translateX(25px) rotateY(0deg);
+
+  transition:
+    transform 0.7s cubic-bezier(.4,.2,.2,1),
+    color 0.25s ease,
+    text-shadow 0.25s ease;
+
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  perspective: 900px;
+  position: relative;
+}
+
+/* Reduced glow on hover */
+.side-menu a:hover {
+  transform:
+    translateX(10px)
+    rotateY(540deg)
+    scale(1.05);
+
+  color: #0084d6;
+
+  /* Very soft glow */
+  text-shadow:
+    0 0 6px rgba(0,140,255,0.35),
+    0 0 12px rgba(0,140,255,0.25);
+}
+
+/* Underline */
+.side-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 0%;
+  height: 3px;
+  background: #0084d6;
+  border-radius: 12px;
+  transition: width 0.35s ease;
+}
+
+.side-menu a:hover::after {
+  width: 100%;
+}
+
+/* STAGGER ENTRY */
+.side-menu.active a:nth-child(1){ opacity:1; transform:translateX(0); transition-delay:.15s; }
+.side-menu.active a:nth-child(2){ opacity:1; transform:translateX(0); transition-delay:.25s; }
+.side-menu.active a:nth-child(3){ opacity:1; transform:translateX(0); transition-delay:.35s; }
+.side-menu.active a:nth-child(4){ opacity:1; transform:translateX(0); transition-delay:.45s; }
+.side-menu.active a:nth-child(5){ opacity:1; transform:translateX(0); transition-delay:.55s; }
+.side-menu.active a:nth-child(6){ opacity:1; transform:translateX(0); transition-delay:.65s; }
+
+</style>
+
+<!-- BUTTON -->
+<div id="hamburgerBtn" class="hamburger" onclick="toggleMenuUpdated()">
+  <span></span><span></span><span></span>
+  <div class="ripple"></div>
+</div>
+
+<!-- MENU -->
+<div id="sideMenu" class="side-menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="awareness.html">Awareness Campaigns</a>
+  <a href="training.html">Training Campaigns</a>
+  <a href="consultation.html">Consultation</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<script>
+function toggleMenuUpdated() {
+  const burger = document.getElementById("hamburgerBtn");
+  const menu = document.getElementById("sideMenu");
+  const ripple = burger.querySelector(".ripple");
+
+  burger.classList.toggle("active");
+  menu.classList.toggle("active");
+
+  gsap.fromTo(
+    ripple,
+    { scale:0, opacity:0.4 },
+    { scale:22, opacity:0, duration:0.55, ease:"power2.out" }
+  );
+}
+</script>
+
+</section>
+<!-- ==========================================
+        FOLLOW CURSOR SECTION (FULL BLOCK)
+========================================== -->
+<section id="followCursor">
+
+<style>
+/* -------------------------------------
+   BASE CUSTOM CURSOR (OUTER RING)
+-------------------------------------- */
+#customCursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999999;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(3px);
+
+  /* Neon Ring */
+  border: 2px solid rgba(0, 200, 255, 0.7);
+  box-shadow:
+    0 0 20px rgba(0, 200, 255, 0.7),
+    0 0 45px rgba(0, 200, 255, 0.4),
+    0 0 60px rgba(0, 200, 255, 0.25);
+
+  transition:
+    width .25s ease,
+    height .25s ease,
+    border .25s ease,
+    box-shadow .25s ease,
+    opacity .25s ease;
+}
+
+/* -------------------------------------
+   INNER GLOW CORE
+-------------------------------------- */
+#cursorCore {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999999;
+  transform: translate(-50%, -50%);
+
+  background: radial-gradient(circle,
+    rgba(0,255,255,1),
+    rgba(0,120,255,0.6)
+  );
+  box-shadow:
+    0 0 15px rgba(0,255,255,0.9),
+    0 0 35px rgba(0,180,255,0.7);
+
+  transition: width .25s ease, height .25s ease, opacity .25s ease;
+}
+
+/* -------------------------------------
+   GROW EFFECT ON HOVER
+-------------------------------------- */
+.cursor-hover #customCursor {
+  width: 80px !important;
+  height: 80px !important;
+  border: 2px solid rgba(0,255,255,1);
+
+  box-shadow:
+    0 0 25px rgba(0,255,255,1),
+    0 0 60px rgba(0,255,255,0.8),
+    0 0 90px rgba(0,255,255,0.6);
+}
+
+.cursor-hover #cursorCore {
+  width: 24px;
+  height: 24px;
+}
+
+/* -------------------------------------
+   RIPPLE EFFECT ON HOVER
+-------------------------------------- */
+#cursorRipple {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999990;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  border: 2px solid rgba(0,220,255,0.6);
+}
+
+/* Animation for ripple */
+@keyframes rippleAnim {
+  0% {
+    opacity: 0.7;
+    width: 10px;
+    height: 10px;
+  }
+  100% {
+    opacity: 0;
+    width: 80px;
+    height: 80px;
+  }
+}
+</style>
+
+<!-- Cursor Elements -->
+<div id="customCursor"></div>
+<div id="cursorCore"></div>
+<div id="cursorRipple"></div>
+
+<script>
+let cursor = document.getElementById("customCursor");
+let cursorCore = document.getElementById("cursorCore");
+let ripple = document.getElementById("cursorRipple");
+
+// Smooth cursor movement using "lag effect"
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animateCursor() {
+  // Lag smoothing
+  cursorX += (mouseX - cursorX) * 0.15;
+  cursorY += (mouseY - cursorY) * 0.15;
+
+  cursor.style.left = cursorX + "px";
+  cursor.style.top = cursorY + "px";
+
+  cursorCore.style.left = cursorX + "px";
+  cursorCore.style.top = cursorY + "px";
+
+  ripple.style.left = cursorX + "px";
+  ripple.style.top = cursorY + "px";
+
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+/* -------------------------------------
+   Hover Interaction
+-------------------------------------- */
+const hoverTargets = document.querySelectorAll("a, button, .hamburger, .side-menu");
+
+hoverTargets.forEach(el => {
+  el.addEventListener("mouseenter", () => {
+    document.body.classList.add("cursor-hover");
+
+    // Trigger ripple
+    ripple.style.opacity = "1";
+    ripple.style.animation = "rippleAnim .6s ease-out";
+    setTimeout(() => {
+      ripple.style.opacity = "0";
+      ripple.style.animation = "none";
+    }, 600);
+  });
+
+  el.addEventListener("mouseleave", () => {
+    document.body.classList.remove("cursor-hover");
+  });
+});
+</script>
+
+</section>
+
+<section id="parallaxSection">
+
+    <style>
+        #parallaxSection *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #parallaxSection{
+            overflow-x: hidden;
+            width: 100%;
+            display: block;
+        }
+
+        #parallaxSection .parallax-container{
+            min-height: 130vh;
+            position: relative;
+            z-index: -1;
+        }
+
+        #parallaxSection .parallax-container img{
+            position: absolute;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        #parallaxSection .birds{
+            width: 30rem;
+            opacity: 0.9;
+        }
+
+        #parallaxSection h1{
+            font-size: 12rem;
+            color: white;
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #parallaxSection .land{
+            position: fixed;
+        }
+
+        #parallaxSection .section{
+            background-color: black;
+            padding: 7rem 3rem 3rem;
+        }
+
+        #parallaxSection .section h2,
+        #parallaxSection .section p{
+            color: white;
+        }
+
+        #parallaxSection .section h2{
+            font-size: 3rem;
+        }
+
+        #parallaxSection .section p{
+            font-size: 1rem;
+            padding-top: 1.3rem;
+            line-height: 1.8rem;
+        }
+    </style>
+
+
+    <div class="parallax-container">
+        <img src="images/nmo.jpg" class="sky">
+        <img src="images/nmo.jpg" class="birds">
+        <img src="images/nmo.jpg" class="river">
+        <img src="images/6.png" class="land">
+        <h1>Parallax</h1>
+    </div>
+
+    <div class="section">
+        <h2>Parallax Scroll Effect</h2>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis unde quae expedita
+            saepe repellendus voluptate sint ipsa recusandae facere enim, placeat odit
+            voluptatum? Velit dolores numquam voluptatum officiis, laborum autem totam!
+            Aut nihil, totam atque fugiat hic eum doloribus commodi aperiam alias facilis amet.
+            Ullam architecto eius odio cum labore maiores beatae itaque expedita enim cupiditate
+            exercitationem optio, temporibus aperiam vitae magni dolores ut delectus, illo
+            tempora eaque nihil iusto! Consequatur corrupti iure ad consequuntur in! Id, nobis
+            animi sapiente cum velit error adipisci architecto nemo quidem!
+        </p>
+    </div>
+
+    <script>
+        const text = document.querySelector("#parallaxSection h1");
+        const birds = document.querySelector("#parallaxSection .birds");
+        const land = document.querySelector("#parallaxSection .land");
+
+        window.addEventListener("scroll", () => {
+            let scroll = window.scrollY;
+
+            text.style.marginTop = scroll * 0.7 + "px";
+            birds.style.left = scroll * 1.5 + "px";
+            land.style.top = scroll * 1.2 + "px";
+        });
+    </script>
+
+</section>
+
+
+
+<style>
+
+.hero-fixed-video {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+}
+.hero-fixed-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.95) contrast(1.05) saturate(1.1);
+}
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.25));
+  z-index: 1;
+}
+
+.hero-content-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+
+</style>
+
+
+
+
+<!-- ===========================
+           JS
+=========================== -->
+<script>
+/* MENU */
+function toggleMenuUpdated() {
+  const burger = document.getElementById("hamburgerBtn");
+  const menu = document.getElementById("sideMenu");
+  const ripple = burger.querySelector(".ripple");
+
+  burger.classList.toggle("active");
+  menu.classList.toggle("active");
+
+  gsap.fromTo(ripple,
+    { scale:0, opacity:0.9 },
+    { scale:18, opacity:0, duration:0.55, ease:"power2.out" }
+  );
+}
+
+
+</script>
+
+
+
+
+
+
+
+<!-- =============================
+      COMPANY OVERVIEW SECTION
+============================= -->
+<!-- =============================
+      COMPANY OVERVIEW SECTION
+============================= -->
+<!-- WHO WE ARE SECTION -->
+<section class="company-section" id="company">
+  <div class="company-container">
+    <div class="company-row">
+
+      <!-- Left: Text Content -->
+      <div class="company-text">
+        <h4 class="section-subtitle">About Our Company</h4>
+        <h2 class="section-title"><strong>Infravisory Consultancy Pvt. Limited</strong></h2>
+        <p>
+          We believe in a <span class="highlight">client-centric approach</span>, focusing on understanding the unique needs and goals of each project. 
+          Our team of <span class="highlight">seasoned experts</span> combines industry knowledge with innovative thinking to deliver success.
+        </p>
+        <ul class="points">
+          <li><i class="icon">✔</i> Commitment to Professionalism & Integrity</li>
+          <li><i class="icon">✔</i> Advisory with Risk & Performance Insights</li>
+          <li><i class="icon">✔</i> Client-Focused Investment Support</li>
+          <li><i class="icon">✔</i> Nationwide Technical Expertise</li>
+        </ul>
+      </div>
+
+      <!-- Right: Image + Floating Cards -->
+      <div class="company-visual">
+        <div class="image-container">
+          <img src="https://images.pexels.com/photos/7693730/pexels-photo-7693730.jpeg" 
+               alt="Team at work" class="main-image">
+
+          <div class="info-card card1">📊 Project Risk</div>
+          <div class="info-card card2">📈 Feasibility</div>
+          <div class="info-card card3">🔍 Investment Fit</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+/* =============================
+      CLEAN WHITE BACKGROUND
+============================= */
+.company-section {
+  background: #ffffff;
+  color: #1a1a1a;
+  padding: 100px 20px;
+  font-family: 'Outfit', sans-serif;
+  overflow: hidden;
+}
+
+.company-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.company-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 60px;
+}
+
+/* =============================
+      LEFT TEXT SECTION
+============================= */
+.company-text {
+  flex: 1 1 500px;
+}
+
+.section-subtitle {
+  color: #0077b6;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  background: linear-gradient(45deg, #0077b6, #0096c7, #00b4d8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 18px;
+  font-weight: 800;
+}
+
+.company-text p {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 22px;
+}
+
+.highlight {
+  color: #0096c7;
+  font-weight: 600;
+}
+
+.points {
+  list-style: none;
+  padding: 0;
+}
+
+.points li {
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+
+.points .icon {
+  background: #00b4d8;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.85rem;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+/* =============================
+      RIGHT SIDE – IMAGE 
+============================= */
+.company-visual {
+  flex: 1 1 500px;
+  position: relative;
+}
+
+.image-container {
+  position: relative;
+}
+
+.main-image {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0px 18px 40px rgba(0, 0, 0, 0.18);
+  transition: transform 0.4s ease;
+}
+
+.main-image:hover {
+  transform: scale(1.02);
+}
+
+/* =============================
+      FLOATING INFO CARDS
+============================= */
+.info-card {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  color: #0077b6;
+  border-radius: 12px;
+  padding: 10px 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.12);
+  animation: floatY 4s infinite ease-in-out;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+.card1 { top: 4%; left: 3%; animation-delay: 0s; }
+.card2 { top: 8%; right: 18%; animation-delay: 1s; }
+.card3 { bottom: 4%; right: 10%; animation-delay: 2s; }
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* =============================
+      RESPONSIVE DESIGN
+============================= */
+@media (max-width: 768px) {
+  .company-row { flex-direction: column; }
+  .section-title { font-size: 2.2rem; }
+  .main-image { width: 100%; }
+}
+</style>
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from(".section-title", {
+    scrollTrigger: { trigger: ".section-title", start: "top 85%" },
+    opacity: 0, y: 40, duration: 1
+  });
+  gsap.from(".company-text p", {
+    scrollTrigger: { trigger: ".company-text p", start: "top 90%" },
+    opacity: 0, y: 30, duration: 1.2, delay: 0.2
+  });
+  gsap.from(".points li", {
+    scrollTrigger: { trigger: ".points", start: "top 95%" },
+    opacity: 0,
+    x: -30,
+    duration: 0.8,
+    stagger: 0.2
+  });
+  gsap.from(".main-image", {
+    scrollTrigger: { trigger: ".main-image", start: "top 85%" },
+    opacity: 0, scale: 0.9, duration: 1.2, ease: "power3.out"
+  });
+  gsap.from(".info-card", {
+    scrollTrigger: { trigger: ".main-image", start: "top 85%" },
+    opacity: 0, y: 30, duration: 1, stagger: 0.3
+  });
+</script>
+
+<script>
+document.querySelectorAll(".info-card").forEach(card => {
+  card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    card.style.transform = `rotateX(${-y * 0.1}deg) rotateY(${x * 0.1}deg) scale(1.05)`;
+  });
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+  });
+});
+</script>
+
+
+
+
+<section id="solarScrollShowcase">
+
+<style>
+#solarScrollShowcase {
+  width: 100%;
+  background: #000;
+  overflow-x: hidden;
+  font-family: "Outfit", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each Section */
+.scroll-block {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* FULL-WIDTH IMAGE FIRST */
+.scroll-image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;          /* FULL WIDTH */
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.scroll-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.15);   /* cinematic zoom */
+}
+
+/* TEXT PANEL (hidden off-screen initially) */
+.scroll-text {
+  position: absolute;
+  top: 50%;
+  right: -50%;             /* completely hidden to the right */
+  transform: translateY(-50%) translateX(80px);
+  width: 35%;
+  color: white;
+  opacity: 0;
+  z-index: 3;
+}
+
+.scroll-text h2 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.scroll-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: .85;
+}
+
+.scroll-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: #6f2cff;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: .3s ease;
+  text-decoration: none;
+}
+
+.scroll-button:hover {
+  background: #8a50ff;
+  transform: translateY(-4px);
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .scroll-text {
+    width: 80%;
+    right: -90%;
+  }
+}
+</style>
+
+<!-- ======================
+     SECTION 01
+======================= -->
+<div class="scroll-block">
+  <div class="scroll-image-wrapper">
+    <img src="img/pmsu.jpg" class="scroll-image">
+  </div>
+
+  <div class="scroll-text">
+    <h2>PM Surya Ghar Muft Bijli Yojana</h2>
+    <p>
+      A national program that enables households to generate free solar power,
+      reducing bills and improving energy independence.
+    </p>
+    <a class="scroll-button">View More</a>
+  </div>
+</div>
+
+<!-- ======================
+     SECTION 02
+======================= -->
+<div class="scroll-block">
+  <div class="scroll-image-wrapper">
+    <img src="img/kusum.jpg" class="scroll-image">
+  </div>
+
+  <div class="scroll-text">
+    <h2>KUSUM Scheme</h2>
+    <p>
+      Providing farmers with subsidized solar pumps, reducing diesel usage,
+      cutting costs, and promoting clean irrigation.
+    </p>
+    <a class="scroll-button">View More</a>
+  </div>
+</div>
+
+<!-- ======================
+     SECTION 03
+======================= -->
+<div class="scroll-block">
+  <div class="scroll-image-wrapper">
+    <img src="img/smar.jpg" class="scroll-image">
+  </div>
+
+  <div class="scroll-text">
+    <h2>SMART Solar Program</h2>
+    <p>
+      A Maharashtra initiative empowering households with highly subsidized rooftop
+      solar systems and promoting clean energy adoption.
+    </p>
+    <a class="scroll-button">View More</a>
+  </div>
+</div>
+
+<!-- ======================
+     SECTION 04
+======================= -->
+<div class="scroll-block">
+  <div class="scroll-image-wrapper">
+    <img src="img/green.jpg" class="scroll-image">
+  </div>
+
+  <div class="scroll-text">
+    <h2>Green Open Access</h2>
+    <p>
+      Enabling industries to buy renewable energy directly at lower cost with simplified approval.
+    </p>
+    <a class="scroll-button">View More</a>
+  </div>
+</div>
+
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+document.querySelectorAll(".scroll-block").forEach((block) => {
+
+  const imgWrap = block.querySelector(".scroll-image-wrapper");
+  const img = block.querySelector(".scroll-image");
+  const text = block.querySelector(".scroll-text");
+
+  /* IMAGE SHIFTS LEFT */
+  gsap.fromTo(imgWrap,
+    { x: "0%" },
+    {
+      x: "-40%",     /* image slides left more dramatically */
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: block,
+        start: "top 90%",
+        end: "top 20%",
+        scrub: true
+      }
+    }
+  );
+
+  /* IMAGE ZOOM OUT */
+  gsap.fromTo(img,
+    { scale: 1.15 },
+    {
+      scale: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: block,
+        start: "top 95%",
+        end: "top 20%",
+        scrub: true
+      }
+    }
+  );
+
+  /* TEXT SLIDES IN FROM RIGHT */
+  gsap.fromTo(text,
+    { opacity: 0, x: 80, right: "-50%" },
+    {
+      opacity: 1,
+      x: 0,
+      right: "5%",   /* slides text into visible area */
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: block,
+        start: "top 70%",
+        end: "top 30%",
+        scrub: true
+      }
+    }
+  );
+
+});
+</script>
+
+</section>
+
+
+
+<section id="solarScrollShowcase">
+
+<style>
+/* Container */
+#solarScrollShowcase {
+  width: 100%;
+  background: #000;
+  overflow-x: hidden;
+  font-family: "Outfit", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each full-screen block */
+.scroll-block {
+  position: relative;
+  width: 100%;
+  height: 100vh;             /* full viewport height */
+  overflow: hidden;
+  background: #000;
+}
+
+/* IMAGE WRAPPER fills the whole block initially */
+.scroll-image-wrapper {
+  position: absolute;
+  inset: 0;                  /* top:0; right:0; bottom:0; left:0 */
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* IMAGE covers the wrapper */
+.scroll-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+  transform: scale(1.15) translateX(0); /* cinematic zoom initially */
+}
+
+/* TEXT PANEL - positioned on the right but off-screen initially */
+.scroll-text {
+  position: absolute;
+  top: 50%;
+  right: 5%;                 /* final visible position from the right */
+  width: 36%;
+  max-width: 520px;
+  transform: translateY(-50%) translateX(120px); /* off-screen to the right */
+  color: #fff;
+  opacity: 0;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+/* Text sizing */
+.scroll-text h2 {
+  font-size: clamp(28px, 3vw, 40px);
+  margin: 0 0 12px 0;
+  line-height: 1.02;
+  font-weight: 700;
+}
+
+.scroll-text p {
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.6;
+  margin: 0 0 18px 0;
+  color: rgba(255,255,255,0.92);
+}
+
+.scroll-button {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 10px 20px;
+  background: #6f2cff;
+  color: white;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .25s ease, background .25s ease;
+}
+.scroll-button:hover { transform: translateY(-4px); background:#8a50ff; }
+
+/* Make sure on small screens text is full width and readable */
+@media (max-width: 900px) {
+  .scroll-text { width: 86%; right: 7%; transform: translateY(-50%) translateX(160px); }
+}
+</style>
+
+<!-- 4 blocks - images provided by you -->
+<div class="scroll-block">
+  <div class="scroll-image-wrapper"><img src="img/pmsu.jpg" class="scroll-image" alt=""></div>
+  <div class="scroll-text">
+    <h2>PM Surya Ghar Muft Bijli Yojana</h2>
+    <p>A national program that enables households to generate free solar power, reducing bills and improving energy independence.</p>
+    <a class="scroll-button" href="#">View More</a>
+  </div>
+</div>
+
+<div class="scroll-block">
+  <div class="scroll-image-wrapper"><img src="img/kusum.jpg" class="scroll-image" alt=""></div>
+  <div class="scroll-text">
+    <h2>KUSUM Scheme</h2>
+    <p>Providing farmers with subsidized solar pumps, reducing diesel usage, cutting costs, and promoting clean irrigation.</p>
+    <a class="scroll-button" href="#">View More</a>
+  </div>
+</div>
+
+<div class="scroll-block">
+  <div class="scroll-image-wrapper"><img src="img/smar.jpg" class="scroll-image" alt=""></div>
+  <div class="scroll-text">
+    <h2>SMART Solar Program</h2>
+    <p>A Maharashtra initiative empowering households with highly subsidized rooftop solar systems and promoting clean energy adoption.</p>
+    <a class="scroll-button" href="#">View More</a>
+  </div>
+</div>
+
+<div class="scroll-block">
+  <div class="scroll-image-wrapper"><img src="img/green.jpg" class="scroll-image" alt=""></div>
+  <div class="scroll-text">
+    <h2>Green Open Access</h2>
+    <p>Enables industries to procure renewable energy directly, lowering costs and emissions through simplified approval.</p>
+    <a class="scroll-button" href="#">View More</a>
+  </div>
+</div>
+
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* For each full-screen block create a single timeline tied to the block's
+   viewport lifecycle. Start: block reaches top of viewport. End: block bottom
+   reaches top of viewport — so the animation spans one viewport scroll. */
+document.querySelectorAll(".scroll-block").forEach((block) => {
+  const imgWrap = block.querySelector(".scroll-image-wrapper");
+  const img = block.querySelector(".scroll-image");
+  const text = block.querySelector(".scroll-text");
+
+  // Use one timeline so the image and text animations stay perfectly in sync
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: block,
+      start: "top top",        // when block top hits top of viewport
+      end: "bottom top",       // when block bottom hits top (one viewport of scroll)
+      scrub: true,
+      invalidateOnRefresh: true
+    }
+  });
+
+  // Image: translate left (in vw) and scale down to reveal right side for text
+  tl.fromTo(imgWrap, { xPercent: 0 }, { xPercent: -35, ease: "power2.out" }, 0);
+  // Subtle image zoom-out
+  tl.fromTo(img, { scale: 1.15 }, { scale: 1, ease: "power2.out" }, 0);
+
+  // Text: slide in from right & fade in — time it after the image starts moving
+  tl.fromTo(text,
+    { x: 120, opacity: 0 },
+    { x: 0, opacity: 1, ease: "power3.out" },
+    0.15 // slight offset so text follows the image motion
+  );
+});
+
+/* Refresh trigger on load/resize to ensure correctness */
+window.addEventListener("load", () => ScrollTrigger.refresh());
+window.addEventListener("resize", () => ScrollTrigger.refresh());
+</script>
+
+</section>
+
+
+
+
+
+
+
+
+<!-- videos cards -->
+
+
+
+  <!-- Include this in the <head> -->
+<style>
+  .ongoing-section {
+    background: #ffff;
+    padding: 80px 20px;
+    text-align: center;
+  }
+
+  .ongoing-section h2 {
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+    color: #00bfff;
+  }
+
+  .project-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  .project-card {
+    width: 260px;
+    height: 400px;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+  }
+
+  .project-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .project-card:hover video {
+    transform: scale(1.1);
+  }
+
+  .overlay-info {
+    position: absolute;
+    bottom: 0;
+    padding: 24px;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    color: #fff;
+    text-align: left;
+    transition: opacity 0.4s;
+  }
+
+  .project-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .project-location {
+    font-size: 0.95rem;
+    color: #ddd;
+  }
+</style>     
+
+<!-- Add this HTML where you want the section -->
+<section class="ongoing-section">
+  <h2>Our Ongoing Projects</h2>
+  <div class="project-cards">
+
+    <div class="project-card">
+      <video muted loop preload="none" poster="img/thumb-windhybrid.jpg">
+        <source src="img/windfps.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay-info">
+        <div class="project-title">100 MW Wind & Solar Hybrid</div>
+        <div class="project-location">Sangli, Maharashtra</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <video muted loop preload="none" poster="img/thumb-solarpv-satara.jpg">
+        <source src="img/sol_30fps.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay-info">
+        <div class="project-title">100 MW Solar PV Project</div>
+        <div class="project-location">Satara, Maharashtra</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <video muted loop preload="none" poster="img/thumb-solarpv-solapur.jpg">
+        <source src="img/wind5fps.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay-info">
+        <div class="project-title">25 MW Cumulative Solar</div>
+        <div class="project-location">Solapur, Maharashtra</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <video muted loop preload="none" poster="img/thumb-solarpv-pune.jpg">
+        <source src="img/so_60fps.mp4" type="video/mp4" />
+      </video>
+      <div class="overlay-info">
+        <div class="project-title">1 MW Solar Project</div>
+        <div class="project-location">Pune, Maharashtra</div>
+      </div>
+    </div>
+
+  </div>
+</section> 
+
+<!-- Add this JS before /body -->
+ <script>
+  document.querySelectorAll(".project-card").forEach(card => {
+    const video = card.querySelector("video");
+
+    card.addEventListener("mouseenter", () => {
+      video.play();
+    });
+
+    card.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =============================
+      COMPANY information
+============================= -->
+
+<!-- GSAP CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+  .expertise-section {
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #0a0b1b, #0e1333);
+    overflow: hidden;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .expertise-container {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .expertise-header {
+    text-align: center;
+    margin-bottom: 60px;
+    color: #fff;
+  }
+
+  .expertise-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #00bfff, #00ffc3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow s infinite alternate;
+  }
+
+  .expertise-header p {
+    font-size: 1.5rem;
+    color: #b0bfdc;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.5;
+  }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .expertise-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(14px);
+    padding: 30px 30px 30px 80px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.4s ease;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 20px rgba(0, 102, 255, 0.05);
+  }
+
+  .expertise-box:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(0, 64, 255, 0.2);
+  }
+
+  .expertise-icon {
+    position: absolute;
+    left: 25px;
+    top: 50px;
+    width: 40px;
+    height: 40px;
+    fill: #00bfff;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .expertise-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #00bfff;
+    margin-bottom: 10px;
+  }
+
+  .expertise-desc {
+    color: #cfd8ef;
+    font-size: 1.4rem;
+    line-height: 1.4;
+  }
+
+  .cta {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .cta a {
+    display: inline-block;
+    background: linear-gradient(45deg, #007bff, #00ffe1);
+    color: #fff;
+    padding: 14px 32px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 40px;
+    transition: all 0.3s ease;
+  }
+
+  .cta a:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(45deg, #00bfff, #00e3a4);
+  }
+
+  @keyframes glow {
+    0% { text-shadow: 0 0 8px #00ffe1; }
+    100% { text-shadow: 0 0 20px #00ffe1; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  @media (min-width: 768px) {
+    .expertise-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<!-- GSAP Animated Q&A Reveal (drop this where you want the section) -->
+<section class="axiom-faq-section">
+  <div class="axiom-faq-container">
+
+    <!-- LEFT SIDE CONTENT -->
+    <div class="axiom-left">
+      <h2 class="axiom-title">QUESTIONS YOU<br>HAVEN’T ASKED YET</h2>
+      <p class="axiom-description">
+        EVEN BEFORE YOU ASK, WE ANTICIPATE WHAT’S ON YOUR MIND.
+        HERE ARE ANSWERS TO THE THOUGHTS MOST VISITORS HAVE BEFORE 
+        STEPPING DEEPER INTO THE EXPERIENCE.
+      </p>
+    </div>
+
+    <!-- RIGHT SIDE FAQ LIST -->
+    <div class="axiom-right">
+
+      <div class="axiom-faq-item">
+        <button class="axiom-faq-btn">
+          <span>How can your consultancy help us understand the renewable energy market better?</span>
+          <div class="axiom-icon">+</div>
+        </button>
+        <div class="axiom-faq-answer">
+          We provide deep market intelligence and real-time renewable energy trends to help you stay ahead.
+        </div>
+      </div>
+
+      <div class="axiom-faq-item">
+        <button class="axiom-faq-btn">
+          <span>Do you offer leadership or team development support?</span>
+          <div class="axiom-icon">+</div>
+        </button>
+        <div class="axiom-faq-answer">
+          Yes—our programs strengthen leadership and help build cohesive teams across organizations.
+        </div>
+      </div>
+
+      <div class="axiom-faq-item">
+        <button class="axiom-faq-btn">
+          <span>How do you perform renewable asset due diligence?</span>
+          <div class="axiom-icon">+</div>
+        </button>
+        <div class="axiom-faq-answer">
+          Through technical, legal, and operational audits to evaluate investment risk and project viability.
+        </div>
+      </div>
+
+      <div class="axiom-faq-item">
+        <button class="axiom-faq-btn">
+          <span>Can you assist with contract negotiation and advisory?</span>
+          <div class="axiom-icon">+</div>
+        </button>
+        <div class="axiom-faq-answer">
+          We optimize terms and support negotiation strategy for clean energy procurement.
+        </div>
+      </div>
+
+      <div class="axiom-faq-item">
+        <button class="axiom-faq-btn">
+          <span>How do you improve operational efficiency in renewable projects?</span>
+          <div class="axiom-icon">+</div>
+        </button>
+        <div class="axiom-faq-answer">
+          We streamline operations using performance analysis, cost reduction, and optimization insights.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Styles (put into your stylesheet or inside <style>) -->
+<style>
+  .axiom-faq-section {
+  background: #ffffff;
+  padding: 100px 80px;
+  color: #000000;
+  font-family: 'Outfit', sans-serif;
+}
+
+.axiom-faq-container {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.axiom-title {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 30px;
+  letter-spacing: 0.5px;
+}
+
+.axiom-description {
+  font-size: 1.2rem;
+  max-width: 360px;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+.axiom-right {
+  border-left: 1px solid black;
+  padding-left: 40px;
+}
+
+.axiom-faq-item {
+  border-bottom: 1px solid black;
+  padding: 18px 0;
+  position: relative;
+}
+
+.axiom-faq-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.5rem;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.axiom-faq-btn:hover {
+  opacity: 0.8;
+}
+
+.axiom-icon {
+  font-size: 3rem;
+  font-weight: 100;
+  transition: transform 0.3s ease;
+}
+
+.axiom-faq-answer {
+  font-size: 1.2rem;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transform-origin: top;
+  line-height: 1.7;
+  padding-right: 30px;
+}
+
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<script>
+document.querySelectorAll(".axiom-faq-item").forEach(item => {
+  const btn = item.querySelector(".axiom-faq-btn");
+  const answer = item.querySelector(".axiom-faq-answer");
+  const icon = item.querySelector(".axiom-icon");
+
+  let open = false;
+
+  gsap.set(answer, { height: 0, opacity: 0 });
+
+  btn.addEventListener("click", () => {
+    open = !open;
+
+    if (open) {
+      gsap.to(answer, {
+        height: "auto",
+        opacity: 1,
+        duration: 0.45,
+        ease: "power3.out"
+      });
+
+      gsap.to(icon, {
+        rotate: 45,
+        duration: 0.3,
+        ease: "power2.out"
+      });
+
+    } else {
+      gsap.to(answer, {
+        height: 0,
+        opacity: 0,
+        duration: 0.35,
+        ease: "power2.in"
+      });
+
+      gsap.to(icon, {
+        rotate: 0,
+        duration: 0.25
+      });
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+<!-- ===================== -->
+<!--  AXIOM 4-CORNER CARDS  -->
+<!-- ===================== -->
+<section class="axiom-feature-section">
+  <div class="axiom-feature-container">
+
+    <!-- CARD 1 -->
+    <div class="axiom-card">
+
+      <!-- four corner + icons -->
+      <div class="axiom-plus plus-tl">+</div>
+      <div class="axiom-plus plus-tr">+</div>
+      <div class="axiom-plus plus-bl">+</div>
+      <div class="axiom-plus plus-br">+</div>
+
+      <div class="axiom-frame">
+        <div class="axiom-image">
+          <img src="img/thumb-windhybrid.jpg" />
+        </div>
+
+        <div class="axiom-card-title">OUR EXPERTISE</div>
+        <div class="axiom-card-desc">
+          We assess project feasibility, performance risks, and compliance with standards,
+          providing critical insights to help stakeholders make confident, risk-informed decisions.
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="axiom-card">
+
+      <!-- four corner + icons -->
+      <div class="axiom-plus plus-tl">+</div>
+      <div class="axiom-plus plus-tr">+</div>
+      <div class="axiom-plus plus-bl">+</div>
+      <div class="axiom-plus plus-br">+</div>
+
+      <div class="axiom-frame">
+        <div class="axiom-image">
+          <img src="img/thumb-solarpv-solapur.jpg" />
+        </div>
+
+        <div class="axiom-card-title">LEADERSHIP & TEAM GROWTH</div>
+        <div class="axiom-card-desc">
+          Build strong leadership and cohesive teams with our specialized renewable-energy development programs.
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="axiom-card">
+
+      <!-- four corner + icons -->
+      <div class="axiom-plus plus-tl">+</div>
+      <div class="axiom-plus plus-tr">+</div>
+      <div class="axiom-plus plus-bl">+</div>
+      <div class="axiom-plus plus-br">+</div>
+
+      <div class="axiom-frame">
+        <div class="axiom-image">
+          <img src="img/thumb-solarpv-pune.jpg" />
+        </div>
+
+        <div class="axiom-card-title">ASSET DUE DILIGENCE</div>
+        <div class="axiom-card-desc">
+          Technical, legal, and operational audits to evaluate renewable project investment risks and ensure informed decisions.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- =============== -->
+<!--      STYLE      -->
+<!-- =============== -->
+
+<style>
+body { 
+  background:#ffffff;   /* SOLID WHITE BACKGROUND */
+  font-family:'Outfit', sans-serif; 
+}
+
+.axiom-feature-section {
+  padding: 120px 0;
+  background:#ffffff;   /* SECTION BACKGROUND ALSO SOLID WHITE */
+}
+
+.axiom-feature-container {
+  width: 90%;
+  max-width: 1400px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+}
+
+/* CARD */
+.axiom-card {
+  position: relative;
+  perspective: 1200px;
+}
+
+/* FRAME */
+.axiom-frame {
+  background: #eaf0c0;
+  padding: 20px;
+  border-radius: 6px;
+  transform-style: preserve-3d;
+  transition: box-shadow .25s ease;
+}
+
+.axiom-card:hover .axiom-frame {
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+}
+
+/* IMAGE */
+.axiom-image {
+  background:#3c4125;
+  padding:40px;
+  margin-top:20px;
+}
+
+.axiom-image img {
+  width:100%;
+  height:320px;
+  object-fit:contain;
+}
+
+/* TEXT */
+.axiom-card-title {
+  margin-top:20px;
+  font-size:1.45rem;
+  font-weight:700;
+  color:#1a1a1a;
+}
+
+.axiom-card-desc {
+  margin-top:10px;
+  color:#333;
+  line-height:1.5;
+  font-size:1rem;
+}
+
+/* + ICONS */
+.axiom-plus {
+  position:absolute;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,0.25);
+  background:rgba(0,0,0,0.3);
+  backdrop-filter:blur(6px);
+  color:#fff;
+  font-size:22px;
+  font-weight:300;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:20;
+  pointer-events:none;
+  transform-origin:center center;
+  transition:transform .3s ease;
+}
+
+/* CORNER POSITIONS */
+.plus-tl { top:-18px; left:-18px; }
+.plus-tr { top:-18px; right:-18px; }
+.plus-bl { bottom:-18px; left:-18px; }
+.plus-br { bottom:-18px; right:-18px; }
+
+/* FLOAT ANIMATION */
+@keyframes floatPlus {
+  0%,100% { transform:translateY(0) rotate(0deg); }
+  50% { transform:translateY(-3px) rotate(3deg); }
+}
+
+.axiom-plus.idle {
+  animation: floatPlus 5s ease-in-out infinite;
+}
+
+/* RESPONSIVE */
+@media (max-width:900px) {
+  .axiom-feature-container {
+    grid-template-columns:1fr;
+  }
+}
+</style>
+
+<!-- =============== -->
+<!--      GSAP       -->
+<!-- =============== -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<!-- =============== -->
+<!--     SCRIPT      -->
+<!-- =============== -->
+
+<script>
+// GSAP Reveal
+gsap.utils.toArray(".axiom-card").forEach((card, i) => {
+  gsap.from(card, {
+    opacity:0,
+    y:80,
+    scale:0.9,
+    duration:0.8,
+    ease:"power3.out",
+    delay: i * 0.12,
+    scrollTrigger:{
+      trigger: card,
+      start: "top 85%"
+    }
+  });
+});
+
+// Tilt + Spin
+document.querySelectorAll(".axiom-card").forEach(card => {
+  const frame = card.querySelector(".axiom-frame");
+  const plusIcons = card.querySelectorAll(".axiom-plus");
+
+  // idle float state
+  plusIcons.forEach(i => i.classList.add("idle"));
+
+  // tilt effect
+  card.addEventListener("mousemove", (e) => {
+    const r = card.getBoundingClientRect();
+    const x = e.clientX - r.left;
+    const y = e.clientY - r.top;
+
+    const rx = ((y - r.height/2) / r.height) * -12;
+    const ry = ((x - r.width/2) / r.width) * 12;
+
+    gsap.to(frame, { rotateX: rx, rotateY: ry, scale:1.03, duration:0.25 });
+  });
+
+  card.addEventListener("mouseenter", () => {
+    plusIcons.forEach(i => {
+      i.classList.remove("idle");
+      gsap.to(i, { rotation: "+=360", duration: 0.9, ease:"power2.out" });
+    });
+  });
+
+  card.addEventListener("mouseleave", () => {
+    gsap.to(frame, { rotateX:0, rotateY:0, scale:1, duration:0.6 });
+
+    plusIcons.forEach(i => {
+      gsap.to(i, {
+        rotation:0,
+        duration:0.6,
+        ease:"power2.inOut",
+        onComplete:()=> i.classList.add("idle")
+      });
+    });
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<!-- ================================
+     3D Spinning Cards Section
+     Title: WE EVALUATE, CONSULT AND ADVISE
+================================== -->
+<!-- ================================
+     EVALUATION SECTION: Modern Glassmorphic Cards
+     Title: WE EVALUATE, CONSULT AND ADVISE
+================================== -->
+<!-- ===================================
+      EVALUATE, CONSULT & ADVISE SECTION
+=================================== -->
+<section class="evaluate-3d-section" id="evaluate">
+  <h2 class="evaluate-title">WE EVALUATE, CONSULT AND ADVISE</h2>
+  <div class="swiper cubeSwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide glass-3d">
+        <img src="img/Solar-panel-fire-damage.webp" alt="Distressed Assets" class="slide-img-3d" />
+        <h3>Renewable Distressed Assets</h3>
+        <p>Assessment of distressed renewable assets to identify risks, opportunities, and strategies for recovery and optimization.</p>
+      </div>
+      <div class="swiper-slide glass-3d">
+         <img src="img/small-village.jpg" alt="Infrastructure Development" class="slide-img-3d" />
+        <h3>Infrastructure Development Projects</h3>
+        <p>Analyzing greenfield infrastructure development projects for viability, uncovering challenges, and ensuring efficient implementation strategies.</p>
+      </div>
+      <div class="swiper-slide glass-3d">
+        <img src="img/renewable2.webp" alt="Land Procurement" class="slide-img-3d" />
+        <h3>Land Procurement</h3>
+        <p>Technical analysis of land feasibility to determine suitability for renewable energy project development.</p>
+      </div>
+      <div class="swiper-slide glass-3d">
+        <img src="img/green2.jpg" alt="Energy Contracts" class="slide-img-3d" />
+        <h3>Renewable Energy Contracts</h3>
+        <p>Evaluation of proposals and contracts for cost efficiency and strategic decision-making.</p>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+<!-- Swiper + GSAP JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<!-- Swiper Init -->
+<script>
+  const swiper = new Swiper(".cubeSwiper", {
+    effect: "cube",
+    grabCursor: true,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    cubeEffect: {
+      shadow: true,
+      slideShadows: true,
+      shadowOffset: 20,
+      shadowScale: 0.94,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.from(".evaluate-title", {
+    scrollTrigger: {
+      trigger: "#evaluate",
+      start: "top 80%"
+    },
+    opacity: 0,
+    y: -50,
+    duration: 1
+  });
+</script>
+
+<!-- Styling -->
+<style>
+.evaluate-3d-section {
+  background: white;
+  padding: 100px 20px;
+  text-align: center;
+  font-family: 'Outline', sans-serif;
+  color: #fff;
+}
+.evaluate-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+  background: linear-gradient(to right, #00bfff, #00ffc3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.swiper {
+  width: 100%;
+  max-width: 400px;
+  height: 360px;
+  margin: auto;
+}
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px;
+  border-radius: 16px;
+
+  /* MAIN CARD BACKGROUND */
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(14px);
+
+  /* BORDER SHADOW (NEW) */
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow:
+      0 0 15px rgba(0, 0, 0, 0.12),      /* soft outer glow */
+      0 6px 25px rgba(0, 0, 0, 0.15),    /* strong bottom shadow */
+      inset 0 0 12px rgba(0, 150, 255, 0.05); /* subtle inner blue tint */
+
+  transition: all 0.35s ease;
+}
+
+/* HOVER EFFECT – More 3D */
+.swiper-slide:hover {
+  transform: translateY(-6px);
+  box-shadow:
+      0 10px 35px rgba(0, 0, 0, 0.18),
+      inset 0 0 16px rgba(0, 150, 255, 0.08);
+}
+.swiper-slide h3 {
+  font-size: 1.2rem;
+  margin-bottom: 14px;
+  color: #00bfff;
+}
+.swiper-slide p {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.6;
+}
+.swiper-pagination-bullet {
+  background: #00cfff;
+  opacity: 0.5;
+}
+.swiper-pagination-bullet-active {
+  background: #00bfff;
+  opacity: 1;
+}
+@media (max-width: 600px) {
+  .evaluate-title {
+    font-size: 1.8rem;
+  }
+  .swiper {
+    height: 340px;
+  }
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================================
+     Tagline Loop with Contact Info
+================================ -->
+
+
+
+
+<section class="infinite-marquee">
+  <div class="marquee-content">
+    <span>Looking forward to hearing from you soon — </span>
+    <span>Looking forward to hearing from you soon — </span>
+    <span>Looking forward to hearing from you soon — </span>
+    <span>Looking forward to hearing from you soon — </span>
+  </div>
+</section>
+
+<style>
+.infinite-marquee {
+  width: 100%;
+  overflow: hidden;
+  background: #001f2e; /* Dark solid background to avoid blur */
+  border-top: 1px solid #00bfff;
+  border-bottom: 1px solid #00bfff;
+  padding: 20px 0;
+  z-index: 5;
+}
+
+.marquee-content {
+  display: flex;
+  white-space: nowrap;
+  animation: scrollLeft 20s linear infinite;
+  font-size: 1.5rem;
+  font-weight: 500;
+  gap: 80px;
+  color: #00bfff; /* Logo-like cyan */
+  font-family: 'Outfit', sans-serif;
+  text-transform: uppercase;
+  text-shadow: 0 0 0px #114c51, 0 0 20px #0c4247;
+  will-change: transform;
+  letter-spacing: 1.5px;
+}
+
+
+.infinite-marquee:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes scrollLeft {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.marquee-content span {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+</style>
+
+
+
+
+
+
+<!-- ✅ FOOTER WITH MODERN GLASS DESIGN -->
+<div class="footer-video-wrapper">
+  <video autoplay muted loop playsinline class="footer-video">
+    <source src="img/solar-windfps.mp4" type="video/mp4" />
+  </video>
+
+  <div class="footer-overlay">
+    <div class="footer-content">
+
+      <!-- COL 1 -->
+      <div class="footer-col">
+        <h4>Links</h4>
+        <ul>
+          <li><a href="contact.html">Contact us</a></li>
+          <li><a href="consultation.html">Consultation</a></li>
+          <li><a href="contact.html">Advice</a></li>
+        </ul>
+      </div>
+
+      <!-- COL 2 -->
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="training.html">Training Campaigns</a></li>
+          <li><a href="awareness.html">Awareness Campaigns</a></li>
+        </ul>
+      </div>
+
+      <!-- COL 3 -->
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>📍 Pune</p>
+        <p>📞 7770011558</p>
+        <p>✉️ infosolarbni@gmail.com</p>
+
+        <div class="social-icons">
+          <a href="#"><img src="img/linkedin.png" /></a>
+          <a href="#"><img src="img/twitter.png" /></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© Infravisory Consultancy 2025 — All Rights Reserved.</p>
+      <p>Developed by DW INNOVATION PVT. LTD.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Outer wrapper */
+.footer-video-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  font-family: "Outfit", sans-serif;
+}
+
+/* Background video */
+.footer-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: brightness(55%);
+}
+
+/* Frosted Glass Overlay */
+/* Frosted Glass Overlay (Less Blur) */
+.footer-overlay {
+  position: relative;
+  z-index: 3;
+  padding: 80px 30px 40px;
+
+  /* Reduced blur + more white to increase clarity */
+  background: rgba(255, 255, 255, 0.002);
+  backdrop-filter: blur(1px);      /* reduced from 14px */
+  -webkit-backdrop-filter: blur(6px);
+
+  border-top: 1px solid rgba(255, 255, 255, 1.9);
+}
+
+
+/* Layout */
+.footer-content {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+/* Column */
+.footer-col {
+  flex: 1 1 250px;
+  min-width: 220px;
+}
+
+/* Gradient Titles */
+.footer-col h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #00bfff, #00edff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+/* Links */
+.footer-col ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col a {
+  font-size: 1rem;
+  color: #e9e9e9;
+  text-decoration: none;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+/* Hover underline animation */
+.footer-col a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 2px;
+  width: 0%;
+  background: #00eaff;
+  transition: 0.3s ease;
+}
+
+.footer-col a:hover::after {
+  width: 100%;
+}
+
+.footer-col a:hover {
+  color: #00eaff;
+}
+
+/* Contact text */
+.footer-col p {
+  color: #e9e9e9;
+  font-size: 1rem;
+  margin: 6px 0;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.social-icons img {
+  width: 28px;
+  height: 28px;
+  filter: invert(1);
+  transition: 0.3s ease;
+}
+
+.social-icons img:hover {
+  transform: scale(1.15) rotate(4deg);
+}
+
+/* Footer bottom */
+.footer-bottom {
+  text-align: center;
+  margin-top: 50px;
+  color: #ffffff;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+  }
+}
+</style>
+
+
+<script>
+window.addEventListener("scroll", function () {
+  const video = document.querySelector(".footer-video");
+  const footer = document.querySelector(".video-footer");
+  const top = footer.getBoundingClientRect().top;
+  video.style.transform = `translateY(${Math.min(top * 0.15, 60)}px)`;
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
