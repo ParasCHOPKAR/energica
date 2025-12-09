@@ -70,17 +70,16 @@
         style="
             position: fixed;
             top: 20px;
-            left: 20px;
+            left: 80px;
             z-index: 9999;
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(6px);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 0;              /* removed glass padding */
+            background: transparent; /* removed white transparent bg */
+            border-radius: 0;        /* removed rounded background */
+            box-shadow: none;        /* removed shadow */
             transition: 0.3s ease;
         "
-        onmouseover="this.style.transform='scale(1.08)'; this.style.background='rgba(255,255,255,0.9)'"
-        onmouseout="this.style.transform='scale(1)'; this.style.background='rgba(255,255,255,0.7)'"
+        onmouseover="this.style.transform='scale(1.08)'"
+        onmouseout="this.style.transform='scale(1)'"
     >
         <img src="img/logo2.png" alt="Logo"
             style="
@@ -94,418 +93,423 @@
 </section>
 
 
-<section style="
-    margin:0; padding:0; overflow-x:hidden; position:relative;
-">
 
-<!-- ===================== INLINE CSS ===================== -->
+
+<section id="heroSection">
+
 <style>
-.parallax-container{
-    min-height:130vh;
-    position:relative;
-    z-index:-1;
-    overflow:hidden;
+/* ===========================
+   HERO SECTION WRAPPER
+=========================== */
+#heroSection {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  background: #000;
 }
 
-.parallax-container img{
-    position:absolute;
-    width:100%;
+/* ===========================
+   VIDEO WRAPPER
+=========================== */
+#heroSection .hero-video-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.parallax-container img.birds{
-    width:30rem;
-    opacity:.9;
+/* ===========================
+   VIDEOS
+=========================== */
+#heroSection .hero-video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.1s ease-in-out;
 }
 
-.parallax-container h1{
-    font-size:4rem;
-    color:white;
-    position:absolute;
-    top:35%;
-    left:50%;
-    transform:translate(-50%, -50%);
+#heroSection .hero-video.active {
+  opacity: 1;
 }
 
-.parallax-container img.land{
-    position:fixed;
+/* ===========================
+   TEXT
+=========================== */
+#heroSection .hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  text-align: center;
+  padding: 0 20px;
 }
 
-.section-content{
-    background:black;
-    padding:7rem 3rem 3rem;
+#heroSection .tagline {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #00fff7;
+  opacity: 0;
+  white-space: nowrap;
+  filter: blur(12px);
+  transition: opacity 0.8s ease, filter 0.8s ease;
 }
 
-.section-content h2,
-.section-content p{
-    color:white;
+#heroSection .tagline.active {
+  opacity: 1;
+  filter: blur(0);
 }
 
-.section-content h2{
-    font-size:3rem;
-}
-
-.section-content p{
-    font-size:1rem;
-    padding-top:1.3rem;
-    line-height:1.8rem;
+/* Mobile */
+@media(max-width: 768px){
+  #heroSection .tagline { font-size: 1.7rem; }
 }
 </style>
 
-<!-- ===================== PARALLAX LAYERS ===================== -->
-<div class="parallax-container">
-    <img src="images/land.jpg" class="sky">
-    <img src="images/su-removebg-preview.png" class="birds">
-    <img src="images/grass.png" class="river">
-    <img src="images/trr-removebg-preview.png" class="land">
-    <h1> Energica <br>
-        Sustain <br>
-        Foundation</h1>
-    <img src="images/121.png" class="rocks">
+
+
+<!-- ===========================
+      HERO VIDEOS
+=========================== -->
+<div class="hero-video-wrapper">
+
+  <video class="hero-video active" muted loop playsinline preload="metadata">
+    <source src="img/windfps.mp4" type="video/mp4">
+  </video>
+
+  <video class="hero-video" muted loop playsinline preload="metadata">
+    <source src="img/wind5fps.mp4" type="video/mp4">
+  </video>
+
+  <video class="hero-video" muted loop playsinline preload="metadata">
+    <source src="img/win50fps.mp4" type="video/mp4">
+  </video>
+
 </div>
 
 
 
-<!-- ===================== INLINE JS ===================== -->
+<!-- ===========================
+          TEXT
+=========================== -->
+<div class="hero-content">
+  <div class="tagline active">Innovative Advisory for Sustainable Growth</div>
+  <div class="tagline">Empowering Renewable Energy Initiatives</div>
+  <div class="tagline">Shaping a Greener and Smarter Future</div>
+</div>
+
+
+
 <script>
-const text = document.querySelector("h1");
-const birds = document.querySelector(".birds");
-const land = document.querySelector(".land");
+/* ===========================
+   ULTRA-SMOOTH HERO SLIDER
+=========================== */
 
-window.addEventListener("scroll", () => {
-    let scroll = window.scrollY;
+const heroVideos = document.querySelectorAll("#heroSection .hero-video");
+const heroText = document.querySelectorAll("#heroSection .tagline");
 
-    text.style.marginTop = scroll * 0.7 + "px";
-    birds.style.left = scroll * 1.5 + "px";
-    land.style.top = scroll * 1.2 + "px";
-});
+let current = 0;
+
+function rotateHero() {
+
+  /* remove active */
+  heroVideos[current].classList.remove("active");
+  heroText[current].classList.remove("active");
+
+  /* move to next */
+  current = (current + 1) % heroVideos.length;
+
+  /* activate next */
+  heroVideos[current].classList.add("active");
+  heroText[current].classList.add("active");
+
+  heroVideos[current].play();
+}
+
+setInterval(rotateHero, 5000);  // change every 5 sec
 </script>
 
 </section>
 
+
+
+<!-- ==============================
+      RENEWABLE ENERGY SLIDER
+============================== -->
 <!-- ==============================
       RENEWABLE ENERGY SLIDER
 ============================== -->
 
 <section id="caseSlider">
 
-    <!-- SLIDE 1 - DISTRESSED ASSETS -->
-    <div class="slide active">
-        <div class="slide-left">
-            <img src="images/3.png" alt="">
+    <!-- SLIDE 1 -->
+    <div class="case-slide active">
+        <div class="case-left">
+            <img src="images/hero_01.jpg" alt="">
         </div>
 
-        <div class="slide-right">
-            <h2>DISTRESSED ASSETS</h2>
+        <div class="case-right">
+            <h1>DISTRESSED ASSETS</h1>
 
             <p>
-                A feasibility study for reconstructing distressed renewable energy assets assesses 
-                market conditions, technical and financial status, reconstruction costs, and revenue 
-                projections. It reviews funding options, calculates ROI, and identifies risks. The study 
-                culminates in a strategic plan with recommendations, ensuring the financial and 
-                technical viability of asset revitalization.
+                A feasibility study for reconstructing distressed 
+renewable energy assets assesses market conditions, 
+technical and financial status, reconstruction costs, 
+and revenue projections. It reviews funding options, 
+calculates ROI, and identifies risks. The study 
+culminates in a strategic plan with recommendations, 
+ensuring the financial and technical viability of asset 
+revitalization
             </p>
 
-            <a href="#" class="read-more">Read more <span>➜</span></a>
         </div>
     </div>
 
-    <!-- SLIDE 2 - INFRA DEVELOPMENT -->
-    <div class="slide">
-        <div class="slide-left">
-            <img src="images/2.png" alt="">
+    <!-- SLIDE 2 -->
+    <div class="case-slide">
+        <div class="case-left">
+            <img src="images/hero_02.jpg" alt="">
         </div>
 
-        <div class="slide-right">
-            <h2>INFRA DEVELOPMENT</h2>
+        <div class="case-right">
+            <h1>INFRA DEVELOPMENT</h1>
 
             <p>
-                Infrastructure development for renewable energy projects involves site selection, 
-                design, planning, and financing. It includes securing permits, constructing 
-                infrastructure, and installing technologies. Post-installation work includes testing, 
-                commissioning, maintenance, monitoring, community engagement, and 
-                environmental management for long-term success.
+                Infrastructure development for renewable energy projects 
+involves site selection, design, planning, and financing. It 
+includes securing permits, constructing infrastructure, and 
+installing technologies. Post-installation, systems are 
+tested and commissioned. Ongoing maintenance, 
+performance monitoring, community engagement, and 
+environmental management are crucial for project 
+success and sustainability
             </p>
 
-            <a href="#" class="read-more">Read more <span>➜</span></a>
         </div>
     </div>
 
-    <!-- SLIDE 3 - LAND PROCUREMENT -->
-    <div class="slide">
-        <div class="slide-left">
-            <img src="images/5.png" alt="">
+    <!-- SLIDE 3 -->
+    <div class="case-slide">
+        <div class="case-left">
+            <img src="images/hero_03.jpg" alt="">
         </div>
 
-        <div class="slide-right">
-            <h2>LAND PROCUREMENT</h2>
-
+        <div class="case-right">
+            <h1>LAND PROCUREMENT</h1>
             <p>
-                For KUSUM and private CAPEX open access renewable projects, selecting land near 
-                substations reduces transmission costs and simplifies grid integration. Proper 
-                compliance, environmental assessments, and stakeholder engagement ensure 
-                feasibility and alignment with project goals.
+                For KUSUM and private CAPEX open access 
+renewable projects, selecting land near substations 
+reduces transmission costs and simplifies grid 
+integration. Ensure substations can handle extra 
+capacity and comply with regulations. This choice 
+balances land costs with infrastructure savings. 
+Conduct environmental impact assessments and 
+engage stakeholders for approval and support, 
+aligning with project goals
             </p>
 
-            <a href="#" class="read-more">Read more <span>➜</span></a>
+      
         </div>
     </div>
 
-    <!-- SLIDE 4 - ENERGY CONTRACTS -->
-    <div class="slide">
-        <div class="slide-left">
-            <img src="images/6.png" alt="">
+    <!-- SLIDE 4 -->
+    <div class="case-slide">
+        <div class="case-left">
+            <img src="images/hero_04.jpg" alt="">
         </div>
 
-        <div class="slide-right">
-            <h2>ENERGY CONTRACTS</h2>
-
+        <div class="case-right">
+            <h1>ENERGY CONTRACTS</h1>
             <p>
-                We provide expert drafting and consulting services for CapEx, OpEx, and open 
-                access proposals. Our third-party evaluation ensures strategic guidance, helping 
-                clients make optimized financial and operational decisions with confidence.
+                We provide expert drafting and consulting services for 
+CapEx, OpEx, and open access proposals. Our third-party 
+consultation ensures thorough evaluation and strategic 
+guidance, helping clients optimize financial and 
+operational decisions. Our expertise supports effective 
+proposal development and decision-making, aligning with 
+project goals and regulatory requirements
             </p>
 
-            <a href="#" class="read-more">Read more <span>➜</span></a>
+    
         </div>
     </div>
 
-    <!-- BOTTOM CONTROLS -->
-    <div class="slider-controls">
-
-
-        <div class="nav-controls">
-            <button id="prevBtn">←</button>
-            <span id="slideCount">1/4</span>
-            <button id="nextBtn" class="highlight">→</button>
-        </div>
+    <!-- NAVIGATION -->
+    <div class="case-nav">
+        <button id="prevBtn" class="nav-btn">←</button>
+        <span id="caseCount">1/4</span>
+        <button id="nextBtn" class="nav-btn">→</button>
     </div>
 
 </section>
 
 
-
-
-<!-- ==============================
-              CSS
-============================== -->
-
 <style>
-#caseSlider {
+  #caseSlider {
     width: 100%;
-    background: #ffffff;
-    color: #000;
-    padding: 120px 0 60px 0;  /* 🔥 Added top space (120px) */
+    height: 100vh;
+    background: #ffffff;   /* WHITE BACKGROUND */
     position: relative;
     overflow: hidden;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* SLIDE BASE — ALL SAME SIZE */
-.slide {
-    width: 100%;
-    height: 520px; /* SAME HEIGHT FOR ALL SLIDES */
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 100px;
-    gap: 80px;
-
-    position: absolute;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.6s ease;
+    font-family: Arial, sans-serif;
 }
 
-.slide.active {
+/* SLIDES */
+.case-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+
+    padding: 0 7%;
+    position: absolute;
+
+    opacity: 0;
+    transform: translateX(120%);
+    transition: all 0.7s ease;
+}
+
+.case-slide.active {
     opacity: 1;
     transform: translateX(0);
-    position: relative;
 }
 
-.slide.exit-left {
-    transform: translateX(-100%);
-    opacity: 0;
-}
-
-.slide.exit-right {
-    transform: translateX(100%);
-    opacity: 0;
-}
-
-/* LEFT IMAGE – PERFECT FIT */
-.slide-left img {
-    width: 650px;
-    height: 100%;          /* SAME HEIGHT AS SLIDE */
-    object-fit: cover;     /* CROP PERFECTLY */
+/* IMAGE — UNIFORM SIZE FOR ALL SLIDES */
+.case-left {
+    width: 50%;
+    max-width: 680px;
+    height: 420px;              /* FIXED HEIGHT FOR ALL IMAGES */
+    overflow: hidden;
     border-radius: 4px;
 }
 
-/* RIGHT TEXT AREA */
-.slide-right {
-    max-width: 550px;
+.case-left img {
+    width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* vertically centered */
+    object-fit: cover;           /* MAKES ALL IMAGES THE SAME SIZE */
+    border-radius: 4px;
 }
 
-.slide-right h2 {
+/* TEXT (WHITE BACKGROUND ADJUSTMENTS) */
+.case-right {
+    width: 45%;
+    color: #222;                 /* DARK TEXT FOR WHITE BG */
+}
+
+.case-right h1 {
     font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #000;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 18px;
 }
 
-.slide-right p {
-    font-size: 17px;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    color: #444;
-}
-
-/* Read More Button */
-.read-more {
+.case-right p {
     font-size: 18px;
-    color: #fff;
-    background:  #00bfff;
-    padding: 10px 18px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 25px;
+}
+
+/* Read More */
+.readMore {
+    font-size: 18px;
+    color: #7b2cf5;              /* PURPLE ACCENT */
+    text-decoration: none;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    border-radius: 5px;
-    text-decoration: none;
+    gap: 6px;
     transition: 0.3s;
 }
 
-.read-more:hover {
-    background: #8a2cff;
+.readMore:hover {
+    color: #5e0fe0;
 }
 
-/* Bottom Controls */
-.slider-controls {
+/* NAVIGATION (WHITE BACKGROUND ADJUSTMENT) */
+.case-nav {
     position: absolute;
-    bottom: 20px;
-    left: 70px;
+    bottom: 200px;
+     right: 508px;
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 22px;
 }
 
-/* Pause Button */
-#pauseBtn {
-    background: #00cfff;             /* Cyan Blue */
-    color: #fff;
-    border: none;
-    width: 55px;
-    height: 55px;
-    font-size: 26px;
+.nav-btn {
+    width: 56px;
+    height: 56px;
+    background: #f2f2f2;
+    border: 2px solid #ddd;
+    color: #333;
     border-radius: 6px;
     cursor: pointer;
-    transition: 0.25s ease;
-    box-shadow: 0 0 15px rgba(0, 207, 255, 0.4);
-}
-
-#pauseBtn:hover {
-    background: #00b2e6;             /* Slightly darker cyan */
-    box-shadow: 0 0 20px rgba(0, 207, 255, 0.6);
-}
-
-/* Navigation Controls Wrapper */
-.nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-/* Prev & Next Buttons */
-.nav-controls button {
-    background: #00cfff;           /* BLUE BUTTON */
-    color: #ffffff;                /* WHITE ARROWS */
-    border: 2px solid transparent;
-    width: 55px;
-    height: 55px;
     font-size: 22px;
     font-weight: 700;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.25s ease;
-    box-shadow: 0 0 12px rgba(0, 207, 255, 0.35);
+    transition: all 0.3s ease;
 }
 
-.nav-controls button:hover {
-    background: #00b2e6;           /* DARKER BLUE ON HOVER */
-    box-shadow: 0 0 22px rgba(0, 207, 255, 0.55);
+.nav-btn:hover {
+    border-color: #7b2cf5;
+    background: #e7e7e7;
 }
 
-/* Highlighted "Next" Button (Right Arrow) */
-.nav-controls .highlight {
-    background: #00cfff;           /* SAME BLUE */
-    color: #ffffff;                /* WHITE ARROW */
-    border: 2px solid #ffffff44;   /* Subtle soft border */
-    box-shadow: 0 0 15px rgba(0, 207, 255, 0.5);
+#caseCount {
+    color: #333;
+    font-size: 18px;
 }
-
-.nav-controls .highlight:hover {
-    background: #00b2e6;
-    box-shadow: 0 0 25px rgba(0, 207, 255, 0.7);
-}
-
-/* Slide count */
-#slideCount {
-    font-size: 20px;
-    color: #00a8d6;
-    font-weight: 600;
-}
-
 
 </style>
 
+<script>
+const slides = document.querySelectorAll(".case-slide");
+const prev = document.getElementById("prevBtn");
+const next = document.getElementById("nextBtn");
+const counter = document.getElementById("caseCount");
 
+let index = 0;
+let total = slides.length;
 
+function showSlide(i) {
+    slides.forEach(slide => slide.classList.remove("active"));
+    slides[i].classList.add("active");
+    counter.textContent = `${i + 1}/${total}`;
+}
+
+next.addEventListener("click", () => {
+    index = (index + 1) % total;
+    showSlide(index);
+});
+
+prev.addEventListener("click", () => {
+    index = (index - 1 + total) % total;
+    showSlide(index);
+});
+
+</script>
 
 <!-- ==============================
               JAVASCRIPT
 ============================== -->
-
-<script>
-const slides = document.querySelectorAll(".slide");
-const nextBtn = document.getElementById("nextBtn");
-const prevBtn = document.getElementById("prevBtn");
-const slideCount = document.getElementById("slideCount");
-
-let current = 0;
-let total = slides.length;
-
-function showSlide(nextIndex, direction) {
-    if (nextIndex === current) return;
-
-    let currentSlide = slides[current];
-    let nextSlide = slides[nextIndex];
-
-    currentSlide.classList.remove("active");
-    nextSlide.classList.remove("exit-left", "exit-right");
-
-    if (direction === "next") {
-        currentSlide.classList.add("exit-left");
-    } else {
-        currentSlide.classList.add("exit-right");
-    }
-
-    nextSlide.classList.add("active");
-
-    current = nextIndex;
-    slideCount.textContent = `${current + 1}/${total}`;
-}
-
-nextBtn.addEventListener("click", () => {
-    let nextIndex = (current + 1) % total;
-    showSlide(nextIndex, "next");
-});
-
-prevBtn.addEventListener("click", () => {
-    let nextIndex = (current - 1 + total) % total;
-    showSlide(nextIndex, "prev");
-});
-</script>
+<!-- ==============================
+              CSS
+============================== -->
 
 
 
@@ -770,12 +774,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 <section class="infinite-marquee">
-  <div class="marquee-content">
-    <span>Looking forward to hearing from you soon — </span>
-    <span>Looking forward to hearing from you soon — </span>
-    <span>Looking forward to hearing from you soon — </span>
-    <span>Looking forward to hearing from you soon — </span>
-  </div>
+<div class="marquee-content">
+    <span>Let's build a sustainable future together — </span>
+    <span>Your renewable journey starts here — </span>
+    <span>We’re ready when you are — </span>
+    <span>Powering tomorrow with you — </span>
+    <span>Clean energy begins with a conversation — </span>
+    <span>Let's turn ideas into reality — </span>
+</div>
+
 </section>
 
 <style>
@@ -792,7 +799,7 @@ document.addEventListener("DOMContentLoaded", () => {
   display: flex;
   white-space: nowrap;
   animation: scrollLeft 20s linear infinite;
-  font-size: 2.8rem;   /* text size */
+  font-size: 4.0rem;   /* text size */
   font-weight: 600;
   gap: 120px;
   color: #00bfff;
@@ -819,400 +826,301 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <!-- ///////////////////////////////////////// TEXT  slider section////////////////////////  -->
 
-<section id="followCursor">
 
-<style>
-/* ------------------------------------------------------
-   MASTER CURSOR CONTAINER (improves performance)
------------------------------------------------------- */
-.cursor-wrapper {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 999999999;
-}
-
-/* ------------------------------------------------------
-   OUTER RING (Beautiful Neon Aura)
------------------------------------------------------- */
-#customCursor {
-  position: absolute;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 2px solid rgba(0,255,255,0.8);
-  backdrop-filter: blur(4px);
-
-  /* Deep glow */
-  box-shadow:
-    0 0 10px rgba(0,255,255,1),
-    0 0 25px rgba(0,255,255,0.7),
-    0 0 45px rgba(0,255,255,0.45);
-
-  transform: translate(-50%, -50%);
-  transition:
-    width .25s cubic-bezier(.25,1,.5,1),
-    height .25s cubic-bezier(.25,1,.5,1),
-    box-shadow .25s cubic-bezier(.25,1,.5,1),
-    border .25s cubic-bezier(.25,1,.5,1),
-    opacity .25s ease;
-}
-
-/* ------------------------------------------------------
-   INNER CORE (Sharper Glow)
------------------------------------------------------- */
-#cursorCore {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-
-  background: radial-gradient(circle, rgba(0,255,255,1), rgba(0,140,255,0.6));
-  box-shadow:
-    0 0 15px rgba(0,255,255,1),
-    0 0 55px rgba(0,255,255,0.8);
-
-  transition: width .25s ease, height .25s ease;
-}
-
-/* ------------------------------------------------------
-   TRAIL ELEMENTS (Very soft, smooth ghost effect)
------------------------------------------------------- */
-.cursor-trail {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  pointer-events: none;
-  opacity: 0.18;
-  background: cyan;
-  filter: blur(8px);
-  transform: translate(-50%, -50%);
-  z-index: 999999998;
-}
-
-/* ------------------------------------------------------
-   Hover response
------------------------------------------------------- */
-.cursor-hover #customCursor {
-  width: 85px;
-  height: 85px;
-
-  border: 2px solid rgba(0,255,255,1);
-  box-shadow:
-    0 0 18px rgba(0,255,255,1),
-    0 0 55px rgba(0,255,255,0.95),
-    0 0 110px rgba(0,255,255,0.6);
-}
-
-.cursor-hover #cursorCore {
-  width: 26px;
-  height: 26px;
-}
-
-/* ------------------------------------------------------
-   Ripple pulse on hover
------------------------------------------------------- */
-#cursorRipple {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border: 3px solid rgba(0,255,255,0.7);
-  border-radius: 50%;
-  opacity: 0;
-  transform: translate(-50%, -50%);
-}
-
-@keyframes rippleAnim {
-  0% { opacity: .9; width: 10px; height: 10px; }
-  100% { opacity: 0; width: 120px; height: 120px; }
-}
-</style>
-
-<div class="cursor-wrapper">
-  <div id="customCursor"></div>
-  <div id="cursorCore"></div>
-  <div id="cursorRipple"></div>
-</div>
-
-<script>
-/* Smooth following cursor with perfect accuracy */
-let cursor = document.getElementById("customCursor");
-let cursorCore = document.getElementById("cursorCore");
-let ripple = document.getElementById("cursorRipple");
-
-// Create trailing particles
-const trailCount = 8;
-let trails = [];
-for (let i = 0; i < trailCount; i++) {
-  let t = document.createElement("div");
-  t.classList.add("cursor-trail");
-  document.querySelector(".cursor-wrapper").appendChild(t);
-  trails.push(t);
-}
-
-// Cursor positions
-let mouseX = 0, mouseY = 0;
-let cursorX = 0, cursorY = 0;
-
-// Perfect tracking with stronger smoothing
-document.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
-
-// Animation loop
-function animateCursor() {
-
-  // Ultra smooth precision tracking
-  cursorX += (mouseX - cursorX) * 0.22;
-  cursorY += (mouseY - cursorY) * 0.22;
-
-  cursor.style.left = cursorX + "px";
-  cursor.style.top = cursorY + "px";
-
-  cursorCore.style.left = cursorX + "px";
-  cursorCore.style.top = cursorY + "px";
-
-  ripple.style.left = cursorX + "px";
-  ripple.style.top = cursorY + "px";
-
-  // Update trail
-  trails.forEach((t, i) => {
-    let delay = (i + 1) * 0.04;
-    t.style.left = cursorX - (cursorX - mouseX) * delay + "px";
-    t.style.top = cursorY - (cursorY - mouseY) * delay + "px";
-  });
-
-  requestAnimationFrame(animateCursor);
-}
-animateCursor();
-
-/* Hover interactions */
-const hoverItems = document.querySelectorAll("a, button, .hamburger, .side-menu");
-
-hoverItems.forEach(el => {
-  el.addEventListener("mouseenter", () => {
-    document.body.classList.add("cursor-hover");
-
-    ripple.style.opacity = "1";
-    ripple.style.animation = "rippleAnim 0.7s ease-out";
-    setTimeout(() => {
-      ripple.style.opacity = "0";
-      ripple.style.animation = "none";
-    }, 700);
-  });
-
-  el.addEventListener("mouseleave", () => {
-    document.body.classList.remove("cursor-hover");
-  });
-});
-</script>
-
-</section>
 
 
 
 <!-- //////////////////////// ------------ Side Bar-----------------------////////////////////// -->
 
-
-
-
 <section id="sidebarSection">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
-/* ========================================
-      HAMBURGER BUTTON
-======================================== */
-.hamburger {
-  position: fixed;
-  top: 28px;
-  right: 35px;
-  width: 58px;
-  height: 46px;
-  cursor: pointer;
-  z-index: 99999;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 6px 0;
-  transition: 0.3s ease;
+/* ================================
+   LEFT FIXED BAR (Hover Activator)
+================================ */
+.left-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 78px;
+    background: #2a0a52;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    z-index: 9999;
 }
 
-.hamburger:hover {
-  transform: scale(1.08) rotate(1deg);
+.menu-line {
+    width: 34px;
+    height: 3px;
+    background: #ffffff;
+    opacity: 0.9;
+    border-radius: 4px;
 }
 
-.hamburger span {
-  height: 6px;
-  width: 100%;
-  border-radius: 20px;
-  background: linear-gradient(90deg, #00eaff, #00ffc8, #009dff, #00eaff);
-  background-size: 300% 300%;
-  animation: gradientMove 3s infinite linear;
-
-  /* Reduced glow */
-  box-shadow: 0 0 4px cyan, 0 0 10px rgba(0,200,255,0.5);
-
-  transition: 0.35s ease;
+/* ================================
+   FULL SIDEBAR PANEL
+================================ */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -380px;
+    width: 380px;
+    height: 100vh;
+    background: #fff;
+    padding: 40px 55px;
+    transition: 0.35s ease;
+    z-index: 9998;
+    color: #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;   /* CENTER ALL ITEMS */
 }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
+/* Open on hover */
+.left-bar:hover + .sidebar,
+.sidebar:hover {
+    left: 78px;
 }
 
-.hamburger.active span:nth-child(1) { transform: translateY(14px) rotate(45deg); }
-.hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-20px); }
-.hamburger.active span:nth-child(3) { transform: translateY(-14px) rotate(-45deg); }
-
-.hamburger .ripple {
-  position: absolute;
-  top:50%; left:50%;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%) scale(0);
-
-  /* softer ripple */
-  background: rgba(0,255,255,0.45);
-  opacity: 0;
-
-  pointer-events:none;
+/* ================================
+   MENU LINKS – CENTERED
+================================ */
+.menu-link {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 18px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    cursor: pointer;
 }
 
-/* ========================================
-      SIDEBAR (CLEAN WHITE)
-======================================== */
-.side-menu {
-  position: fixed;
-  top: 0; right: 0;
-  width: 380px;
-  height: 100vh;
-  padding: 80px 55px;
-  background: #ffffff;
-  backdrop-filter: blur(12px) saturate(160%);
-
-  border-left: 2px solid rgba(0,0,0,0.08);
-
-  clip-path: circle(0% at 100% 0);
-  transition: clip-path 0.85s cubic-bezier(.5,.01,.1,1), opacity 0.5s ease;
-  opacity: 0;
-  z-index: 9999;
+.menu-link span {
+    font-size: 26px;
+    opacity: 0.9;
 }
 
-/* Remove previous glow fully */
-.side-menu::before { display: none; }
-
-.side-menu.active { 
-  clip-path: circle(180% at 100% 0); 
-  opacity: 1; 
+.menu-link:hover {
+    opacity: 0.85;
+    transform: translateX(4px);
+    transition: 0.25s ease;
 }
 
-/* ========================================
-      SIDEBAR LINKS — 540° Rotation + Reduced Glow
-======================================== */
-.side-menu a {
-  display: block;
-  margin: 22px 0;
-  font-family: 'Outfit', sans-serif;
-  font-size: 44px;
-  font-weight: 700;
-
-  color: #1a1a1a;
-  text-decoration: none;
-
-  opacity: 0;
-  transform: translateX(25px) rotateY(0deg);
-
-  transition:
-    transform 0.7s cubic-bezier(.4,.2,.2,1),
-    color 0.25s ease,
-    text-shadow 0.25s ease;
-
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  perspective: 900px;
-  position: relative;
+/* ================================
+   FOOTER LINKS
+================================ */
+.sidebar-footer {
+    position: absolute;
+    bottom: 40px;
 }
 
-/* Reduced glow on hover */
-.side-menu a:hover {
-  transform:
-    translateX(10px)
-    rotateY(540deg)
-    scale(1.05);
-
-  color: #0084d6;
-
-  /* Very soft glow */
-  text-shadow:
-    0 0 6px rgba(0,140,255,0.35),
-    0 0 12px rgba(0,140,255,0.25);
+.sidebar-footer a {
+    display: block;
+    margin-top: 12px;
+    font-size: 16px;
+    opacity: 0.75;
+    text-decoration: none;
+    color: #111;
 }
-
-/* Underline */
-.side-menu a::after {
-  content: "";
-  position: absolute;
-  left: 0; bottom: -6px;
-  width: 0%;
-  height: 3px;
-  background: #0084d6;
-  border-radius: 12px;
-  transition: width 0.35s ease;
-}
-
-.side-menu a:hover::after {
-  width: 100%;
-}
-
-/* STAGGER ENTRY */
-.side-menu.active a:nth-child(1){ opacity:1; transform:translateX(0); transition-delay:.15s; }
-.side-menu.active a:nth-child(2){ opacity:1; transform:translateX(0); transition-delay:.25s; }
-.side-menu.active a:nth-child(3){ opacity:1; transform:translateX(0); transition-delay:.35s; }
-.side-menu.active a:nth-child(4){ opacity:1; transform:translateX(0); transition-delay:.45s; }
-.side-menu.active a:nth-child(5){ opacity:1; transform:translateX(0); transition-delay:.55s; }
-.side-menu.active a:nth-child(6){ opacity:1; transform:translateX(0); transition-delay:.65s; }
-
 </style>
 
-<!-- BUTTON -->
-<div id="hamburgerBtn" class="hamburger" onclick="toggleMenuUpdated()">
-  <span></span><span></span><span></span>
-  <div class="ripple"></div>
+
+<!-- LEFT BAR (Hover Activator) -->
+<div class="left-bar">
+    <div class="menu-line"></div>
+    <div class="menu-line"></div> 
+    <div class="menu-line"></div>
 </div>
 
-<!-- MENU -->
-<div id="sideMenu" class="side-menu">
-  <a href="index.html">Home</a>
-  <a href="about.html">About Us</a>
-  <a href="awareness.html">Awareness Campaigns</a>
-  <a href="training.html">Training Campaigns</a>
-  <a href="consultation.html">Consultation</a>
-  <a href="contact.html">Contact Us</a>
+
+<!-- SIDEBAR PANEL -->
+<div class="sidebar">
+
+    <!-- CENTER MENU (REPLACED) -->
+    <div class="menu-link">Home <span>›</span></div>
+    <div class="menu-link">About Us <span>›</span></div>
+    <div class="menu-link">Awareness Campaigns <span>›</span></div>
+    <div class="menu-link">Training Campaigns <span>›</span></div>
+    <div class="menu-link">Consultation <span>›</span></div>
+    <div class="menu-link">Contact Us <span>›</span></div>
+
+    <!-- FOOTER -->
+    <div class="sidebar-footer">
+        <a href="#">Career</a>
+        <a href="#">Newsroom</a>
+    </div>
+
 </div>
+
+</section>
+
+
+<section id="solarScrollShowcase">
+
+<style>
+/* MAIN WRAPPER */
+#solarScrollShowcase {
+  width: 100%;
+  background: #ffffff;
+  overflow-x: hidden;
+  font-family: "Outfit", sans-serif;
+}
+
+/* PINNED SCROLL BLOCK */
+.scroll-block {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #ffffff;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+/* IMAGE FULLSCREEN */
+.scroll-image-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Smooth starting zoom */
+.scroll-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.22);
+  will-change: transform;
+}
+
+/* TEXT PANEL */
+.scroll-text {
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  max-width: 520px;
+  opacity: 0;
+  transform: translateY(-50%) translateX(100px);
+  color: #0d0d0d;
+  z-index: 5;
+}
+
+/* LEFT IMAGE → TEXT RIGHT */
+.scroll-block.left-image .scroll-text { right: 5%; }
+
+/* RIGHT IMAGE → TEXT LEFT */
+.scroll-block.right-image .scroll-text { left: 5%; }
+
+/* TEXT STYLING */
+.scroll-text h2 {
+  font-size: clamp(32px, 3vw, 46px);
+  font-weight: 800;
+  margin-bottom: 16px;
+  line-height: 1.15;
+  color: #444;
+}
+
+.scroll-text h3 {
+  font-size: clamp(26px, 2.6vw, 32px);
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 14px;
+  color: #333;
+}
+
+.scroll-text p {
+  font-size: clamp(16px, 1.2vw, 19px);
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+
+  .scroll-block { height: 85vh; }
+
+  .scroll-image-wrapper { height: 55vh; }
+
+  .scroll-text {
+    width: 90%;
+    left: 5% !important;
+    transform: translateY(10px) translateX(0) !important;
+  }
+}
+</style>
+
+
+<!-- BLOCK 1 -->
+<div class="scroll-block left-image">
+  <div class="scroll-image-wrapper">
+    <img src="images/hero_01.jpg" class="scroll-image">
+  </div>
+
+  <div class="scroll-text">
+    <h2>OUR COMPANY</h2>
+    <p>
+      At Infravisory Consultancy Pvt. Limited, we believe in a client-centric approach,
+      focusing on understanding the unique needs and goals of each project.
+    </p>
+
+    <p>
+      Our team of seasoned experts combines industry knowledge with innovative thinking
+      to deliver solutions that drive success. We are committed to maintaining the
+      highest standards of professionalism and integrity.
+    </p>
+  </div>
+</div>
+
+
+
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <script>
-function toggleMenuUpdated() {
-  const burger = document.getElementById("hamburgerBtn");
-  const menu = document.getElementById("sideMenu");
-  const ripple = burger.querySelector(".ripple");
+gsap.registerPlugin(ScrollTrigger);
 
-  burger.classList.toggle("active");
-  menu.classList.toggle("active");
+document.querySelectorAll(".scroll-block").forEach((block) => {
 
-  gsap.fromTo(
-    ripple,
-    { scale:0, opacity:0.4 },
-    { scale:22, opacity:0, duration:0.55, ease:"power2.out" }
-  );
-}
+  const imgWrap = block.querySelector(".scroll-image-wrapper");
+  const img = block.querySelector(".scroll-image");
+  const text = block.querySelector(".scroll-text");
+
+  let direction = block.classList.contains("right-image") ? 40 : -40;
+
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: block,
+      start: "top top",
+      end: "+=110%",
+      scrub: 1.4,
+      pin: true,
+      anticipatePin: 1
+    }
+  });
+
+  tl.to(imgWrap, { xPercent: direction, ease: "power1.out" }, 0);
+  tl.to(img, { scale: 1.08, ease: "power1.out" }, 0);
+  tl.to(text, { opacity: 1, x: 0, ease: "power2.out" }, 0.42);
+
+});
 </script>
 
 </section>
+
+
 
 
 <section id="axiomFAQ">
@@ -1580,220 +1488,560 @@ faqItems.forEach(item => {
 </section>
 
 
-<section id="solarScrollShowcase">
+
+
+
+
+
+<section id="awardsSection">
 
 <style>
-/* MAIN WRAPPER */
-#solarScrollShowcase {
-  width: 100%;
-  background: #ffffff;
-  overflow-x: hidden;
-  font-family: "Outfit", sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
-/* PINNED SCROLL BLOCK */
-.scroll-block {
+#awardsSection {
   position: relative;
-  width: 100%;
+  background: #fff;
+  color: #111;
+  font-family: "Outfit", sans-serif;
+  padding-bottom: 80px; /* FIX: removed huge bottom gap */
+}
+
+/* ------------------------
+   STICKY TITLE
+------------------------- */
+.sticky-bg {
+  position: sticky;
+  top: 0;
   height: 100vh;
-  overflow: hidden;
-  background: #ffffff;
-  border-bottom: 1px solid #e8e8e8;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* IMAGE FULLSCREEN */
-.scroll-image-wrapper {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 1;
+.awards-title {
+  font-size: 85px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.1;
 }
 
-/* Smooth starting zoom */
-.scroll-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.22);
-  will-change: transform;
-}
-
-/* LIGHT GRADIENT for better readability */
-.scroll-gradient {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-
-  pointer-events: none;
-}
-
-/* TEXT PANEL */
-.scroll-text {
-  position: absolute;
-  top: 50%;
-  width: 40%;
-  max-width: 520px;
-  opacity: 0;
-  transform: translateY(-50%) translateX(100px);
-  color: #0d0d0d;
+/* ------------------------
+   CARDS CONTAINER
+------------------------- */
+.cards-container {
+  margin-top: -55vh;
+  position: relative;
   z-index: 5;
 }
 
-/* LEFT IMAGE → TEXT RIGHT */
-.scroll-block.left-image .scroll-text { right: 5%; }
-
-/* RIGHT IMAGE → TEXT LEFT */
-.scroll-block.right-image .scroll-text { left: 5%; }
-
-/* TEXT STYLING */
-.scroll-text h2 {
-  font-size: clamp(32px, 3vw, 46px);
-  font-weight: 800;
-  margin-bottom: 16px;
-  line-height: 1.15;
-  color: #444; /* BRAND COLOR */
-}
-
-.scroll-text p {
-  font-size: clamp(16px, 1.2vw, 19px);
-  line-height: 1.6;
-  color: #333;
-}
-
-/* BUTTON – NOW BRAND COLORED */
-.scroll-button {
-  display: inline-block;
-  padding: 12px 28px;
-  background: #00A8FF;
-  border-radius: 10px;
-  font-weight: 700;
+/* ------------------------
+   CARD BASE STYLE
+------------------------- */
+.award-card {
+  width: 55%;
+  min-height: 430px;
+  padding: 45px 50px;
+  border-radius: 12px;
   color: #fff;
-  text-decoration: none;
-  transition: .28s ease;
-  box-shadow: 0 6px 18px rgba(0,168,255,0.32);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(150px);
+  transition: 0.45s ease;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.45);
 }
 
-.scroll-button:hover {
-  transform: translateY(-4px);
-  background: #04b5ff;
-  box-shadow: 0 8px 26px rgba(0,168,255,0.45);
+/* Card colors */
+.card-blue { background: #0048ff; }
+.card-red { background: #444; }
+.card-purple { background: #3a0078; }
+.card-green { background: #00784e; }
+
+/* ------------------------
+   POSITIONING
+------------------------- */
+.card-left {
+  margin: 170px auto 0 6%;
+}
+
+.card-right {
+  margin: 170px 6% 0 auto;
+}
+
+/* ------------------------
+   TEXT STYLING
+------------------------- */
+.card-title {
+  font-size: 36px;
+  margin-bottom: 22px;
+  font-weight: 700;
+}
+
+.card-desc {
+  font-size: 20px;
+  line-height: 1.65;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.45s ease;
+}
+
+/* Extra description lines */
+.card-desc .line {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.45s ease;
+}
+
+/* ------------------------
+   HOVER REVEAL
+------------------------- */
+.award-card:hover {
+  transform: scale(1.04);
+}
+
+.award-card:hover .card-desc {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.award-card:hover .line {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: .15s;
 }
 
 /* MOBILE */
-@media (max-width: 900px) {
-  .scroll-block { height: 80vh; }
-
-  .scroll-image-wrapper { height: 55vh; }
-
-  .scroll-text {
+@media (max-width: 768px) {
+  .award-card {
     width: 90%;
-    left: 5% !important;
-    transform: translateY(10px) translateX(0) !important;
+    padding: 35px;
+    margin: 110px auto !important;
+    min-height: auto;
+  }
+  .awards-title {
+    font-size: 42px;
   }
 }
 </style>
 
 
-<!-- BLOCK 1 -->
-<div class="scroll-block left-image">
-  <div class="scroll-image-wrapper">
-    <img src="img/pmsu.jpg" class="scroll-image">
-    <div class="scroll-gradient"></div>
-  </div>
-  <div class="scroll-text">
-   <h2>PM Surya Ghar Muft Bijli Yojana</h2>
-    <p>The scheme empowers households across India by enabling them to generate their own clean electricity through rooftop solar installations.</p>
-    <p>Under this program, eligible families receive subsidies to significantly reduce installation costs, making solar energy more accessible and affordable.</p>
-    <p>The initiative promotes long-term energy independence while reducing the burden of rising power expenses.</p>
-    <a class="scroll-button">View More</a>
-  </div>
-</div>
-
-<!-- BLOCK 2 -->
-<div class="scroll-block right-image">
-  <div class="scroll-image-wrapper">
-    <img src="img/kusum.jpg" class="scroll-image">
-    <div class="scroll-gradient"></div>
-  </div>
-  <div class="scroll-text">
-  <h2>KUSUM Scheme</h2>
-    <p>KUSUM supports farmers by replacing diesel-based pumps with efficient solar-powered systems, reducing operational costs dramatically.</p>
-    <p>The scheme encourages sustainable irrigation, enabling farmers to improve productivity while decreasing environmental impact.</p>
-    <p>It represents one of India’s largest rural clean-energy transformations.</p>
-    <a class="scroll-button">View More</a>
-  </div>
-</div>
-
-<!-- BLOCK 3 -->
-<div class="scroll-block left-image">
-  <div class="scroll-image-wrapper">
-    <img src="img/smar.jpg" class="scroll-image">
-    <div class="scroll-gradient"></div>
-  </div>
-  <div class="scroll-text">
-     <h2>SMART Solar Program</h2>
-    <p>The SMART initiative promotes widespread adoption of residential rooftop solar systems across Maharashtra.</p>
-    <p>Through attractive subsidies and streamlined processes, households are encouraged to shift to renewable energy.</p>
-    <p>The program plays a vital role in reducing grid dependency and supporting India’s clean-energy goals.</p>
-    <a class="scroll-button">View More</a>
-  </div>
-</div>
-
-<!-- BLOCK 4 -->
-<div class="scroll-block right-image">
-  <div class="scroll-image-wrapper">
-    <img src="img/green.jpg" class="scroll-image">
-    <div class="scroll-gradient"></div>
-  </div>
-  <div class="scroll-text">
-    <h2>Green Open Access</h2>
-    <p>This policy enables industries to directly procure renewable energy from solar or wind producers at competitive rates.</p>
-    <p>It reduces reliance on expensive grid power while helping businesses achieve sustainability and carbon-neutrality targets.</p>
-    <p>Green Open Access simplifies approvals and accelerates India’s clean industrial transition.</p>
-    <a class="scroll-button">View More</a>
-  </div>
+<!-- ------------------------
+     STICKY BACKGROUND TITLE
+------------------------- -->
+<div class="sticky-bg">
+  <h1 class="awards-title">Solar Training & Technology </h1>
 </div>
 
 
-<!-- GSAP -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- ------------------------
+     FLOATING CARDS
+------------------------- -->
+<div class="cards-container">
+
+  <!-- CARD 1 -->
+  <div class="award-card card-blue card-left">
+    <div class="card-title">Training Campaigns</div>
+
+    <div class="card-desc">
+      • Programs to educate consumers, installers & integrators about solar energy.<br><br>
+      • Covers safety standards, installation techniques & system design principles.<br><br>
+      <span class="line">• Helps increase national solar adoption by improving awareness & skill levels.</span>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="award-card card-red card-right">
+    <div class="card-title">Current Technology</div>
+
+    <div class="card-desc">
+      • High-efficiency mono & bifacial solar panels improving power output.<br><br>
+      • Hybrid & microinverters for smart load management and higher reliability.<br><br>
+      <span class="line">• AI & IoT-based monitoring for performance analytics and predictive maintenance.</span>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="award-card card-purple card-left">
+    <div class="card-title">Grid-Tied Solar System</div>
+
+    <div class="card-desc">
+      • Connected directly to the utility grid; no batteries required.<br><br>
+      • Enables net-metering so excess solar power earns credit or income.<br><br>
+      <span class="line">• Ideal for households & industries aiming to drastically reduce electricity bills.</span>
+    </div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="award-card card-green card-right">
+    <div class="card-title">Off-Grid Solar System</div>
+
+    <div class="card-desc">
+      • Operates independently using batteries; ideal for remote locations.<br><br>
+      • Ensures uninterrupted power even during grid outages.<br><br>
+      <span class="line">• Perfect for rural areas, farms, telecom towers & emergency backup systems.</span>
+    </div>
+  </div>
+
+</div>
+
+
+
+<!-- ------------------------
+     GSAP ANIMATION
+------------------------- -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-document.querySelectorAll(".scroll-block").forEach((block) => {
-
-  const imgWrap = block.querySelector(".scroll-image-wrapper");
-  const img = block.querySelector(".scroll-image");
-  const text = block.querySelector(".scroll-text");
-
-  let direction = block.classList.contains("right-image") ? 40 : -40;
-
-  let tl = gsap.timeline({
+gsap.utils.toArray(".award-card").forEach((card) => {
+  gsap.to(card, {
+    opacity: 1,
+    y: 0,
+    duration: 1.4,
+    ease: "power3.out",
     scrollTrigger: {
-      trigger: block,
-      start: "top top",
-      end: "+=110%",
-      scrub: 1.4,
-      pin: true,
-      anticipatePin: 1
+      trigger: card,
+      start: "top 85%",
+      end: "top 45%",
+      scrub: true
     }
   });
-
-  /* IMAGE SLIDE + SMOOTH ZOOM */
-  tl.to(imgWrap, { xPercent: direction, ease: "power1.out" }, 0);
-  tl.to(img, { scale: 1.08, ease: "power1.out" }, 0);
-
-  /* TEXT FADE-IN AFTER IMAGE MOVES */
-  tl.to(text, { opacity: 1, x: 0, ease: "power2.out" }, 0.42);
-
 });
 </script>
 
 </section>
+
+
+
+
+
+
+
+<!-- //////////////////////////// yojna //////////////////////// -->
+
+<!-- //////////////////////////// yojna //////////////////////// -->
+
+<!-- //////////////////////////// yojna //////////////////////// -->
+
+
+
+<section id="windTabsSection">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+#windTabsSection {
+    width: 100%;
+    padding-top: 140px;   /* MORE SPACE AT TOP */
+    font-family: "Outfit", sans-serif;
+    overflow: hidden;
+    background: #fff;
+}
+
+/* =====================================================
+   TAB NAVIGATION
+===================================================== */
+.tabs-wrapper {
+    width: 100%;
+    max-width: 1450px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 80px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 26px 90px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #2a1a46;
+    background: #f2eef5;
+    cursor: pointer;
+    transition: 0.35s ease;
+    border-bottom: none;
+}
+
+.tab-btn:not(.active):hover {
+    background: #e8e2f0;
+    transform: translateY(-3px);
+}
+
+.tab-btn.active {
+    background: #ffffff;
+    border: 3px dotted #2a1a46;
+    border-bottom: none;
+    position: relative;
+}
+
+.tab-btn.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -11px;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 3px;
+    border-radius: 20px;
+    background: #2a1a46;
+    animation: underlineGrow 0.4s ease forwards;
+}
+
+@keyframes underlineGrow {
+    from { width: 0%; opacity: 0; }
+    to { width: 70%; opacity: 1; }
+}
+
+/* =====================================================
+   CONTENT AREA
+===================================================== */
+.tab-content {
+    max-width: 1450px;
+    margin: auto;
+    padding: 70px 0 120px;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 120px;            /* MORE EVEN SPACE */
+    opacity: 0;
+    transform: translateY(45px);
+    transition: 0.7s ease;
+}
+
+/* SHOW ACTIVE CONTENT */
+.tab-content.show {
+    display: flex !important;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =====================================================
+   LEFT TEXT SECTION
+===================================================== */
+.text-side {
+    width: 47%;
+    padding-left: 100px;   /* SHIFTED MORE RIGHT */
+}
+
+.text-side h4 {
+    font-size: 20px;
+    color: #2a1a46;
+    margin-bottom: 22px;
+}
+
+.text-side h2 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 28px;
+    color: #2a1a46;
+    letter-spacing: -0.5px;
+}
+
+.text-side p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #2a1a46;
+    margin-bottom: 18px;
+    opacity: 0;
+    animation: fadeText 0.9s forwards ease;
+}
+
+@keyframes fadeText {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================================================
+   IMAGE SECTION
+===================================================== */
+.image-side {
+    width: 53%;
+    display: flex;
+    justify-content: center;
+}
+
+.image-side img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+    transform: scale(1);
+    opacity: 0;
+    animation: fadeImg 1s forwards ease;
+    transition: 0.45s ease;
+}
+
+@keyframes fadeImg {
+    from { opacity: 0; transform: translateY(25px) scale(1.03); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.image-side img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 24px 50px rgba(0,0,0,0.25);
+}
+
+/* =====================================================
+   RESPONSIVE FIXES
+===================================================== */
+@media (max-width: 900px) {
+
+    .tabs-wrapper {
+        flex-wrap: wrap;
+    }
+
+    .tab-content {
+        flex-direction: column;
+        gap: 50px;
+        padding: 40px 20px 70px;
+    }
+
+    .text-side, .image-side {
+        width: 100%;
+        padding: 0;
+    }
+
+    .image-side img {
+        height: 300px;
+    }
+}
+</style>
+
+<!-- =====================================================
+                 TAB BUTTONS
+===================================================== -->
+<div class="tabs-wrapper">
+    <div class="tab-btn active" onclick="manualTab('onshore')">PM Surya Ghar</div>
+    <div class="tab-btn" onclick="manualTab('offshore')">PM Kusum</div>
+    <div class="tab-btn" onclick="manualTab('service')">National Solar Mission</div>
+    <div class="tab-btn" onclick="manualTab('phase2')">Solar Rooftop Phase II</div>
+</div>
+
+
+<!-- =====================================================
+                TAB CONTENT SECTIONS
+===================================================== -->
+
+<!-- PM Surya Ghar -->
+<div class="tab-content show" id="onshoreContent">
+    <div class="text-side">
+        <h4>Subsidy up to ₹78,000 | 300 Units Free</h4>
+        <h2>PM Surya Ghar: Muft Bijli Yojana</h2>
+
+        <p>This scheme empowers Indian households by supporting installation of rooftop solar systems, enabling families to generate their own electricity.</p>
+
+        <p>Eligible households receive **up to ₹78,000 subsidy**, making solar energy more affordable and accessible.</p>
+
+        <p>The program provides **300 free electricity units per month**, reducing household electricity bills dramatically.</p>
+    </div>
+
+    <div class="image-side">
+        <img src="images/hero_01.jpg" alt="PM Surya Ghar Yojana">
+    </div>
+</div>
+
+
+<!-- PM KUSUM -->
+<div class="tab-content" id="offshoreContent">
+    <div class="text-side">
+        <h4>Solar Irrigation for Indian Farmers</h4>
+        <h2>PM Kusum Yojana</h2>
+
+        <p>The PM-KUSUM scheme promotes clean irrigation by providing **solar pumps and solar-powered agricultural systems** for farmers.</p>
+
+        <p>It reduces diesel usage, cuts costs, and encourages environmentally friendly farming practices.</p>
+
+        <p>Farmers can also **sell surplus solar energy** back to the grid, generating extra income.</p>
+    </div>
+
+    <div class="image-side">
+        <img src="images/hero_02.jpg" alt="PM Kusum Solar Yojana">
+    </div>
+</div>
+
+
+<!-- National Solar Mission -->
+<div class="tab-content" id="serviceContent">
+    <div class="text-side">
+        <h4>India’s Renewable Future</h4>
+        <h2>National Solar Mission</h2>
+
+        <p>This long-term mission aims to position India as a global leader in solar energy, focusing on manufacturing, innovation, and large solar parks.</p>
+
+        <p>The goal is to achieve **500 GW renewable capacity**, strengthening India’s energy security and sustainability.</p>
+
+        <p>The mission drives growth in rooftop solar, solar parks, and energy-efficient urban projects.</p>
+    </div>
+
+    <div class="image-side">
+        <img src="images/hero_04.jpg" alt="National Solar Mission">
+    </div>
+</div>
+
+
+<!-- Solar Rooftop Phase II -->
+<div class="tab-content" id="phase2Content">
+    <div class="text-side">
+        <h4>Residential Rooftop Solar Expansion</h4>
+        <h2>Solar Rooftop Phase II</h2>
+
+        <p>This initiative supports installation of **4,000 MW rooftop solar systems** for residential users across India.</p>
+
+        <p>Consumers receive **direct benefit transfer subsidies** based on system capacity, making rooftop solar highly affordable.</p>
+
+        <p>The scheme accelerates India's transition to decentralized green energy, reducing dependence on grid power.</p>
+    </div>
+
+    <div class="image-side">
+        <img src="images/hero_05.jpg" alt="Solar Rooftop Phase II">
+    </div>
+</div>
+
+
+
+<!-- =====================================================
+                 AUTO SLIDER SCRIPT
+===================================================== -->
+<script>
+let tabs = ["onshore", "offshore", "service", "phase2"];
+let currentIndex = 0;
+let autoSlide;
+
+function showTab(tab) {
+    document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("active"));
+    document.querySelector("[onclick=\"manualTab('" + tab + "')\"]").classList.add("active");
+
+    document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("show"));
+    document.getElementById(tab + "Content").classList.add("show");
+}
+
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % tabs.length;
+    showTab(tabs[currentIndex]);
+}
+
+function startAutoSlide() {
+    autoSlide = setInterval(nextSlide, 7000);  // slower & smoother
+}
+
+function manualTab(tab) {
+    clearInterval(autoSlide);
+    showTab(tab);
+    currentIndex = tabs.indexOf(tab);
+    startAutoSlide();
+}
+
+startAutoSlide();
+</script>
+
+</section>
+
 
 
 <!-- ======================================================
@@ -1803,139 +2051,145 @@ document.querySelectorAll(".scroll-block").forEach((block) => {
 <footer id="dragRevealFooter">
 
 <style>
-    #dragRevealFooter {
-        width: 100%;
-        height: 340px;
-        position: relative;
-        overflow: hidden;
-        background: #ffffff;
-        font-family: "Outfit", sans-serif;
-        color: #ffffff;
-        border-top: 1px solid #e5e7eb;
-    }
+/* ================================
+   NORMAL FOOTER (NO OVERLAY)
+   Footer stays behind page content
+==================================*/
 
-    /* BLUE REVEAL LAYER */
-    #footerMask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 0%;
-        background: linear-gradient(90deg, #0284c7, #0ea5e9, #38bdf8);
-        transition: width 0.35s cubic-bezier(.22,.61,.36,1); /* smoother + slower */
-        z-index: 1;
-    }
-
-    /* FOOTER CONTENT */
-    #footerContent {
-        position: relative;
-        z-index: 10;
-        padding: 60px 6%;
-    }
-
-    .footerColumns {
-        display: flex;
-        justify-content: space-between;
-        gap: 40px;
-        flex-wrap: wrap;
-    }
-
-    .footerCol {
-        width: 22%;
-        min-width: 220px;
-    }
-
-    .footerCol h3 {
-        font-size: 22px;
-        margin-bottom: 14px;
-        letter-spacing: 0.3px;
-    }
-
-    .footerCol p,
-    .footerCol a {
-        font-size: 15px;
-        line-height: 1.4;
-        text-decoration: none;
-        color: #ffffff;
-        margin-bottom: 6px;
-    }
-
-    /* DRAG HANDLE BUTTON */
-   /* WRAPPER JUST FOR POSITION */
-#dragWrapper {
-    position: absolute;
-    top: 50%;
-    left: 40px;
-    transform: translate(0, -50%);
-    z-index: 999;
+#dragRevealFooter {
+    width: 100%;
+    height: 340px;
+    position: relative;        /* NOT FIXED ANYMORE */
+    bottom: 0;
+    overflow: hidden;
+    background: #000;          /* fallback */
+    font-family: "Outfit", sans-serif;
+    color: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    z-index: 1;                /* Footer stays BELOW page content */
 }
 
-/* DRAG HANDLE BUTTON - BOUNCY POP-UP ANIMATION */
+/* ================================
+   BACKGROUND VIDEO
+==================================*/
+#footerVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ================================
+   BLUE REVEAL MASK
+==================================*/
+#footerMask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #0284c7, #0ea5e9, #38bdf8);
+    transition: width 0.35s cubic-bezier(.22,.61,.36,1);
+    z-index: 2;
+}
+
+/* ================================
+   FOOTER CONTENT
+==================================*/
+#footerContent {
+    position: relative;
+    z-index: 10;
+    padding: 60px 6%;
+}
+
+.footerColumns {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.footerCol {
+    width: 22%;
+    min-width: 220px;
+}
+
+.footerCol h3 {
+    font-size: 22px;
+    margin-bottom: 14px;
+}
+
+.footerCol p,
+.footerCol a {
+    font-size: 15px;
+    line-height: 1.4;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+/* ================================
+   DRAG BUTTON (NOT FIXED ANYMORE)
+   Stays above footer, not floating
+==================================*/
 #dragHandle {
-    width: 78px;
-    height: 78px;
+    position: absolute;          /* NOT FIXED */
+    top: -40px;                  /* Positioned above footer */
+    left: 60px;
+
+    width: 98px;
+    height: 98px;
     border-radius: 50%;
     background: #0284c7;
     color: #fff;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     font-size: 32px;
     cursor: pointer;
     box-shadow: 0 0 30px rgba(0,0,0,0.28);
+
     user-select: none;
-
-    /* POP-UP animation NOW WORKS because transform is not overridden */
-    animation: buttonPop 0.9s cubic-bezier(.25,1.8,.45,1.2);
-    transition: transform 0.35s ease, background 0.35s ease;
+    z-index: 20;                 /* Stays above footer, not above page */
 }
 
-/* SUPER POP-UP + BOUNCE */
-@keyframes buttonPop {
-    0%   { transform: scale(0); opacity: 0; }
-    30%  { transform: scale(1.45); opacity: 1; }
-    55%  { transform: scale(0.85); }
-    80%  { transform: scale(1.15); }
-    100% { transform: scale(1); }
-}
-
-/* CLICK TEXT POP-UP */
 #dragText {
     font-size: 15px;
     margin-top: 5px;
     opacity: 0.95;
     font-weight: 600;
-    animation: clickPop 0.8s cubic-bezier(.25,1.6,.45,1.2) 0.3s backwards;
 }
 
-@keyframes clickPop {
-    0%   { transform: scale(0); opacity: 0; }
-    40%  { transform: scale(1.5); opacity: 1; }
-    70%  { transform: scale(0.85); }
-    100% { transform: scale(1); }
+/* ================================
+   CLOSE BUTTON
+==================================*/
+#closeFooter {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-size: 34px;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 20;
+    display: none;
 }
 
-    /* CLOSE BUTTON */
-    #closeFooter {
-        position: absolute;
-        top: 18px;
-        right: 18px;
-        font-size: 34px;
-        font-weight: bold;
-        color: #ffffff;
-        cursor: pointer;
-        z-index: 20;
-        display: none;
-        transition: transform 0.3s ease;
-    }
-
-    #closeFooter:hover {
-        transform: scale(1.25);
-    }
 </style>
 
-<!-- BLUE SLIDER -->
+<!-- 🌟 FULL BACKGROUND VIDEO -->
+<video id="footerVideo" autoplay muted loop playsinline>
+    <source src="img/win50fps.mp4" type="video/mp4">
+</video>
+
+<!-- BLUE SLIDER MASK -->
 <div id="footerMask"></div>
 
 <!-- CLOSE BUTTON -->
@@ -1986,48 +2240,39 @@ document.querySelectorAll(".scroll-block").forEach((block) => {
     const closeFooter = document.getElementById("closeFooter");
     const footerMask = document.getElementById("footerMask");
 
-    let dragging = false;
     let autoAnimating = false;
 
-    /* Ultra smooth easing animation */
     function animateMask(from, to, duration, callback) {
         const start = performance.now();
 
         function frame(now) {
             const progress = Math.min((now - start) / duration, 1);
-
-            /* slow, smooth easing */
             const eased = progress < 0.5 
-                ? 4 * progress * progress * progress   /* accelerate */
-                : 1 - Math.pow(-2 * progress + 2, 3) / 2; /* decelerate */
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
             const width = from + (to - from) * eased;
 
             footerMask.style.width = width + "%";
             dragHandle.style.left = width + "%";
 
-            if (progress < 1) {
-                requestAnimationFrame(frame);
-            } else if (callback) {
-                callback();
-            }
+            if (progress < 1) requestAnimationFrame(frame);
+            else if (callback) callback();
         }
 
         requestAnimationFrame(frame);
     }
 
-    /* AUTO OPEN */
     dragHandle.addEventListener("click", () => {
         if (autoAnimating) return;
         autoAnimating = true;
 
-        animateMask(0, 100, 1400, () => {  /* made slower */
+        animateMask(0, 100, 1400, () => {
             closeFooter.style.display = "block";
             autoAnimating = false;
         });
     });
 
-    /* AUTO CLOSE */
     closeFooter.addEventListener("click", () => {
         if (autoAnimating) return;
         autoAnimating = true;
@@ -2038,42 +2283,10 @@ document.querySelectorAll(".scroll-block").forEach((block) => {
             autoAnimating = false;
         });
     });
-
-    /* MANUAL DRAG */
-    dragHandle.addEventListener("mousedown", startDrag);
-    dragHandle.addEventListener("touchstart", startDrag);
-
-    function startDrag() {
-        if (autoAnimating) return;
-        dragging = true;
-        document.addEventListener("mousemove", onDrag);
-        document.addEventListener("touchmove", onDrag);
-        document.addEventListener("mouseup", stopDrag);
-        document.addEventListener("touchend", stopDrag);
-    }
-
-    function onDrag(e) {
-        if (!dragging) return;
-
-        let x = e.touches ? e.touches[0].clientX : e.clientX;
-        let rect = footerMask.getBoundingClientRect();
-        let percent = ((x - rect.left) / rect.width) * 100;
-
-        percent = Math.max(0, Math.min(percent, 100));
-
-        /* smoother manual drag */
-        footerMask.style.transition = "width 0.15s ease-out";
-        footerMask.style.width = percent + "%";
-
-        dragHandle.style.left = percent + "%";
-
-        closeFooter.style.display = percent >= 100 ? "block" : "none";
-    }
-
-    function stopDrag() { dragging = false; }
 </script>
 
 </footer>
+
 
 
 
